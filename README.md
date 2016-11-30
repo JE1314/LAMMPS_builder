@@ -104,66 +104,92 @@ The only file which needs to be modified by a regular user is:
 
  - run.py
 
-These are the variables that can be modified by the user, they relate to the structure of the system
-
 ## General Inputs
 
- - aFe		Lattice parameter of Fe in Angstrom
+These are the variables that can be modified by the user, they relate to the structure of the system
 
- - xhi / yhi 	Size of the simulation box in the x and y direction. These values need to be given in terms of the lattice parameter of Fe (aFe).
+ - aFe		
+
+Lattice parameter of Fe in Angstrom
+
+ - xhi
+ - yhi
+
+Size of the simulation box in the x and y direction. These values need to be given in terms of the lattice parameter of Fe (aFe).
  
-For example: xhi = '15', yhi = '15'
+For example: xhi = 15, yhi = 15
 
- - zhi 	 	This value determines the Z size of the section of the box that will contain both the alkane chains and OFMs. The units are Angstrom.
+ - zhi
+
+This value determines the Z size of the section of the box that will contain both the alkane chains and OFMs. The units are Angstrom.
+
+For example: zhi = 60
 
 ## Inputs related to the OFMs
 
- - OFM 		This flag determines if the the system will contain OFMs. If OFM = 1, the generation of OFMs is activated
+ - OFM 	
 
- - OFMtype 	Defines the type of OFM that will be used in the simulation the available options are: SA, SAm, GMS, OA, OAm, GMO. For full details and chemical structures, see: Ewen et al. Langmiur (2016) http://pubs.acs.org/doi/full/10.1021/acs.langmuir.6b00586
+This flag determines if the the system will contain OFMs. If OFM = 1, the generation of OFMs is activated
+
+ - OFMtype 	
+
+Defines the type of OFM that will be used in the simulation the available options are: SA, SAm, GMS, OA, OAm, GMO. For full details and chemical structures, see: Ewen et al. Langmiur (2016) http://pubs.acs.org/doi/full/10.1021/acs.langmuir.6b00586
  
-For example: OFMtype = 'GMS'
+For example: OFMtype = GMS
       
- - OFMn_x / OFMn_y	These two variables determine the number of independent OFM chains to be placed along the x and y directions. The inputs are integers.
+ - OFMn_x
+ - OFMn_y
 
-For example: OFMn_x = '5', OFMn_y = '7'
+These two variables determine the number of independent OFM chains to be placed along the x and y directions. The inputs are integers.
+
+For example: OFMn_x = 5, OFMn_y = 7
 
 ## Inputs related to the Alkanes
 
-#Alkane 		This flag determines if the the system will contain Alkanes.
-		  #if Alkane = 1, the generation of Alkanes is activated
-      #Note only linear n-alkanes currently available
+ - Alkane 		
+ 
+This flag determines if the the system will contain Alkanes. If Alkane = 1, the generation of Alkanes is activated. Note only linear n-alkanes are currently available.
 
-#nAlkane		Defines the number of CH2/CH3 monomers on each alkane chain.
-		  #The inputs are integers
-		  #Exm: 	nAlkane = 16
+ - nAlkane
 
-#Alkanen_x 	Number of alkane chains to be placed along each 
-#Alkanen_y	  direction of the simulation box
-#Alkanen_z	  The inputs are integers
-		  #Exm: 	Alkanen_x = 5
-			#	      Alkanen_y = 7
-			#	      Alkanen_z = 3
+Defines the number of CH2/CH3 monomers on each alkane chain. The inputs are integers.
 
-#####Inputs related to the Surfaces
+For example: 	nAlkane = '16'
 
-#Surfaces = 1	This flag determines if the the system will contain Surfaces.
-		  #if Surfaces = 1, the generation of Surfaces is activated
+ - Alkanen_x
+ - Alkanen_y
+ - Alkanen_z
 
-#FractalLevels 	Number of fractal levels used for the generation of the surfaces
-		  #The inputs are integers
-      #Exm: 	FractalLevels = 4
+Number of alkane chains to be placed along each direction of the simulation box. The inputs are integers
+
+For example: 	Alkanen_x = 5, Alkanen_y = 7, Alkanen_z = 3
+
+## Inputs related to the Surfaces
+
+ - Surfaces
+
+This flag determines if the the system will contain Surfaces. If Surfaces = 1, the generation of Surfaces is activated
+
+ - FractalLevels 	
+
+Number of fractal levels used for the generation of the surfaces. The inputs are integers.
+
+For example: 	FractalLevels = 4
       
-#H 		Hurst exponent for the generation of the fractal surfaces
-      #Spijker et al. Tribology Letters (2011) DOI: 10.1007/s11249-011-9846-y
-      #Exm: 	H = 0.8
+ - H
 
-#RMSin 		Value of the desired RMS roughness of the surfaces.
-		  #The units are Angstrom
-      #Exm: 	RMSin = 8
+Hurst exponent for the generation of the fractal surfaces. Ref: Spijker et al. Tribology Letters (2011) http://link.springer.com/article/10.1007/s11249-011-9846-y
 
-#boxLenghtZ	Thicknes of each of the Fe slabs that form the surfaces. This 
-		  #is the thickness before the roughness is applied to the surface
-		  #This value does not have units. It corresponds to the number 
-		  #of Fe lattice constants
-		  #Exm: boxLenghtZ = 20 -> 20*aFe = 57.27320 Angstrom
+For example: 	H = 0.8
+
+ - RMSin 
+
+Value of the desired RMS roughness of the surfaces. The units are Angstrom.
+
+For example:   RMSin = 8
+
+ - boxLenghtZ
+
+Thicknes of each of the Fe slabs that form the surfaces. This is the thickness before the roughness is applied to the surface This value corresponds to the number of Fe lattice constants (aFe)
+
+For example:  boxLenghtZ = 20
