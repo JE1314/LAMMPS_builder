@@ -4,11 +4,13 @@
 
 ## GENERAL INFO 
 
-This software generates a system to be run in LAMMPS(22 Jul 2016-ICMS), containing:
+This software generates a system to be run in LAMMPS(22 Jul 2016-ICMS), containing*:
  
  - Two bcc Fe surfaces with nanoscale RMS roughness
- - Monolayer films made of organic friction modifiers (OFMs)
+ - Organic friction modifier (OFM) monolayer films
  - An oil region composed of n-alkane chains
+ 
+ *Note that any of these comopents can be excluded from the LAMMPS datafile
  
 ## CITING THIS SOFTWARE
 If you use this software, please cite the following article: J. P. Ewen, S. Echeverri Restrepo, N. Morgan, D. Dini, Nonequilibrium Molecular Dynamics Simulations of Stearic Acid Adsorbed on Iron Surfaces with Nanoscale Roughness, Tribology International (2016), http://dx.doi.org/10.1016/j.triboint.2016.11.039
