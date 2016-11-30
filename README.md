@@ -70,7 +70,7 @@ In a bash shell:
  - Modify the file run.py as needed (see below)
  - To run the script, type:   $ python run.py
  - The folder "lopls" is generated, which contains the files needed to run a basic LAMMPS simulation
- - To test the LAMMPS simulation, type*:  $ mpirun -np X lmp_mpi < in.lopls
+ - To test the LAMMPS simulation, type*:  $ mpirun -np X lmp_mpi < in.lopls       , where X is the number of processors
  - Extend/modify the in.lopls file in order to perform more complex MD simulations
    
 *note that the name of the LAMMPS executable might be different
