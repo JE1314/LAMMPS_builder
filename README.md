@@ -53,37 +53,33 @@ This file contains the information related to the L-OPLS force field that is use
 
  - root/Rough.py
 
-This file contains a function to generate the rough Fe surfaces. For details of the RMD algorithm used, see Ref: Spijker et al. Tribology Letters (2011) http://doi.org/10.1007/978-3-642-84574-1_34
-
-Tribol Lett 2011;44:279–85 and http://doi.org/10.1007/978-3-642-84574-1_34
+This file contains a function to generate the rough Fe surfaces. For details of the RMD algorithm used, see Refs: Spijker et al. Tribology Letters (2011) http://link.springer.com/article/10.1007/s11249-011-9846-y and Voss in Fundamental Algorithms for Computer Graphics (1991) http://doi.org/10.1007/978-3-642-84574-1_34
   
  - Fe_mm.eam.fs
  
 This file is provided with the installation of lammps. It contains the EAM parameters that define the Fe interactions. It needs to be in the PATH accessible by LAMMPS. Ref: Mendelev et al. Philosophical Magazine (2003) http://www.tandfonline.com/doi/abs/10.1080/14786430310001613264
 
-#########################################################################
-###################### SCHEMATIC ########################################
-#########################################################################
+## SCHEMATIC
 
-#The generated system has the following schematic structure: 
+The generated system has the following schematic structure: 
  
-#     ---------------------------------------------
-#     ---------------------------------------------	 SURFACE TOP
-#     ---------------------------------------------
-#      O     O     O     O     O     O     O     O
-#      |     |     |     |     |     |     |     |    OFM TOP
-#      |     |     |     |     |     |     |     |
-#      |     |     |     |     |     |     |     |    
-#        _______________________________________     _________
-#       | c-c-c-c-c-c-c    c-c-c-c-c-c-c        |  /\
-#       |                                       |  |
-#       | c-c-c-c-c-c-c    c-c-c-c-c-c-c        |  |
-#       |                                       |  |
-#       | c-c-c-c-c-c-c    c-c-c-c-c-c-c        |  |
-#       |                                 OIL   |  |  Z SEPARATION
-#       | c-c-c-c-c-c-c    c-c-c-c-c-c-c        |  |
-#       |                                       |  |
-#       | c-c-c-c-c-c-c    c-c-c-c-c-c-c        |  |
+     ---------------------------------------------
+     ---------------------------------------------	 SURFACE TOP
+     ---------------------------------------------
+      O     O     O     O     O     O     O     O
+      |     |     |     |     |     |     |     |    OFM TOP
+      |     |     |     |     |     |     |     |
+      |     |     |     |     |     |     |     |    
+        _______________________________________     _________
+       | c-c-c-c-c-c-c    c-c-c-c-c-c-c        |  /\
+       |                                       |  |
+       | c-c-c-c-c-c-c    c-c-c-c-c-c-c        |  |
+       |                                       |  |
+       | c-c-c-c-c-c-c    c-c-c-c-c-c-c        |  |
+       |                                 OIL   |  |  Z SEPARATION
+       | c-c-c-c-c-c-c    c-c-c-c-c-c-c        |  |
+       |                                       |  |
+       | c-c-c-c-c-c-c    c-c-c-c-c-c-c        |  |
 #       |                                       |  |
 #       | c-c-c-c-c-c-c    c-c-c-c-c-c-c        |  |
 #        _______________________________________  \/ _________
