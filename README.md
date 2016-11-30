@@ -80,46 +80,42 @@ The generated system has the following schematic structure:
        | c-c-c-c-c-c-c    c-c-c-c-c-c-c        |  |
        |                                       |  |
        | c-c-c-c-c-c-c    c-c-c-c-c-c-c        |  |
-#       |                                       |  |
-#       | c-c-c-c-c-c-c    c-c-c-c-c-c-c        |  |
-#        _______________________________________  \/ _________
-#      |     |     |     |     |     |     |     |
-#      |     |     |     |     |     |     |     |
-#      |     |     |     |     |     |     |     |    OFM BOTTOM
-#      O     O     O     O     O     O     O     O
-#     ---------------------------------------------
-#     ---------------------------------------------   SURFACE BOTTOM
-#     ---------------------------------------------
-#
-#	       z
-#         |
-#         |
-#         |_ _ _ _ x
-#        /
-#       y   
+       |                                       |  |
+       | c-c-c-c-c-c-c    c-c-c-c-c-c-c        |  |
+        _______________________________________  \/ _________
+      |     |     |     |     |     |     |     |
+      |     |     |     |     |     |     |     |
+      |     |     |     |     |     |     |     |    OFM BOTTOM
+      O     O     O     O     O     O     O     O
+     ---------------------------------------------
+     ---------------------------------------------   SURFACE BOTTOM
+     ---------------------------------------------
 
-#########################################################################
-###################### INPUT VARIABLES ##################################
-#########################################################################
-#The only file that should be modified by a regular user is:
-#run.py
+         z
+         |
+         |
+         |_ _ _ _ x
+        /
+       y   
 
-#These are the variables that can be modified by the user. They relate to
-#the structure of the system
+## INPUT VARIABLES
 
-#####General Inputs
+The only file which needs to be modified by a regular user is:
 
-#aFe		Lattice parameter of Fe in Angstrom
+ - run.py
 
-#xhi	 	Size of the simulation box in the x and y direction. These
-#yhi		  values have to be given in terms of the lattice parameter
-		  #of Fe. For example
-		    #xhi = 15*aFe
-		    #yhi = 15*aFe
+These are the variables that can be modified by the user, they relate to the structure of the system
 
-#zhi 	 	This value determines the Z size of the section of the 
-		  #box that  will contain the alkane chains and OFMs.
-		  #The units are Angstrom
+## General Inputs
+
+ - aFe		Lattice parameter of Fe in Angstrom
+
+ - xhi	 	Size of the simulation box in the x and y direction. These
+ - yhi		  values have to be given in terms of the lattice parameter of Fe.
+ 
+For example xhi = 15*aFe, yhi = 15*aFe
+
+ - zhi 	 	This value determines the Z size of the section of the box that will contain the alkane chains and OFMs. The units are Angstrom.
 
 #####Inputs related to the OFM's
 
