@@ -25,11 +25,10 @@ If you use this software, please cite the following article: J. P. Ewen, S. Eche
 In a bash shell:
  - Go to the directory where the file run.py and the folder root are located
  - Modify the file run.py as needed
- - Type:
-   $ python run.py
+ - Type:   $ python run.py
  - The folder "lopls" is generated, which contains the files needed to run a LAMMPS simulation
- - To run the LAMMPS simulation, type something like*:
-   $ lmp_g++ < in.lopls
+ - To test the LAMMPS minimisation, type*:  $ mpirun -np X lmp_mpi < in.lopls
+ - Extend/modify the in.lopls in order to perform more complex MD simulations
    
 *note that the name of the LAMMPS executable might be different
 
