@@ -2,15 +2,17 @@
 
 ##Authors - Sebastián ECHEVERRI RESTREPO: sebastian.echeverri.restrepo@skf.com, sebastianecheverrir@gmail.com; James EWEN: j.ewen14@imperial.ac.uk, jimmyewen@gmail.com
 
-## GENERAL INFO 
+## GENERAL INFO
+
+This software is suitable as a starting point to performing confined nonequilibrium molecular dynamics (NEMD) simulations of OFM films adsorbed to iron surfaces, separated by a layer of n-alkane.
 
 This software generates a LAMMPS datafile and basic input file for systems containing*:
  
- - Two bcc Fe surfaces with nanoscale RMS roughness
- - Organic friction modifier (OFM) monolayer films
- - An oil region composed of n-alkane chains
+ - Two bcc Fe slabs with nanoscale RMS roughness
+ - Organic friction modifier (OFM) monolayers above/below bottom/top Fe slabs
+ - A central region of n-alkane chains
  
-*Note that any of these comopents can be excluded by using the appropriate flags
+*Note that any of these components can be excluded by using the appropriate flags
 
 ## SCHEMATIC
 
@@ -29,7 +31,7 @@ The generated system has the following schematic structure:
        | c-c-c-c-c-c-c    c-c-c-c-c-c-c        |  |
        |                                       |  |
        | c-c-c-c-c-c-c    c-c-c-c-c-c-c        |  |
-       |                                 OIL   |  |  Z SEPARATION
+       |                                ALKANE |  |  Z SEPARATION
        | c-c-c-c-c-c-c    c-c-c-c-c-c-c        |  |
        |                                       |  |
        | c-c-c-c-c-c-c    c-c-c-c-c-c-c        |  |
@@ -194,3 +196,7 @@ For example:   RMSin = 8
 Thicknes of each of the Fe slabs that form the surfaces. This is the thickness before the roughness is applied to the surface This value corresponds to the number of Fe lattice constants (aFe)
 
 For example:  boxLenghtZ = 20
+
+## Notes
+
+The script could be modified to simulate any confined system in LAMMPS using a range of force-fields. Please contact the authors if you would like help making these modifications.
