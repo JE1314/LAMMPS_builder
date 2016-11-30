@@ -83,6 +83,7 @@ In a bash shell:
 *note that the name of the LAMMPS executable might be different
 
 ## FILES NEEDED
+The below files are required to generate the LAMMPS datafile and input file, they are all provided in the distribution:
 
  - run.py
 
