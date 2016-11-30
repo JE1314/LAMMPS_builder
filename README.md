@@ -10,24 +10,15 @@ This software generates a system to be run in LAMMPS(22 Jul 2016-ICMS), containi
  - Monolayer films made of organic friction modifiers (OFMs)
  - An oil region composed of n-alkane chains
  
-#########################################################################
-################## CITING THIS SOFTWARE #################################
-#########################################################################
-#If you use this software, please cite the following article:
+## CITING THIS SOFTWARE
+If you use this software, please cite the following article: J. P. Ewen, S. Echeverri Restrepo, N. Morgan, D. Dini, Nonequilibrium Molecular Dynamics Simulations of Stearic Acid Adsorbed on Iron Surfaces with Nanoscale Roughness, Tribology International (2016), http://dx.doi.org/10.1016/j.triboint.2016.11.039
 
-#J. P. Ewen, S. Echeverri Restrepo, N. Morgan, D. Dini, Nonequilibrium 
-#Molecular Dynamics Simulations of Stearic Acid Adsorbed on Iron Surfaces
-#with Nanoscale Roughness, Tribology International (2016), 
-#http://dx.doi.org/10.1016/j.triboint.2016.11.039
-
-#########################################################################
-################## SOFTWARE NEEDED ######################################
-#########################################################################
-#What is needed:
-#-Bash shell
-#-Python v2.17.12 
-#-moltemplate version v1.34 2015-11-18 : http://www.moltemplate.org/
-#-ASE v3.11.0 : https://wiki.fysik.dtu.dk/ase/
+## SOFTWARE NEEDED
+What is needed:
+ - Bash shell
+ - Python v2.17.12 
+ - moltemplate version v1.34 2015-11-18 : http://www.moltemplate.org/
+ - ASE v3.11.0 : https://wiki.fysik.dtu.dk/ase/
 
 #########################################################################
 ################## HOW TO RUN ###########################################
