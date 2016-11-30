@@ -4,7 +4,7 @@
 
 ## GENERAL INFO 
 
-This software generates a LAMMPS(22 Jul 2016-ICMS) datafile and basic input file for systems containing*:
+This software generates a LAMMPS datafile and basic input file for systems containing*:
  
  - Two bcc Fe surfaces with nanoscale RMS roughness
  - Organic friction modifier (OFM) monolayer films
@@ -20,6 +20,7 @@ If you use this software, please cite the following article: J. P. Ewen, S. Eche
  - Python v2.17.12 
  - moltemplate version v1.34 2015-11-18 : http://www.moltemplate.org/
  - ASE v3.11.0 : https://wiki.fysik.dtu.dk/ase/
+ - LAMMPS 22 Jul 2016-ICMS : http://lammps.sandia.gov/ (to run MD simulation of resultant system)
 
 ## HOW TO RUN
 In a bash shell:
