@@ -4,7 +4,7 @@
 
 ## GENERAL INFO 
 
-This software generates a system to be run in LAMMPS(22 Jul 2016-ICMS), containing*:
+This software generates a LAMMPS(22 Jul 2016-ICMS) datafile and basic input file for systems containing*:
  
  - Two bcc Fe surfaces with nanoscale RMS roughness
  - Organic friction modifier (OFM) monolayer films
@@ -15,26 +15,23 @@ This software generates a system to be run in LAMMPS(22 Jul 2016-ICMS), containi
 ## CITING THIS SOFTWARE
 If you use this software, please cite the following article: J. P. Ewen, S. Echeverri Restrepo, N. Morgan, D. Dini, Nonequilibrium Molecular Dynamics Simulations of Stearic Acid Adsorbed on Iron Surfaces with Nanoscale Roughness, Tribology International (2016), http://dx.doi.org/10.1016/j.triboint.2016.11.039
 
-## SOFTWARE NEEDED
-What is needed:
+## SOFTWARE REQUIREMENTS
  - Bash shell
  - Python v2.17.12 
  - moltemplate version v1.34 2015-11-18 : http://www.moltemplate.org/
  - ASE v3.11.0 : https://wiki.fysik.dtu.dk/ase/
 
-#########################################################################
-################## HOW TO RUN ###########################################
-#########################################################################
-#In a bash shell:
-
-#-Go to the directory where the file run.py and the folder root are located
-#-Modify the file run.py as needed
-#-Type:
-  #python run.py
-#-The folder "lopls" is generated containing the files needed to run 
-  #simulation with lammps. To run the simulation, type something like (note
-  #that the name of the executable of lammps might be different):
-  #lmp_g++ < in.lopls
+## HOW TO RUN
+In a bash shell:
+ - Go to the directory where the file run.py and the folder root are located
+ - Modify the file run.py as needed
+ - Type:
+   $ python run.py
+ - The folder "lopls" is generated, which contains the files needed to run a LAMMPS simulation
+ - To run the LAMMPS simulation, type something like*:
+   $ lmp_g++ < in.lopls
+   
+*note that the name of the LAMMPS executable might be different
 
 #########################################################################
 ################## FILES NEEDED #########################################
