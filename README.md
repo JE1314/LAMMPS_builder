@@ -10,7 +10,7 @@ This software generates a LAMMPS(22 Jul 2016-ICMS) datafile and basic input file
  - Organic friction modifier (OFM) monolayer films
  - An oil region composed of n-alkane chains
  
- *Note that any of these comopents can be excluded from the LAMMPS datafile
+*Note that any of these comopents can be excluded from the LAMMPS datafile
  
 ## CITING THIS SOFTWARE
 If you use this software, please cite the following article: J. P. Ewen, S. Echeverri Restrepo, N. Morgan, D. Dini, Nonequilibrium Molecular Dynamics Simulations of Stearic Acid Adsorbed on Iron Surfaces with Nanoscale Roughness, Tribology International (2016), http://dx.doi.org/10.1016/j.triboint.2016.11.039
@@ -110,31 +110,25 @@ These are the variables that can be modified by the user, they relate to the str
 
  - aFe		Lattice parameter of Fe in Angstrom
 
- - xhi	 	Size of the simulation box in the x and y direction. These
- - yhi		  values have to be given in terms of the lattice parameter of Fe.
+ - xhi / yhi 	Size of the simulation box in the x and y direction. These values need to be given in terms of the lattice parameter of Fe (aFe).
  
-For example xhi = 15*aFe, yhi = 15*aFe
+For example: xhi = '15', yhi = '15'
 
- - zhi 	 	This value determines the Z size of the section of the box that will contain the alkane chains and OFMs. The units are Angstrom.
+ - zhi 	 	This value determines the Z size of the section of the box that will contain both the alkane chains and OFMs. The units are Angstrom.
 
-#####Inputs related to the OFM's
+## Inputs related to the OFMs
 
-#OFM 		This flag determines if the the system will contain OFMs.
-		  #if OFM = 1, the generation of OFMs is activated
+ - OFM 		This flag determines if the the system will contain OFMs. If OFM = 1, the generation of OFMs is activated
 
-#OFMtype 	Defines the type of OFM that will be used in the simulation
-		  #the available options are: SA, SAm, GMS, OA, OAm, GMO
-      #for full details and chemical structures, see:
-      #Ewen et al. Langmiur (2016) DOI:10.1021/acs.langmuir.6b00586
-		  #Exm: OFMtype = 'GMS'
+ - OFMtype 	Defines the type of OFM that will be used in the simulation the available options are: SA, SAm, GMS, OA, OAm, GMO. For full details and chemical structures, see: Ewen et al. Langmiur (2016) http://pubs.acs.org/doi/full/10.1021/acs.langmuir.6b00586
+ 
+For example: OFMtype = 'GMS'
       
-#OFMn_x	 	These two variables determine the number of independent 
-#OFMn_y		  OFM chains to be placed along the x and y directions. 
-		  #The inputs are integers
-		  #Exm: 	OFMn_x = 5
-			#	      OFMn_y = 7
+ - OFMn_x / OFMn_y	These two variables determine the number of independent OFM chains to be placed along the x and y directions. The inputs are integers.
 
-#####Inputs related to the Alkanes
+For example: OFMn_x = '5', OFMn_y = '7'
+
+## Inputs related to the Alkanes
 
 #Alkane 		This flag determines if the the system will contain Alkanes.
 		  #if Alkane = 1, the generation of Alkanes is activated
