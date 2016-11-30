@@ -1,8 +1,6 @@
-##Version 1.0.0, 29-11-2016
+##Version: 1.0.0, 29-11-2016
 
-##Authors:
-## Sebastián ECHEVERRI RESTREPO; sebastian.echeverri.restrepo@skf.com, sebastianecheverrir@gmail.com
-## James EWEN; j.ewen14@imperial.ac.uk, jimmyewen@gmail.com
+##Authors - Sebastián ECHEVERRI RESTREPO: sebastian.echeverri.restrepo@skf.com, sebastianecheverrir@gmail.com; James EWEN: j.ewen14@imperial.ac.uk, jimmyewen@gmail.com
 
 #########################################################################
 ################## GENERAL INFO #########################################
