@@ -4,12 +4,11 @@
 
 ## GENERAL INFO 
 
- #This software generates a system to be run in LAMMPS(22 Jul 2016-ICMS)
- #containing:
+This software generates a system to be run in LAMMPS(22 Jul 2016-ICMS), containing:
  
- #-Two bcc Fe surfaces with nanoscale RMS roughness
- #-Monolayer films made of organic friction modifiers (OFMs)
- #-An oil region composed of n-alkane chains
+ - Two bcc Fe surfaces with nanoscale RMS roughness
+ - Monolayer films made of organic friction modifiers (OFMs)
+ - An oil region composed of n-alkane chains
  
 #########################################################################
 ################## CITING THIS SOFTWARE #################################
