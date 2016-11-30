@@ -10,7 +10,47 @@ This software generates a LAMMPS datafile and basic input file for systems conta
  - Organic friction modifier (OFM) monolayer films
  - An oil region composed of n-alkane chains
  
-*Note that any of these comopents can be excluded from the LAMMPS datafile
+*Note that any of these comopents can be excluded by using the appropriate flags
+
+## SCHEMATIC
+
+The generated system has the following schematic structure: 
+ 
+     ---------------------------------------------
+     ---------------------------------------------	 SURFACE TOP
+     ---------------------------------------------
+      O     O     O     O     O     O     O     O
+      |     |     |     |     |     |     |     |    OFM TOP
+      |     |     |     |     |     |     |     |
+      |     |     |     |     |     |     |     |    
+        _______________________________________     _________
+       | c-c-c-c-c-c-c    c-c-c-c-c-c-c        |  /\
+       |                                       |  |
+       | c-c-c-c-c-c-c    c-c-c-c-c-c-c        |  |
+       |                                       |  |
+       | c-c-c-c-c-c-c    c-c-c-c-c-c-c        |  |
+       |                                 OIL   |  |  Z SEPARATION
+       | c-c-c-c-c-c-c    c-c-c-c-c-c-c        |  |
+       |                                       |  |
+       | c-c-c-c-c-c-c    c-c-c-c-c-c-c        |  |
+       |                                       |  |
+       | c-c-c-c-c-c-c    c-c-c-c-c-c-c        |  |
+        _______________________________________  \/ _________
+      |     |     |     |     |     |     |     |
+      |     |     |     |     |     |     |     |
+      |     |     |     |     |     |     |     |    OFM BOTTOM
+      O     O     O     O     O     O     O     O
+     ---------------------------------------------
+     ---------------------------------------------   SURFACE BOTTOM
+     ---------------------------------------------
+
+         z
+         |
+         |
+         |_ _ _ _ x
+        /
+       y   
+
  
 ## CITING THIS SOFTWARE
 If you use this software, please cite the following article: J. P. Ewen, S. Echeverri Restrepo, N. Morgan, D. Dini, Nonequilibrium Molecular Dynamics Simulations of Stearic Acid Adsorbed on Iron Surfaces with Nanoscale Roughness, Tribology International (2016), http://dx.doi.org/10.1016/j.triboint.2016.11.039
@@ -58,45 +98,6 @@ This file contains a function to generate the rough Fe surfaces. For details of 
  - Fe_mm.eam.fs
  
 This file is provided with the installation of lammps. It contains the EAM parameters that define the Fe interactions. It needs to be in the PATH accessible by LAMMPS. Ref: Mendelev et al. Philosophical Magazine (2003) http://www.tandfonline.com/doi/abs/10.1080/14786430310001613264
-
-## SCHEMATIC
-
-The generated system has the following schematic structure: 
- 
-     ---------------------------------------------
-     ---------------------------------------------	 SURFACE TOP
-     ---------------------------------------------
-      O     O     O     O     O     O     O     O
-      |     |     |     |     |     |     |     |    OFM TOP
-      |     |     |     |     |     |     |     |
-      |     |     |     |     |     |     |     |    
-        _______________________________________     _________
-       | c-c-c-c-c-c-c    c-c-c-c-c-c-c        |  /\
-       |                                       |  |
-       | c-c-c-c-c-c-c    c-c-c-c-c-c-c        |  |
-       |                                       |  |
-       | c-c-c-c-c-c-c    c-c-c-c-c-c-c        |  |
-       |                                 OIL   |  |  Z SEPARATION
-       | c-c-c-c-c-c-c    c-c-c-c-c-c-c        |  |
-       |                                       |  |
-       | c-c-c-c-c-c-c    c-c-c-c-c-c-c        |  |
-       |                                       |  |
-       | c-c-c-c-c-c-c    c-c-c-c-c-c-c        |  |
-        _______________________________________  \/ _________
-      |     |     |     |     |     |     |     |
-      |     |     |     |     |     |     |     |
-      |     |     |     |     |     |     |     |    OFM BOTTOM
-      O     O     O     O     O     O     O     O
-     ---------------------------------------------
-     ---------------------------------------------   SURFACE BOTTOM
-     ---------------------------------------------
-
-         z
-         |
-         |
-         |_ _ _ _ x
-        /
-       y   
 
 ## INPUT VARIABLES
 
