@@ -1,4 +1,4 @@
-##Version: 1.0.0, 29-11-2016
+##Version: 29-11-2016
 
 ##Authors - Sebastián ECHEVERRI RESTREPO: sebastian.echeverri.restrepo@skf.com, sebastianecheverrir@gmail.com; James EWEN: j.ewen14@imperial.ac.uk, jimmyewen@gmail.com
 
@@ -58,11 +58,17 @@ The generated system has the following schematic structure:
 If you use this software, please cite the following article: J. P. Ewen, S. Echeverri Restrepo, N. Morgan, D. Dini, Nonequilibrium Molecular Dynamics Simulations of Stearic Acid Adsorbed on Iron Surfaces with Nanoscale Roughness, Tribology International (2016), http://dx.doi.org/10.1016/j.triboint.2016.11.039
 
 ## SOFTWARE REQUIREMENTS
+Required (all GNU):
  - Bash shell
  - Python v2.17.12 
  - moltemplate version v1.34 2015-11-18 : http://www.moltemplate.org/
  - ASE v3.11.0 : https://wiki.fysik.dtu.dk/ase/
+ 
+Optional (all GNU):
  - LAMMPS 22 Jul 2016-ICMS : http://lammps.sandia.gov/ (to run MD simulation of resultant system)
+ - VMD v1.9.1 : http://www.ks.uiuc.edu/Research/vmd/ (to visualise resultant datafile)
+ 
+Note that versions given are those for which software has been tested, the code should still work with most older/newer versions.
 
 ## HOW TO RUN
 In a bash shell:
@@ -70,6 +76,7 @@ In a bash shell:
  - Modify the file run.py as needed (see below)
  - To run the script, type:   $ python run.py
  - The folder "lopls" is generated, which contains the files needed to run a basic LAMMPS simulation
+ - Check the resultant LAMMPS datafile with VMD -> Extensions, Tk Console, type: $ topo readlammpsdata lopls.data full
  - To test the LAMMPS simulation, type*:  $ mpirun -np X lmp_mpi < in.lopls       , where X is the number of processors
  - Extend/modify the in.lopls file in order to perform more complex MD simulations
    
@@ -196,6 +203,30 @@ For example:   RMSin = 8
 Thicknes of each of the Fe slabs that form the surfaces. This is the thickness before the roughness is applied to the surface This value corresponds to the number of Fe lattice constants (aFe)
 
 For example:  boxLenghtZ = 20
+
+## OUTPUT FILES
+
+After running run.py, you should get the following files in the lopls folder, which can be used to run a LAMMPS simulation.
+
+ - lopls/in.lopls
+ 
+Basic LAMMPS input files for minimisation of lopls.data. We recommend changing this file to perform more complex simulations e.g. NEMD
+
+ - lopls/lopls.data
+ 
+LAMMPS datafile for slab-OFM-alkane-OFM-slab system.
+
+ - lopls/lopls.in.charges
+ 
+LAMMPS partial charges for L-OPLS atom types
+
+ - lopls/lopls.in.init
+ 
+LAMMPS units, atom_style, bond_style, angle_style, dihedral_style, pair_style, special_bonds, kspace_style etc.
+
+ - lopls/lopls.in.settings
+ 
+LAMMPS pair_coeff, bond_coeff, angle_coeff, dihedral_coeff etc.
 
 ## Notes
 
