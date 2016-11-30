@@ -33,37 +33,33 @@ In a bash shell:
    
 *note that the name of the LAMMPS executable might be different
 
-#########################################################################
-################## FILES NEEDED #########################################
-#########################################################################
+## FILES NEEDED
 
-#run.py
-  #This file contains all the information needed to define the dimensions 
-    #and structure of the system. This is the only file that needs to be 
-    #modified by the (regular) user
+ - run.py
+
+This file contains all the information needed to define the dimensions and structure of the system. This is the only file that needs to be modified by the (regular) user
     
-#root/AddEAM.py
-  #This file adds the information needed to define the EAM interaction 
-     #for the Fe atoms in the lammps input files
+ - root/AddEAM.py
 
-#root/lopls.py
-  #This file generates all the input files needed by moltemplate 
-    #(.lt extension) and calls it to generate the input files needed 
-    #by lammps
+This file adds the information needed to define the EAM interaction for the Fe atoms in the LAMMPS input files
+
+ - root/lopls.py
+
+This file generates all the input files needed by moltemplate (.lt extension) and calls it to generate the input files needed by LAMMPS
     
-#root/loplsMETAL.lt
-  #This file contains the information related to the LOPLS force field 
-    #that is used for the behaviour of the polymer chains and the OFMs
+ - root/loplsMETAL.lt
 
-#root/Rough.py
-  #This file contains a function to generate the rough Fe surfaces. The 
-    #algorithm used is based on Tribol Lett 2011;44:279–85 and 
-    #http://doi.org/10.1007/978-3-642-84574-1_34
+This file contains the information related to the L-OPLS force field that is used to simulate the n-alkane chains and the OFMs. Ref: Siu et al. Journal of Chemical Theory and Computation (2012) http://pubs.acs.org/doi/abs/10.1021/ct200908r
+
+ - root/Rough.py
+
+This file contains a function to generate the rough Fe surfaces. For details of the RMD algorithm used, see Ref: Spijker et al. Tribology Letters (2011) http://doi.org/10.1007/978-3-642-84574-1_34
+
+Tribol Lett 2011;44:279–85 and http://doi.org/10.1007/978-3-642-84574-1_34
   
-#Fe_mm.eam.fs
-  #This file is provided with the installation of lammps. It contains the 
-    #EAM parameters that define the Fe interactions. It needs to be in 
-    #the PATH accessible by lammps
+ - Fe_mm.eam.fs
+ 
+This file is provided with the installation of lammps. It contains the EAM parameters that define the Fe interactions. It needs to be in the PATH accessible by LAMMPS. Ref: Mendelev et al. Philosophical Magazine (2003) http://www.tandfonline.com/doi/abs/10.1080/14786430310001613264
 
 #########################################################################
 ###################### SCHEMATIC ########################################
