@@ -167,8 +167,7 @@ This flag determines if the the system will contain Alkanes. If Alkane = 1, the 
 
 Defines the number of CH2/CH3 monomers on each alkane chain. The inputs are integers.
 
-For example: 	nAlkane = '16'
-
+For example: 	nAlkane = 16
  - Alkanen_x
  - Alkanen_y
  - Alkanen_z
