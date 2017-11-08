@@ -1,7 +1,7 @@
  
                     GNU GENERAL PUBLIC LICENSE
 
- This Software is Copyright (C) 2016 Sebastian Echeverri Restrepo and 
+ This Software is Copyright (C) 2017 Sebastian Echeverri Restrepo and 
  James P. Ewen
  Contact: Sebastian 	(sebastian.echeverri.restrepo@skf.com, sebastianecheverrir@gmail.com)
  Contact: James 	(j.ewen14@imperial.ac.uk, jimmyewen@gmail.com)

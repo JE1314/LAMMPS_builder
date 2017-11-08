@@ -5,29 +5,32 @@
 LOPLSAA {
 
   write_once("Data Masses"){
-    @atom:80 12.011 #CT "Alkane CH3- (LOPLS)" 6 partial charge=-0.222
-    @atom:81 12.011 #CT "Alkane -CH2- (LOPLS)" 6 partial charge=-0.148
-    @atom:85 1.008 #HC "Alkane H-C CH3(LOPLS)" 1 partial charge=0.074
-    @atom:87 12.011 #CM "Alkene RH-C=" 6 partial charge=-0.16
-    @atom:89 1.008 #HC "Alkene H-C= (LOPLS)" 1 partial charge=0.16
-    @atom:96 15.999 #OH "Alcohol -OH" 8 partial charge=-0.683
-    @atom:97 1.008 #HO "Alcohol -OH" 1 partial charge=0.418
-    @atom:99 12.011 #CT "Alcohol CH3OH & RCH2OH" 6 partial charge=0.145
-    @atom:100 12.011 #CT "Alcohol R2CHOH" 6 partial charge=0.205
-    @atom:177 12.011 #C "Amide C=O" 6 partial charge=0.5
-    @atom:178 15.999 #O "Amide C=O" 8 partial charge=-0.5
-    @atom:179 14.007 #N "Amide -CO-NH2" 7 partial charge=-0.76
-    @atom:182 1.008 #H "Amide -CO-NH2" 1 partial charge=0.38
-    @atom:209 12.011 #C "Carboxylic Acid -COOH" 6 partial charge=0.52
-    @atom:210 15.999 #O "Carboxylic Acid C=O" 8 partial charge=-0.44
-    @atom:211 15.999 #OH "Carboxylic Acid -OH" 8 partial charge=-0.53
-    @atom:212 1.008 #HO "Carboxylic Acid -COOH" 1 partial charge=0.45
-    @atom:406 12.011 #C "Ester -COOR" 6 partial charge=0.51
-    @atom:407 15.999 #O "Ester C=O" 8 partial charge=-0.43
-    @atom:408 15.999 #OS "Ester CO-O-R" 8 partial charge=-0.33
-    @atom:409 12.011 #CT "Methyl Ester -OCH3" 6 partial charge=0.16
-    @atom:8500 1.008 #HC "Alkane H-C CH2(LOPLS)" 1 partial charge=0.074
-    @atom:10000 55.845 #FE
+    @atom:80 12.011 #CT "Alkane CH3- (LOPLS)" 6 partial charge=-0.222    33-1
+    @atom:81 12.011 #CT "Alkane -CH2- (LOPLS)" 6 partial charge=-0.148   33-2
+    @atom:85 1.008 #HC "Alkane H-C CH3(LOPLS)" 1 partial charge=0.074    33-4
+    @atom:87 12.011 #CM "Alkene RH-C=" 6 partial charge=-0.16            33-3
+    @atom:89 1.008 #HC "Alkene H-C= (LOPLS)" 1 partial charge=0.16       33-6
+    @atom:96 15.999 #OH "Alcohol -OH" 8 partial charge=-0.683            31-1
+    @atom:97 1.008 #HO "Alcohol -OH" 1 partial charge=0.418              31-2
+    @atom:99 12.011 #CT "Alcohol CH3OH & RCH2OH" 6 partial charge=0.145  31-3* 0.125
+    @atom:100 12.011 #CT "Alcohol R2CHOH" 6 partial charge=0.205         31-4* 0.175
+    @atom:177 12.011 #C "Amide C=O" 6 partial charge=0.5                 31-5
+    @atom:178 15.999 #O "Amide C=O" 8 partial charge=-0.5                31-6
+    @atom:179 14.007 #N "Amide -CO-NH2" 7 partial charge=-0.76           31-7
+    @atom:182 1.008 #H "Amide -CO-NH2" 1 partial charge=0.38             31-8
+    @atom:209 12.011 #C "Carboxylic Acid -COOH" 6 partial charge=0.52    31-9
+    @atom:210 15.999 #O "Carboxylic Acid C=O" 8 partial charge=-0.44     31-10
+    @atom:211 15.999 #OH "Carboxylic Acid -OH" 8 partial charge=-0.53    31-11
+    @atom:212 1.008 #HO "Carboxylic Acid -COOH" 1 partial charge=0.45    31-12
+    @atom:406 12.011 #C "Ester -COOR" 6 partial charge=0.51              32-1
+    @atom:407 15.999 #O "Ester C=O" 8 partial charge=-0.43               32-2
+    @atom:408 15.999 #OS "Ester CO-O-R" 8 partial charge=-0.33           32-3
+    @atom:409 12.011 #CT "Methyl Ester -OCH3" 6 partial charge=0.16      32-4* 0.110
+    @atom:8500 1.008 #HC "Alkane H-C CH2(LOPLS)" 1 partial charge=0.074  33-5
+    @atom:10000 55.845 #FE "For EAM potential"                           
+    @atom:10001 55.845 #FEX "For Fe2O3 surfaces"                         36-1
+    @atom:10002 15.999 #OX "For Fe2O3 surfaces"                          36-2
+ 
   } #(end of atom masses)
 
   write_once("In Settings"){
@@ -54,6 +57,8 @@ LOPLSAA {
     pair_coeff @atom:409 @atom:409 lj/cut/coul/long 0.00286198 3.5
     pair_coeff @atom:8500 @atom:8500 lj/cut/coul/long 0.00114046 2.5
     pair_coeff @atom:10000 @atom:10000 lj/cut/coul/long 0.4127328412 2.321
+    pair_coeff @atom:10001 @atom:10001 lj/cut/coul/long 0.01474392192659695104 2.320
+    pair_coeff @atom:10002 @atom:10002 lj/cut/coul/long 0.00737196096329847552 2.960
   } #(end of pair coeffs)
 
   write_once("In Charges"){
@@ -64,8 +69,8 @@ LOPLSAA {
     set type @atom:89 charge 0.16
     set type @atom:96 charge -0.683
     set type @atom:97 charge 0.418
-    set type @atom:99 charge 0.145
-    set type @atom:100 charge 0.205
+    set type @atom:99 charge 0.125 
+    set type @atom:100 charge 0.175
     set type @atom:177 charge 0.5
     set type @atom:178 charge -0.5
     set type @atom:179 charge -0.76
@@ -77,8 +82,11 @@ LOPLSAA {
     set type @atom:406 charge 0.51
     set type @atom:407 charge -0.43
     set type @atom:408 charge -0.33
-    set type @atom:409 charge 0.16
+    set type @atom:409 charge 0.110
     set type @atom:8500 charge 0.074
+    set type @atom:10001 charge 0.771
+    set type @atom:10002 charge -0.514
+
   } #(end of atom charges)
 
   write_once("In Settings") {
