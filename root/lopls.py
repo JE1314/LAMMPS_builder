@@ -2,15 +2,15 @@
 
 #29-11-2016
 
-#Authors:Sebastian ECHEVERRI RESTREPO,   
+#Authors:Sebastian ECHEVERRI RESTREPO,
 #	 	sebastian.echeverri.restrepo@skf.com, sebastianecheverrir@gmail.com
 #	 James EWEN
 #		j.ewen14@imperial.ac.uk, jimmyewen@gmail.com
 
 #################################################################################3
 
-#  This file generates all the input files needed by moltemplate 
-#    (.lt extension) and calls it to generate the input files needed 
+#  This file generates all the input files needed by moltemplate
+#    (.lt extension) and calls it to generate the input files needed
 #    by lammps
 
 #################################################################################3
@@ -22,7 +22,8 @@ sys.path.append("root")
 
 from Rough import Rough
 from AddEAM import AddEAM
-
+from Fe2O3 import Fe2O3
+from AddFe2O3 import AddFe2O3
 
 
 def lopls(xlo,xhi,ylo,yhi,zlo,zhi,OFMn_x,OFMn_y,nAlkane, Alkanen_x,\
@@ -36,11 +37,16 @@ def lopls(xlo,xhi,ylo,yhi,zlo,zhi,OFMn_x,OFMn_y,nAlkane, Alkanen_x,\
   f.write("\n")
 
   if Surfaces == 1:
-  
+
     f.write('import "WEA.lt"')
-    
+
+  if Surfaces == 2:
+
+    f.write('import "Fe2O3.lt"')
+
+
   ## This part builds the basic CH, CH2, CH3, COOH, CONH2, RCOOR
-  
+
   f.write("\n")
   f.write("\n")
   f.write('CH inherits LOPLSAA {')
@@ -208,7 +214,8 @@ def lopls(xlo,xhi,ylo,yhi,zlo,zhi,OFMn_x,OFMn_y,nAlkane, Alkanen_x,\
   f.write("\n")
   f.write('    $atom:CT2 $mol:... @atom:100  0.00  -0.000000 0.00000 -3.00000')
   f.write("\n")
-  f.write('    $atom:HC $mol:... @atom:89  0.00   -0.892430762954  -0.63104384422426  -3.000')
+  f.write('    $atom:HC $mol:... @atom:8500  0.00   -0.892430762954  -0.63104384422426  -3.000')
+#  f.write('    $atom:HC $mol:... @atom:89  0.00   -0.892430762954  -0.63104384422426  -3.000')
   f.write("\n")
   f.write('    $atom:OH $mol:... @atom:96  0.00  	0.892430762954  -0.63104384422426 -3.000')
   f.write("\n")
@@ -734,6 +741,14 @@ def lopls(xlo,xhi,ylo,yhi,zlo,zhi,OFMn_x,OFMn_y,nAlkane, Alkanen_x,\
     Rough(FractalLevels,RMSin,H,boxLenghtX,boxLenghtY,boxLenghtZ,aFe,Separation)
 
 
+  ######################################################################
+  #Flat Fe2O3 surfaces
+
+  if Surfaces == 2:
+
+
+    Fe2O3(FractalLevels,RMSin,H,boxLenghtX,boxLenghtY,boxLenghtZ,aFe,Separation)
+
 
 
   ######################################################################
@@ -762,7 +777,10 @@ def lopls(xlo,xhi,ylo,yhi,zlo,zhi,OFMn_x,OFMn_y,nAlkane, Alkanen_x,\
   # This determines how far apart all Alkanes polymers will be placed
   Alkanes_x = (xhi-xlo)/Alkanen_x #(1.2533223*(nAlkane-1))+5
   Alkanes_y = (yhi-ylo)/Alkanen_y
-  Alkanes_z = ((zhi-23.3065-4)-(zlo+23.3065+4))/(Alkanen_z-1)
+  if Alkanen_z == 1:
+    Alkanes_z = 0.0
+  else:
+    Alkanes_z = ((zhi-23.3065-4)-(zlo+23.3065+4))/(Alkanen_z-1)
 
 
   ######################################################################
@@ -782,11 +800,18 @@ def lopls(xlo,xhi,ylo,yhi,zlo,zhi,OFMn_x,OFMn_y,nAlkane, Alkanen_x,\
   f.write("  ylo yhi")
   f.write("\n")
 
-  f.write(str(zlo-boxLenghtZ*aFe-20)+"  "+str(zhi+boxLenghtZ*aFe+20))
-  f.write("  zlo zhi")
-  f.write("\n")
-  f.write("}")
-
+  #rough Iron surfaces
+  if Surfaces == 1 or Surfaces == 0 :
+    f.write(str(zlo-boxLenghtZ*aFe-20)+"  "+str(zhi+boxLenghtZ*aFe+20))
+    f.write("  zlo zhi")
+    f.write("\n")
+    f.write("}")
+  #Flat Fe2O3 surfaces
+  if Surfaces == 2 :
+    f.write(str(zlo-boxLenghtZ*13.730-20)+"  "+str(zhi+boxLenghtZ*13.730+20))
+    f.write("  zlo zhi")
+    f.write("\n")
+    f.write("}")
 
 
 
@@ -905,6 +930,15 @@ def lopls(xlo,xhi,ylo,yhi,zlo,zhi,OFMn_x,OFMn_y,nAlkane, Alkanen_x,\
     f.write("\n")
     f.write("\n")
 
+  if Surfaces == 2:
+
+    f.write("\n")
+    f.write("\n")
+    f.write("molecules4 = new FESurface.move("+str(xlo)+","+str(ylo)+","+str(zlo-boxLenghtZ*13.730-1)+")")
+    f.write("\n")
+    f.write("\n")
+
+
 
   #f.write("molecules4 = new FESurface.move("+str(xlo)+","+str(ylo)+","+str(zlo-boxLenghtZ*aFe-1)+")")
 
@@ -917,7 +951,8 @@ def lopls(xlo,xhi,ylo,yhi,zlo,zhi,OFMn_x,OFMn_y,nAlkane, Alkanen_x,\
 
   #runs Moltemplate
   os.system('moltemplate.sh '+name+'.lt')
-
+  #os.system('moltemplate_2016-12-18.sh '+name+'.lt')
+  #os.system('moltemplate_2017-2-10.sh '+name+'.lt')
 
   # Builds the .in file
   ########################################################################
@@ -933,13 +968,16 @@ def lopls(xlo,xhi,ylo,yhi,zlo,zhi,OFMn_x,OFMn_y,nAlkane, Alkanen_x,\
   f.write("include         	"+name+".in.charges")
   f.write("\n")
   f.write("\n")
-  f.write("dump            dump1 all atom 1 "+name+".dump")
+  f.write("dump            dump1 all atom 1000 "+name+".dump")
   f.write("\n")
   f.write("thermo_style    custom step lx ly lz  density temp press etotal")
   f.write("\n")
   f.write("thermo          1")
   f.write("\n")
+  f.write("write_data		"+ name +"Initial.data")
   f.write("\n")
+  f.write("\n")
+
   f.write("# ------------------Run Equilibriation ---------------------------")
   f.write("\n")
   f.write("\n")
@@ -953,9 +991,12 @@ def lopls(xlo,xhi,ylo,yhi,zlo,zhi,OFMn_x,OFMn_y,nAlkane, Alkanen_x,\
 
   ############################################################################################################
   if Surfaces == 1:
-
     AddEAM()
     os.system('rm WEA.lt')
+
+  if Surfaces == 2:
+    AddFe2O3(name)
+    os.system('rm Fe2O3.lt')
 
   # Moves all files to a seperate folder 
   os.system('rm -r lopls')
@@ -963,6 +1004,7 @@ def lopls(xlo,xhi,ylo,yhi,zlo,zhi,OFMn_x,OFMn_y,nAlkane, Alkanen_x,\
   os.system('rm -r output_ttree')
   os.system('rm '+name+'.in')
   os.system('mv '+name+'.in.init lopls')
+  os.system('mv '+name+'.in.CreateBonds lopls')
   os.system('mv '+name+'.in.settings lopls')
   os.system('mv '+name+'.in.charges lopls')
   os.system('rm '+name+'.lt')
