@@ -4,12 +4,12 @@
 
 ## GENERAL INFO
 
-This software is suitable as a starting point for performing confined nonequilibrium molecular dynamics (NEMD) simulations of OFM films adsorbed to Fe or Fe2O3 surfaces, separated by a layer of n-alkane molecules.
+This software is suitable as a starting point for performing confined nonequilibrium molecular dynamics (NEMD) simulations of organic friction modifier (OFM) films adsorbed to Fe or Fe2O3 surfaces, separated by a layer of n-alkane molecules.
 
 This software generates a LAMMPS datafile and basic input file for systems containing*:
  
  - Two bcc Fe or Fe2O3 slabs (in the case of pure Fe, the surface can be given random nanoscale roughness)
- - Two organic friction modifier (OFM) monolayers above/below bottom/top solid slabs
+ - Two OFM monolayers above/below bottom/top solid slabs
  - A central region of linear alkane chains
  
 *Note that any of these components can be excluded by using the appropriate flags
