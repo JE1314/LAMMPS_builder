@@ -1,6 +1,6 @@
-##Version: 08-11-2017
+##Version: 29-11-2016
 
-##Authors - Sebastián ECHEVERRI RESTREPO: sebastian.echeverri.restrepo@skf.com, sebastianecheverrir@gmail.com; James EWEN: j.ewen@imperial.ac.uk, jimmyewen@gmail.com
+##Authors - Sebastián ECHEVERRI RESTREPO: sebastian.echeverri.restrepo@skf.com, sebastianecheverrir@gmail.com; James EWEN: j.ewen14@imperial.ac.uk, jimmyewen@gmail.com
 
 ## GENERAL INFO
 
@@ -8,9 +8,9 @@ This software is suitable as a starting point to performing confined nonequilibr
 
 This software generates a LAMMPS datafile and basic input file for systems containing*:
  
- - Two bcc Fe or a-Fe2O3 slabs with/without nanoscale RMS roughness
- - Two organic friction modifier (OFM) monolayers above/below bottom/top slabs
- - An optional central linear alkane region
+ - Two bcc Fe slabs with nanoscale RMS roughness
+ - Two organic friction modifier (OFM) monolayers above/below bottom/top Fe slabs
+ - A central region of n-alkane chains
  
 *Note that any of these components can be excluded by using the appropriate flags
 
