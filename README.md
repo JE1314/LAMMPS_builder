@@ -8,7 +8,7 @@ This software is suitable as a starting point to performing confined nonequilibr
 
 This software generates a LAMMPS datafile and basic input file for systems containing*:
  
- - Two bcc a-Fe or a-Fe2O3 slabs with/without nanoscale RMS roughness
+ - Two bcc Fe or a-Fe2O3 slabs with/without nanoscale RMS roughness
  - Two organic friction modifier (OFM) monolayers above/below bottom/top slabs
  - An optional central linear alkane region
  
