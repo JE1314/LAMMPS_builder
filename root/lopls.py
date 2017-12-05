@@ -1,16 +1,16 @@
 #!/usr/bin/env python
 
-#29-11-2016
+#20-11-2017
 
-#Authors:Sebastian ECHEVERRI RESTREPO,   
+#Authors:Sebastian ECHEVERRI RESTREPO,
 #	 	sebastian.echeverri.restrepo@skf.com, sebastianecheverrir@gmail.com
 #	 James EWEN
 #		j.ewen14@imperial.ac.uk, jimmyewen@gmail.com
 
 #################################################################################3
 
-#  This file generates all the input files needed by moltemplate 
-#    (.lt extension) and calls it to generate the input files needed 
+#  This file generates all the input files needed by moltemplate
+#    (.lt extension) and calls it to generate the input files needed
 #    by lammps
 
 #################################################################################3
@@ -22,11 +22,12 @@ sys.path.append("root")
 
 from Rough import Rough
 from AddEAM import AddEAM
-
+from Fe2O3 import Fe2O3
+from AddFe2O3 import AddFe2O3
 
 
 def lopls(xlo,xhi,ylo,yhi,zlo,zhi,OFMn_x,OFMn_y,nAlkane, Alkanen_x,\
-		Alkanen_y, Alkanen_z, Alkane, OFM,OFMtype, Surfaces,\
+		Alkanen_y, Alkanen_z, Alkane, BZBZ, BZBZn_x, BZBZn_y, BZBZn_z, OFM,OFMtype, Surfaces,\
 		FractalLevels,RMSin,H,boxLenghtX,boxLenghtY,boxLenghtZ,aFe,Separation):
 
   f = open('lopls.lt','wr+')
@@ -36,11 +37,16 @@ def lopls(xlo,xhi,ylo,yhi,zlo,zhi,OFMn_x,OFMn_y,nAlkane, Alkanen_x,\
   f.write("\n")
 
   if Surfaces == 1:
-  
+
     f.write('import "WEA.lt"')
-    
+
+  if Surfaces == 2:
+
+    f.write('import "Fe2O3.lt"')
+
+
   ## This part builds the basic CH, CH2, CH3, COOH, CONH2, RCOOR
-  
+
   f.write("\n")
   f.write("\n")
   f.write('CH inherits LOPLSAA {')
@@ -208,7 +214,8 @@ def lopls(xlo,xhi,ylo,yhi,zlo,zhi,OFMn_x,OFMn_y,nAlkane, Alkanen_x,\
   f.write("\n")
   f.write('    $atom:CT2 $mol:... @atom:100  0.00  -0.000000 0.00000 -3.00000')
   f.write("\n")
-  f.write('    $atom:HC $mol:... @atom:89  0.00   -0.892430762954  -0.63104384422426  -3.000')
+  f.write('    $atom:HC $mol:... @atom:8500  0.00   -0.892430762954  -0.63104384422426  -3.000')
+#  f.write('    $atom:HC $mol:... @atom:89  0.00   -0.892430762954  -0.63104384422426  -3.000')
   f.write("\n")
   f.write('    $atom:OH $mol:... @atom:96  0.00  	0.892430762954  -0.63104384422426 -3.000')
   f.write("\n")
@@ -726,6 +733,84 @@ def lopls(xlo,xhi,ylo,yhi,zlo,zhi,OFMn_x,OFMn_y,nAlkane, Alkanen_x,\
   f.write("} # Hexadecane")
   f.write("\n")
 
+  ###############################################################
+  ####
+  #Benzyl Benzoate
+  f.write("BZBZ inherits LOPLSAA {\n")
+
+  f.write("  # atomID      molID   atomType     charge   X       Y        Z\n")
+  f.write("  write('Data Atoms') {\n")
+  f.write("        $atom:C1        $mol:...        @atom:90        0.00    1.617   2.278    2.109  \n")
+  f.write("        $atom:C2        $mol:...        @atom:90        0.00    2.453   2.282    0.996  \n")
+  f.write("        $atom:C3        $mol:...        @atom:90        0.00    3.836   2.153    1.161  \n")
+  f.write("        $atom:C4        $mol:...        @atom:90        0.00    4.380   2.026    2.443  \n")
+  f.write("        $atom:C5        $mol:...        @atom:90        0.00    3.546   2.027    3.561  \n")
+  f.write("        $atom:C6        $mol:...        @atom:842       0.00    2.158   2.153    3.398  \n")
+  f.write("        $atom:C7        $mol:...        @atom:40600     0.00    1.215   2.158    4.553  \n")
+  f.write("        $atom:C8        $mol:...        @atom:81        0.00    0.980   2.119    6.918  \n")
+  f.write("        $atom:C9        $mol:...        @atom:90        0.00    2.283   3.365    8.682  \n")
+  f.write("        $atom:C10       $mol:...        @atom:90        0.00    1.854   2.146    8.142  \n")
+  f.write("        $atom:C11       $mol:...        @atom:90        0.00    2.261   0.951    8.751  \n")
+  f.write("        $atom:C12       $mol:...        @atom:90        0.00    3.083   0.974    9.879  \n")
+  f.write("        $atom:C13       $mol:...        @atom:90        0.00    3.507   2.195   10.410  \n")
+  f.write("        $atom:C14       $mol:...        @atom:90        0.00    3.105   3.392    9.810  \n")
+  f.write("        $atom:H1        $mol:...        @atom:91        0.00    0.541   2.374    2.000  \n")
+  f.write("        $atom:H2        $mol:...        @atom:91        0.00    2.030   2.381    0.000  \n")
+  f.write("        $atom:H3        $mol:...        @atom:91        0.00    4.490   2.152    0.293  \n")
+  f.write("        $atom:H4        $mol:...        @atom:91        0.00    5.454   1.927    2.572  \n")
+  f.write("        $atom:H5        $mol:...        @atom:91        0.00    3.965   1.933    4.557  \n")
+  f.write("        $atom:H6        $mol:...        @atom:8500      0.00    0.349   1.226    6.888  \n")
+  f.write("        $atom:H7        $mol:...        @atom:8500      0.00    0.332   2.997    6.858  \n")
+  f.write("        $atom:H8        $mol:...        @atom:91        0.00    1.968   4.298    8.219  \n")
+  f.write("        $atom:H9        $mol:...        @atom:91        0.00    1.928   0.000    8.341  \n")
+  f.write("        $atom:H10       $mol:...        @atom:91        0.00    3.388   0.040   10.346  \n")
+  f.write("        $atom:H11       $mol:...        @atom:91        0.00    4.143   2.214   11.292  \n")
+  f.write("        $atom:H12       $mol:...        @atom:91        0.00    3.429   4.344   10.223  \n")
+  f.write("        $atom:O1        $mol:...        @atom:40700     0.00    0.000   2.208    4.444  \n")
+  f.write("        $atom:O2        $mol:...        @atom:40800     0.00    1.844   2.107    5.743  \n")
+  f.write("        }\n")
+  f.write(" write('Data Bond List') {\n")
+  f.write(" # Aromatic Carbon Cycles\n")
+  f.write("        $bond:CC1       $atom:C1        $atom:C2\n")
+  f.write("        $bond:CC2       $atom:C2        $atom:C3\n")
+  f.write("        $bond:CC3       $atom:C3        $atom:C4\n")
+  f.write("        $bond:CC4       $atom:C4        $atom:C5\n")
+  f.write("        $bond:CC5       $atom:C5        $atom:C6\n")
+  f.write("        $bond:CC6       $atom:C6        $atom:C1\n")
+  f.write("        $bond:CC7       $atom:C9        $atom:C10\n")
+  f.write("        $bond:CC8       $atom:C10       $atom:C11\n")
+  f.write("        $bond:CC9       $atom:C11       $atom:C12\n")
+  f.write("        $bond:CC10      $atom:C12       $atom:C13\n")
+  f.write("        $bond:CC11      $atom:C13       $atom:C14\n")
+  f.write("        $bond:CC12      $atom:C14       $atom:C9\n")
+  f.write("# Non Aromatic Carbons\n")
+  f.write("        $bond:CC13      $atom:C7        $atom:C6\n")
+  f.write("        $bond:CC14      $atom:C8        $atom:C10\n")
+  f.write("# Hydrogen - Aromatic Carbon\n")
+  f.write("        $bond:CH1       $atom:C1        $atom:H1\n")
+  f.write("        $bond:CH2       $atom:C2        $atom:H2\n")
+  f.write("        $bond:CH3       $atom:C3        $atom:H3\n")
+  f.write("        $bond:CH4       $atom:C4        $atom:H4\n")
+  f.write("        $bond:CH5       $atom:C5        $atom:H5\n")
+  f.write("        $bond:CH6       $atom:C9        $atom:H8\n")
+  f.write("        $bond:CH7       $atom:C11       $atom:H9\n")
+  f.write("        $bond:CH8       $atom:C12       $atom:H10\n")
+  f.write("        $bond:CH9       $atom:C13       $atom:H11\n")
+  f.write("        $bond:CH10      $atom:C14       $atom:H12\n")
+  f.write("# Hydrogen - Non aromatic Carbon\n")
+  f.write("        $bond:CH11      $atom:C8        $atom:H6\n")
+  f.write("        $bond:CH12      $atom:C8        $atom:H7\n")
+  f.write("# Oxygen\n")
+  f.write("        $bond:CO1   $atom:C7    $atom:O1\n")
+  f.write("        $bond:CO2       $atom:C7        $atom:O2\n")
+  f.write("        $bond:CO3       $atom:C8        $atom:O2\n")
+  f.write("        }\n")
+  f.write("}\n")
+
+
+
+
+
   ######################################################################
   #rough Iron surfaces
   if Surfaces == 1:
@@ -733,6 +818,14 @@ def lopls(xlo,xhi,ylo,yhi,zlo,zhi,OFMn_x,OFMn_y,nAlkane, Alkanen_x,\
 
     Rough(FractalLevels,RMSin,H,boxLenghtX,boxLenghtY,boxLenghtZ,aFe,Separation)
 
+
+  ######################################################################
+  #Flat Fe2O3 surfaces
+
+  if Surfaces == 2:
+
+
+    Fe2O3(FractalLevels,RMSin,H,boxLenghtX,boxLenghtY,boxLenghtZ,aFe,Separation)
 
 
 
@@ -762,7 +855,21 @@ def lopls(xlo,xhi,ylo,yhi,zlo,zhi,OFMn_x,OFMn_y,nAlkane, Alkanen_x,\
   # This determines how far apart all Alkanes polymers will be placed
   Alkanes_x = (xhi-xlo)/Alkanen_x #(1.2533223*(nAlkane-1))+5
   Alkanes_y = (yhi-ylo)/Alkanen_y
-  Alkanes_z = ((zhi-23.3065-4)-(zlo+23.3065+4))/(Alkanen_z-1)
+  if Alkanen_z == 1:
+    Alkanes_z = 0.0
+  else:
+    Alkanes_z = ((zhi-23.3065-4)-(zlo+23.3065+4))/(Alkanen_z-1)
+
+
+  ####
+  #BZBZ
+  # This determines how far apart all BZBZ molecules will be placed
+  BZBZ_x = (xhi-xlo)/BZBZn_x #(1.2533223*(nAlkane-1))+5
+  BZBZ_y = (yhi-ylo)/BZBZn_y
+  if BZBZn_z == 1:
+    BZBZ_z = 0.0
+  else:
+    BZBZ_z = ((zhi-23.3065-5)-(zlo+23.3065+5))/(BZBZn_z-1)
 
 
   ######################################################################
@@ -782,11 +889,18 @@ def lopls(xlo,xhi,ylo,yhi,zlo,zhi,OFMn_x,OFMn_y,nAlkane, Alkanen_x,\
   f.write("  ylo yhi")
   f.write("\n")
 
-  f.write(str(zlo-boxLenghtZ*aFe-20)+"  "+str(zhi+boxLenghtZ*aFe+20))
-  f.write("  zlo zhi")
-  f.write("\n")
-  f.write("}")
-
+  #rough Iron surfaces
+  if Surfaces == 1 or Surfaces == 0 :
+    f.write(str(zlo-boxLenghtZ*aFe-20)+"  "+str(zhi+boxLenghtZ*aFe+20))
+    f.write("  zlo zhi")
+    f.write("\n")
+    f.write("}")
+  #Flat Fe2O3 surfaces
+  if Surfaces == 2 :
+    f.write(str(zlo-boxLenghtZ*13.730-20)+"  "+str(zhi+boxLenghtZ*13.730+20))
+    f.write("  zlo zhi")
+    f.write("\n")
+    f.write("}")
 
 
 
@@ -796,7 +910,7 @@ def lopls(xlo,xhi,ylo,yhi,zlo,zhi,OFMn_x,OFMn_y,nAlkane, Alkanen_x,\
 
   if OFM == 1:
 
-    # Here the OFMpolymers are placed, using the numer of OFMpolymers in each direction and the set distance
+    # Here the OFMpolymers are placed, using the number of OFMpolymers in each direction and the set distance
     f.write("\n")
     f.write("\n")
     if OFMtype == 'SA':
@@ -894,6 +1008,34 @@ def lopls(xlo,xhi,ylo,yhi,zlo,zhi,OFMn_x,OFMn_y,nAlkane, Alkanen_x,\
     f.write("molecules3[*][*][*].move("+str(xlo)+","+str(ylo)+","+str(zlo+23.3065+4)+")")
 
 
+  ######
+  #BZBZ
+  if BZBZ == 1:
+    f.write("\n")
+    f.write("\n")
+    f.write("molecules4 = new BZBZ.rot(90, 0, 1, 0) [")
+    f.write(str(BZBZn_z))
+    f.write("].move(0, 0,")
+    f.write(str(BZBZ_z))
+    f.write(")")
+    f.write("\n")
+    f.write("                           [")
+    f.write(str(BZBZn_y))
+    f.write("].move(0, ")
+    f.write(str(BZBZ_y))
+    f.write(", 0)")
+    f.write("\n")
+    f.write("                           [")
+    f.write(str(BZBZn_x))
+    f.write("].move(")
+    f.write(str(BZBZ_x))
+    f.write(", 0, 0)")
+    f.write("\n")
+
+    f.write("molecules4[*][*][*].move("+str(xlo)+","+str(ylo)+","+str(zlo+23.3065+8)+")")
+
+
+
 
   ######
   #The Surfaces
@@ -901,9 +1043,18 @@ def lopls(xlo,xhi,ylo,yhi,zlo,zhi,OFMn_x,OFMn_y,nAlkane, Alkanen_x,\
 
     f.write("\n")
     f.write("\n")
-    f.write("molecules4 = new FESurface.move("+str(xlo)+","+str(ylo)+","+str(zlo-boxLenghtZ*aFe-1)+")")
+    f.write("molecules5 = new FESurface.move("+str(xlo)+","+str(ylo)+","+str(zlo-boxLenghtZ*aFe-1)+")")
     f.write("\n")
     f.write("\n")
+
+  if Surfaces == 2:
+
+    f.write("\n")
+    f.write("\n")
+    f.write("molecules5 = new FESurface.move("+str(xlo)+","+str(ylo)+","+str(zlo-boxLenghtZ*13.730-1)+")")
+    f.write("\n")
+    f.write("\n")
+
 
 
   #f.write("molecules4 = new FESurface.move("+str(xlo)+","+str(ylo)+","+str(zlo-boxLenghtZ*aFe-1)+")")
@@ -917,7 +1068,8 @@ def lopls(xlo,xhi,ylo,yhi,zlo,zhi,OFMn_x,OFMn_y,nAlkane, Alkanen_x,\
 
   #runs Moltemplate
   os.system('moltemplate.sh '+name+'.lt')
-
+  #os.system('moltemplate_2016-12-18.sh '+name+'.lt')
+  #os.system('moltemplate_2017-2-10.sh '+name+'.lt')
 
   # Builds the .in file
   ########################################################################
@@ -933,13 +1085,16 @@ def lopls(xlo,xhi,ylo,yhi,zlo,zhi,OFMn_x,OFMn_y,nAlkane, Alkanen_x,\
   f.write("include         	"+name+".in.charges")
   f.write("\n")
   f.write("\n")
-  f.write("dump            dump1 all atom 1 "+name+".dump")
+  f.write("dump            dump1 all atom 1000 "+name+".dump")
   f.write("\n")
   f.write("thermo_style    custom step lx ly lz  density temp press etotal")
   f.write("\n")
   f.write("thermo          1")
   f.write("\n")
+  f.write("write_data		"+ name +"Initial.data")
   f.write("\n")
+  f.write("\n")
+
   f.write("# ------------------Run Equilibriation ---------------------------")
   f.write("\n")
   f.write("\n")
@@ -953,9 +1108,12 @@ def lopls(xlo,xhi,ylo,yhi,zlo,zhi,OFMn_x,OFMn_y,nAlkane, Alkanen_x,\
 
   ############################################################################################################
   if Surfaces == 1:
-
     AddEAM()
     os.system('rm WEA.lt')
+
+  if Surfaces == 2:
+    AddFe2O3(name)
+    os.system('rm Fe2O3.lt')
 
   # Moves all files to a seperate folder 
   os.system('rm -r lopls')
@@ -963,6 +1121,7 @@ def lopls(xlo,xhi,ylo,yhi,zlo,zhi,OFMn_x,OFMn_y,nAlkane, Alkanen_x,\
   os.system('rm -r output_ttree')
   os.system('rm '+name+'.in')
   os.system('mv '+name+'.in.init lopls')
+  os.system('mv '+name+'.in.CreateBonds lopls')
   os.system('mv '+name+'.in.settings lopls')
   os.system('mv '+name+'.in.charges lopls')
   os.system('rm '+name+'.lt')

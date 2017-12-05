@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 
-#29-11-2016
+#20-11-2017
 
 #Authors:Sebastian ECHEVERRI RESTREPO,   
 #	 	sebastian.echeverri.restrepo@skf.com, sebastianecheverrir@gmail.com
@@ -20,11 +20,11 @@ import ase.io
 import os
 from ase import Atoms
 from ase.visualize import view
-from ase.lattice.surface import surface
+from ase.build import surface
 from ase import Atom
 from random import randint
 from random import shuffle
-from ase.calculators.neighborlist import *
+from ase.neighborlist import *
 import numpy as np
 import copy
 import random 
@@ -496,7 +496,7 @@ def Rough(FractalLevels,RMSin,H,boxLenghtX,boxLenghtY,boxLenghtZ,aFe,Separation)
   f.write("write(\"Data Atoms\") {\n")
 
   for k in range(0, Atoms.get_number_of_atoms(atomsWEA)):
-    f.write("$atom:FE"+str(k)+" $mol:... @atom:10000 0.00 "+str(atomsWEA[k].x)+" "+str(atomsWEA[k].y)+" "+str(atomsWEA[k].z)+"\n")
+    f.write("$atom:FE"+str(k)+" $mol:... @atom:100000 0.00 "+str(atomsWEA[k].x)+" "+str(atomsWEA[k].y)+" "+str(atomsWEA[k].z)+"\n")
 
 
   f.write("} } \n")
