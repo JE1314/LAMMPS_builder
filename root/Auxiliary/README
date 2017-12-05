@@ -1,0 +1,74 @@
+converting prn file to metal units
+
+Section Atom Type Definitions
+-the mass units are the same as the ones used by metal units (grams/mole)
+
+Section Van der Waals Parameters
+-column 3 is sigma, column 4 epsilon
+  for sigma, no changes are needed (they are both in Angstrom)
+  for epsilon, the units have to be changed from kcal/mol to eV (1kcal/mol = 0.0433634eV)
+  
+Section Bond Stretching Parameters
+-column 4 is Kr, column 5 is req
+  for Kr, the units have to be changed from (kcal/mol)/A^2 to eV/A^2 (1kcal/mol = 0.0433634eV)
+  for req, no changes are needed (they are both in Angstrom)
+
+Section Angle Bending Parameters
+-column 5 is Ktheta, column 6 is thetaeq
+  for Ktheta, the units have to be changed from    kcal/mol to eV (1kcal/mol = 0.0433634eV)
+  for req, no changes are needed (they are both in degrees)
+
+Section Urey-Bradley Parameters
+-column 5 is Kub, column 6 is ueq(distance between the 1,3 atoms in the harmonic potential)
+  for Kub, the units have to be changed from (kcal/mol)/A^2 to eV/A^2 (1kcal/mol = 0.0433634eV)
+  for ueq, no changes are needed (they are both in Angstrom)
+
+Section Improper Torsional Parameters  
+-column 6 is Kfi, column 7 is fieq
+  for Kfi, the units have to be changed from    kcal/mol to eV (1kcal/mol = 0.0433634eV)
+  for rfi, no changes are needed (they are both in degrees)
+
+
+Section Torsional Parameters 
+-column 6 is V1, column 9 is V2, column 12 is V3, column 15 is V4
+  In all cases, the units have to be changed from    kcal/mol to eV (1kcal/mol = 0.0433634eV)
+  
+  
+Section Torsional Parameters LOPLS-AA
+-Column 6 is C0, 7 is C1, 8 is C2, 9 is C3, 10 is C4
+    In all cases, the units have to be changed from    kcal/mol to eV (1kcal/mol = 0.0433634eV)
+
+Section   Atomic Partial Charge Parameters
+ -No changes needed
+ 
+-----------------------------------------------
+Making the .lt file for moltemplate
+
+-Modify oplsaa_moltemplate.py. Saved with changes as loplsaa_moltemplateMETAL.py
+
+-select atoms that are needed and write file loplsaaMETAL_subset.prm
+
+-python loplsaa_moltemplateMETAL.py loplsaaMETAL_subset.prm
+
+-edit charges loplsaaMETAL.lt
+    set type @atom:99 charge 0.125
+    set type @atom:100 charge 0.175
+    set type @atom:409 charge 0.110
+
+-Add manually other atom types as needed  
+    @atom:100000 55.845 #FE "For EAM potential"
+    @atom:10001 55.845 #FEX "For Fe2O3 surfaces"                         36-1
+    @atom:10002 15.999 #OX "For Fe2O3 surfaces"                          36-2
+    pair_coeff @atom:100000 @atom:100000 lj/cut/coul/long 0.4127328412 2.321
+    pair_coeff @atom:10001 @atom:10001 lj/cut/coul/long 0.01474392192659695104 2.320
+    pair_coeff @atom:10002 @atom:10002 lj/cut/coul/long 0.00737196096329847552 2.960
+    set type @atom:10001 charge 0.771
+    set type @atom:10002 charge -0.514
+
+
+-the file loplsaaMETAL.lt is ready to be used with moltemplate
+ moltemplate.sh system.lt
+
+
+  
+  

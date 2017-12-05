@@ -2,7 +2,7 @@
 
 #29-11-2016
 
-#Authors:Sebastian ECHEVERRI RESTREPO,   
+#Authors:Sebastian ECHEVERRI RESTREPO,
 #	 	sebastian.echeverri.restrepo@skf.com, sebastianecheverrir@gmail.com
 #	 James EWEN
 #		j.ewen14@imperial.ac.uk, jimmyewen@gmail.com
@@ -56,7 +56,7 @@ def AddEAM():
 	Sigma = math.sqrt(PairCoeffs[i].Sigma*PairCoeffs[j].Sigma)
 	PairCoeffs.append(PairCoeff(type1,type2,Epsilon,Sigma))
 
-	
+
   #Printing new coefficients
   f = open('lopls.in.settings','w')
 
@@ -64,8 +64,8 @@ def AddEAM():
   for i in range(0, Ntypes-1):
     f.write("NULL ")
   f.write("Fe \n")
-  
-  
+
+
   for i in range(0, len(PairCoeffs)):
     if ((PairCoeffs[i].Type1 !=Ntypes) or (PairCoeffs[i].Type2 !=Ntypes)) :
       f.write("pair_coeff "+str(PairCoeffs[i].Type1) + " " +str(PairCoeffs[i].Type2) + " lj/cut/coul/long " + str(PairCoeffs[i].Epsilon) + " " + str(PairCoeffs[i].Sigma) + "\n")
@@ -74,15 +74,15 @@ def AddEAM():
   for i in range(0, len(OtherCoeffs)):
     f.write(OtherCoeffs[i])
   f.close()
-  
-  
+
+
 ############################################
-  #adding eam/fs to the line pair_style hybrid lj/cut/coul/long 10.0 10.0 
+  #adding eam/fs to the line pair_style hybrid lj/cut/coul/long 10.0 10.0
 
   f=open('lopls.in.init',"r")
   lines = f.readlines()
   LinesOut = []
-  
+
   for line in lines:
      if line.find("pair_style") != -1:
        LinesOut.append("pair_style hybrid lj/cut/coul/long 10.0 10.0 eam/fs \n")
@@ -94,6 +94,6 @@ def AddEAM():
   f=open('lopls.in.init',"w")
   for i in range(0, len(LinesOut)):
     f.write(LinesOut[i])
-       
-       
+
+
 
