@@ -111,7 +111,7 @@ Alkanen_z = 3
 
 #####Inputs related to benzylbenzoate
 
-#This flag determines if the the system will contain Alkanes.
+#This flag determines if the the system will contain benzylbenzoate..
 #       if BZBZ = 1, the generation of benzylbenzoate is activated
 
 BZBZ = 1
