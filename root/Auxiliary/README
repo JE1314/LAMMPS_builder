@@ -46,7 +46,13 @@ Making the .lt file for moltemplate
 
 -Modify oplsaa_moltemplate.py. Saved with changes as loplsaa_moltemplateMETAL.py
 
--select atoms that are needed and write file loplsaaMETAL_subset.prm
+-select atoms that are needed from loplsaaMETAL.prm  and write file loplsaaMETAL_subset.prm
+exm 
+	atom        8100  13    CT    "Alkane -CH2- (LOPLS)"         6    12.011 4
+	charge      8100  -0.074
+	vdw             8100    3.5000 0.00286198
+
+
 
 -python loplsaa_moltemplateMETAL.py loplsaaMETAL_subset.prm
 
@@ -56,19 +62,45 @@ Making the .lt file for moltemplate
     set type @atom:409 charge 0.110
 
 -Add manually other atom types as needed  
-    @atom:100000 55.845 #FE "For EAM potential"
+
     @atom:10001 55.845 #FEX "For Fe2O3 surfaces"                         36-1
     @atom:10002 15.999 #OX "For Fe2O3 surfaces"                          36-2
-    pair_coeff @atom:100000 @atom:100000 lj/cut/coul/long 0.4127328412 2.321
+    @atom:100000 55.845 #FE "For EAM potential"
+
     pair_coeff @atom:10001 @atom:10001 lj/cut/coul/long 0.01474392192659695104 2.320
     pair_coeff @atom:10002 @atom:10002 lj/cut/coul/long 0.00737196096329847552 2.960
+    pair_coeff @atom:100000 @atom:100000 lj/cut/coul/long 0.0409791 2.321
+
     set type @atom:10001 charge 0.771
     set type @atom:10002 charge -0.514
+
+-If a new atom type has been inserted, the files AddFe2O3.py might need to be changed
+AddFe2O3.py
+  f.write("group          fe               type      30                 \n")
+  f.write("group          ox               type      31                 \n\n")
 
 
 -the file loplsaaMETAL.lt is ready to be used with moltemplate
  moltemplate.sh system.lt
 
 
+
+-----------------------------------------------
+
+Inserting a new molecule
+
+File lopls.py
+-Insert the atom positions and bond info in on lopls.py
+-calculates the amount of molecules in each direction
+-  #Placing the polymers in the box
+-change the definition of the function def lopls to include new molecule
+
+run.py
+-change how the function lopls is called
+-modify the section #####Inputs related to Squalane containing the flag and the number of molecules on each direction
+
+
+
+
   
-  
+

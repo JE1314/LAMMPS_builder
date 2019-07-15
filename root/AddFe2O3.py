@@ -70,8 +70,8 @@ def AddFe2O3(name):
   f.write("bond_coeff     * 1.0 1.0					\n\n")
 
   f.write("# Creating groups						\n")
-  f.write("group          fe               type      29			\n")
-  f.write("group          ox               type      30			\n\n")
+  f.write("group          fe               type      30			\n")
+  f.write("group          ox               type      31			\n\n")
 
   f.write("#Ceating bonds\n")
   f.write("create_bonds   fe ox "+str(nBondTypes+1)+" 1.900 2.000				\n")

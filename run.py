@@ -31,8 +31,8 @@ import math
 #Size of the simulation box in the x and y direction. These
 #	values have to be given in terms of the lattice parameter
 
-boxLenghtX = 8
-boxLenghtY = 9
+boxLenghtX = 15
+boxLenghtY = 15
 
 #This value determines the Z size of the section of the
 #	box that  will contain the alkane chains and OFMs.
@@ -74,7 +74,7 @@ boxLenghtZ = 1
 
 #This flag determines if the the system will contain OFMs.
 #	if OFM = 1, the generation of OFMs is activated
-OFM = 1
+OFM = 0
 
 #Defines the type of OFM that will be used in the simulation
 #	the available options are: SA, SAm, GMS, OA, OAm, GMO
@@ -111,10 +111,10 @@ Alkanen_z = 3
 
 #####Inputs related to benzylbenzoate
 
-#This flag determines if the the system will contain benzylbenzoate..
+#This flag determines if the the system will contain benzylbenzoate.
 #       if BZBZ = 1, the generation of benzylbenzoate is activated
 
-BZBZ = 1
+BZBZ = 0
 
 #Number of benzylbenzoate chains to be placed along each
 #       direction of the simulation box
@@ -126,6 +126,25 @@ BZBZ = 1
 BZBZn_x = 3
 BZBZn_y = 3
 BZBZn_z = 3
+
+#####Inputs related to Squalane
+
+#This flag determines if the the system will contain Squalane.
+#       if Squalane = 1, the generation of Squalane is activated
+
+Squalane = 1
+
+#Number of Squalane chains to be placed along each
+#       direction of the simulation box
+#       The inputs are integers
+#       Exm:    Squalanen_x = 5
+#               Squalanen_y = 7
+#               Squalanen_z = 3
+
+Squalanen_x = 1
+Squalanen_y = 2
+Squalanen_z = 3
+
 
 
 #################################################################################3
@@ -164,8 +183,10 @@ potential = 'lopls'
 
 #if potential == 'lopls':
 lopls(xlo,xhi,ylo,yhi,zlo,zhi,OFMn_x,OFMn_y,nAlkane, Alkanen_x,\
-                Alkanen_y, Alkanen_z, Alkane, BZBZ, BZBZn_x, BZBZn_y, BZBZn_z, OFM,OFMtype, Surfaces,\
+                Alkanen_y, Alkanen_z, Alkane, BZBZ, BZBZn_x, BZBZn_y, BZBZn_z,\
+                Squalane, Squalanen_x, Squalanen_y, Squalanen_z, OFM ,OFMtype, Surfaces,\
                 FractalLevels,RMSin,H,boxLenghtX,boxLenghtY,boxLenghtZ,aFe,Separation)
+
 
 #execfile('root/lopls.py')
 
