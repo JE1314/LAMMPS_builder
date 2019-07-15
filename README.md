@@ -10,7 +10,7 @@ This software generates a LAMMPS datafile and basic input file for systems conta
  
  - Two bcc Fe or Fe2O3 slabs (in the case of pure Fe, the surface can be given random nanoscale roughness)
  - Two OFM monolayers above/below bottom/top solid slabs
- - A central region of linear alkane chains or benzyl benzoate molecules
+ - A central region of linear n-alkane, squalane, or benzyl benzoate molecules
  
 *Note that any of these components can be excluded by using the appropriate flags
 
@@ -59,7 +59,7 @@ The generated system has the following schematic structure:
 ## CITING THIS SOFTWARE
 If you use this software, please cite the following references: 
  - J. P. Ewen, S. Echeverri Restrepo, N. Morgan, D. Dini, Nonequilibrium Molecular Dynamics Simulations of Stearic Acid Adsorbed on Iron Surfaces with Nanoscale Roughness, Tribology International (2016), http://dx.doi.org/10.1016/j.triboint.2016.11.039
- - DOI 10.5281/zenodo.1043867
+ - J. Ewen, S. Echeverri Restrepo, LAMMPS_builder, Zenodo. http://doi.org/10.5281/zenodo.1043868
 
 ## SOFTWARE REQUIREMENTS
 Required (all GNU):
@@ -194,6 +194,9 @@ This flag determines if the the system will contain benzyl benzoate. If BZBZ = 1
  - BZBZn_z
 
 Number of benzyl benzoate molecules to be placed along each direction of the simulation box. The inputs are integers
+
+## Inputs related to squalane
+
 
 
 ## Inputs related to the Surfaces
