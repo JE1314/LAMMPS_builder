@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 
-#07-11-2019
+#16-08-2022
 
 #Authors:Sebastian ECHEVERRI RESTREPO,   
 #               sebastian.echeverri.restrepo@skf.com, sebastianecheverrir@gmail.com
@@ -85,7 +85,7 @@ def Rough(FractalLevels,RMSin,H,boxLenghtX,boxLenghtY,boxLenghtZ,aFe,Separation)
       for i in range(0,NSideSquares,deltaSideSquares):
         for j in range(0,NSideSquares,deltaSideSquares):
           
-          PointsArray[i+deltaSideSquares/2][j+deltaSideSquares/2]=Point((PointsArray[i][j].x+PointsArray[i+deltaSideSquares][j].x)/2,
+          PointsArray[i+int(deltaSideSquares/2)][j+int(deltaSideSquares/2)]=Point((PointsArray[i][j].x+PointsArray[i+deltaSideSquares][j].x)/2,
                                                                         (PointsArray[i][j].y+PointsArray[i][j+deltaSideSquares].y)/2, 
                                                                         (PointsArray[i][j].z+PointsArray[i][j+deltaSideSquares].z+PointsArray[i+deltaSideSquares][j].z+PointsArray[i+deltaSideSquares][j+deltaSideSquares].z)/4+
                                                                         random.gauss(mu,scaleFactorK*2**(-(level+1)*H)))
@@ -94,37 +94,37 @@ def Rough(FractalLevels,RMSin,H,boxLenghtX,boxLenghtY,boxLenghtZ,aFe,Separation)
         for j in range(0,NSideSquares,deltaSideSquares):
           #point 0
           if i==0:
-            PointsArray[i][j+deltaSideSquares/2]=Point((i)*boxLenghtXAngs/NSideSquares, (j+deltaSideSquares/2)*boxLenghtYAngs/NSideSquares, 
-                                                      (PointsArray[i-deltaSideSquares/2-1][j+deltaSideSquares/2].z+PointsArray[i][j].z+PointsArray[i+deltaSideSquares/2][j+deltaSideSquares/2].z+PointsArray[i][j+deltaSideSquares].z)/4+
+            PointsArray[i][j+int(deltaSideSquares/2)]=Point((i)*boxLenghtXAngs/NSideSquares, (j+int(deltaSideSquares/2))*boxLenghtYAngs/NSideSquares, 
+                                                      (PointsArray[i-int(deltaSideSquares/2)-1][j+int(deltaSideSquares/2)].z+PointsArray[i][j].z+PointsArray[i+int(deltaSideSquares/2)][j+int(deltaSideSquares/2)].z+PointsArray[i][j+deltaSideSquares].z)/4+
                                                         random.gauss(mu,scaleFactorK*2**(-(level+1)*H)))
           else:
-            PointsArray[i][j+deltaSideSquares/2]=Point((i)*boxLenghtXAngs/NSideSquares, (j+deltaSideSquares/2)*boxLenghtYAngs/NSideSquares, 
-                                                      (PointsArray[i-deltaSideSquares/2][j+deltaSideSquares/2].z+PointsArray[i][j].z+PointsArray[i+deltaSideSquares/2][j+deltaSideSquares/2].z+PointsArray[i][j+deltaSideSquares].z)/4+
+            PointsArray[i][j+int(deltaSideSquares/2)]=Point((i)*boxLenghtXAngs/NSideSquares, (j+int(deltaSideSquares/2))*boxLenghtYAngs/NSideSquares, 
+                                                      (PointsArray[i-int(deltaSideSquares/2)][j+int(deltaSideSquares/2)].z+PointsArray[i][j].z+PointsArray[i+int(deltaSideSquares/2)][j+int(deltaSideSquares/2)].z+PointsArray[i][j+deltaSideSquares].z)/4+
                                                       random.gauss(mu,scaleFactorK*2**(-(level+1)*H)))
           #point 1
           if j==0:
-            PointsArray[i+deltaSideSquares/2][j]=Point((i+deltaSideSquares/2)*boxLenghtXAngs/NSideSquares, (j)*boxLenghtYAngs/NSideSquares, 
-                                                      (PointsArray[i][j].z+PointsArray[i+deltaSideSquares/2][j-deltaSideSquares/2-1].z+PointsArray[i+deltaSideSquares][j].z+PointsArray[i+deltaSideSquares/2][j+deltaSideSquares/2].z)/4+
+            PointsArray[i+int(deltaSideSquares/2)][j]=Point((i+int(deltaSideSquares/2))*boxLenghtXAngs/NSideSquares, (j)*boxLenghtYAngs/NSideSquares, 
+                                                      (PointsArray[i][j].z+PointsArray[i+int(deltaSideSquares/2)][j-int(deltaSideSquares/2)-1].z+PointsArray[i+deltaSideSquares][j].z+PointsArray[i+int(deltaSideSquares/2)][j+int(deltaSideSquares/2)].z)/4+
                                                       random.gauss(mu,scaleFactorK*2**(-(level+1)*H)))
           else:
-            PointsArray[i+deltaSideSquares/2][j]=Point((i+deltaSideSquares/2)*boxLenghtXAngs/NSideSquares, (j)*boxLenghtYAngs/NSideSquares, 
-                                                      (PointsArray[i][j].z+PointsArray[i+deltaSideSquares/2][j-deltaSideSquares/2].z+PointsArray[i+deltaSideSquares][j].z+PointsArray[i+deltaSideSquares/2][j+deltaSideSquares/2].z)/4+
+            PointsArray[i+int(deltaSideSquares/2)][j]=Point((i+int(deltaSideSquares/2))*boxLenghtXAngs/NSideSquares, (j)*boxLenghtYAngs/NSideSquares, 
+                                                      (PointsArray[i][j].z+PointsArray[i+int(deltaSideSquares/2)][j-int(deltaSideSquares/2)].z+PointsArray[i+deltaSideSquares][j].z+PointsArray[i+int(deltaSideSquares/2)][j+int(deltaSideSquares/2)].z)/4+
                                                       random.gauss(mu,scaleFactorK*2**(-(level+1)*H)))
           #point 2
           if i+deltaSideSquares== xSize-1:
-            PointsArray[i+deltaSideSquares][j+deltaSideSquares/2]=Point((i+deltaSideSquares)*boxLenghtXAngs/NSideSquares, (j+deltaSideSquares/2)*boxLenghtYAngs/NSideSquares, 
-                                                                        PointsArray[0][j+deltaSideSquares/2].z)
+            PointsArray[i+deltaSideSquares][j+int(deltaSideSquares/2)]=Point((i+deltaSideSquares)*boxLenghtXAngs/NSideSquares, (j+int(deltaSideSquares/2))*boxLenghtYAngs/NSideSquares, 
+                                                                        PointsArray[0][j+int(deltaSideSquares/2)].z)
           else:
-            PointsArray[i+deltaSideSquares][j+deltaSideSquares/2]=Point((i+deltaSideSquares)*boxLenghtXAngs/NSideSquares, (j+deltaSideSquares/2)*boxLenghtYAngs/NSideSquares, 
-                                                                        (PointsArray[i+deltaSideSquares/2][j+deltaSideSquares/2].z+PointsArray[i+deltaSideSquares][j].z+PointsArray[i+3*deltaSideSquares/2][j+deltaSideSquares/2].z+PointsArray[i+deltaSideSquares][j+deltaSideSquares].z)/4+
+            PointsArray[i+deltaSideSquares][j+int(deltaSideSquares/2)]=Point((i+deltaSideSquares)*boxLenghtXAngs/NSideSquares, (j+int(deltaSideSquares/2))*boxLenghtYAngs/NSideSquares, 
+                                                                        (PointsArray[i+int(deltaSideSquares/2)][j+int(deltaSideSquares/2)].z+PointsArray[i+deltaSideSquares][j].z+PointsArray[i+3*int(deltaSideSquares/2)][j+int(deltaSideSquares/2)].z+PointsArray[i+deltaSideSquares][j+deltaSideSquares].z)/4+
                                                                         random.gauss(mu,scaleFactorK*2**(-(level+1)*H)))
           #point 3
           if j+deltaSideSquares==ySize-1:
-            PointsArray[i+deltaSideSquares/2][j+deltaSideSquares]=Point((i+deltaSideSquares/2)*boxLenghtXAngs/NSideSquares, (j+deltaSideSquares)*boxLenghtYAngs/NSideSquares,
-                                                                      PointsArray[i+deltaSideSquares/2][0].z)#copy.deepcopy(PointsArray[i+deltaSideSquares/2][j].z))
+            PointsArray[i+int(deltaSideSquares/2)][j+deltaSideSquares]=Point((i+int(deltaSideSquares/2))*boxLenghtXAngs/NSideSquares, (j+deltaSideSquares)*boxLenghtYAngs/NSideSquares,
+                                                                      PointsArray[i+int(deltaSideSquares/2)][0].z)#copy.deepcopy(PointsArray[i+int(deltaSideSquares/2)][j].z))
           else:
-            PointsArray[i+deltaSideSquares/2][j+deltaSideSquares]=Point((i+deltaSideSquares/2)*boxLenghtXAngs/NSideSquares, (j+deltaSideSquares)*boxLenghtYAngs/NSideSquares,
-                                                                      (PointsArray[i][j+deltaSideSquares].z+PointsArray[i+deltaSideSquares/2][j+deltaSideSquares/2].z+PointsArray[i+deltaSideSquares][j+deltaSideSquares].z+PointsArray[i+deltaSideSquares/2][j+3*deltaSideSquares/2].z)/4+
+            PointsArray[i+int(deltaSideSquares/2)][j+deltaSideSquares]=Point((i+int(deltaSideSquares/2))*boxLenghtXAngs/NSideSquares, (j+deltaSideSquares)*boxLenghtYAngs/NSideSquares,
+                                                                      (PointsArray[i][j+deltaSideSquares].z+PointsArray[i+int(deltaSideSquares/2)][j+int(deltaSideSquares/2)].z+PointsArray[i+deltaSideSquares][j+deltaSideSquares].z+PointsArray[i+int(deltaSideSquares/2)][j+3*int(deltaSideSquares/2)].z)/4+
                                                                       random.gauss(mu,scaleFactorK*2**(-(level+1)*H)))
 
 
@@ -301,7 +301,7 @@ def Rough(FractalLevels,RMSin,H,boxLenghtX,boxLenghtY,boxLenghtZ,aFe,Separation)
       for i in range(0,NSideSquares,deltaSideSquares):
         for j in range(0,NSideSquares,deltaSideSquares):
           
-          PointsArray[i+deltaSideSquares/2][j+deltaSideSquares/2]=Point((PointsArray[i][j].x+PointsArray[i+deltaSideSquares][j].x)/2,
+          PointsArray[i+int(deltaSideSquares/2)][j+int(deltaSideSquares/2)]=Point((PointsArray[i][j].x+PointsArray[i+deltaSideSquares][j].x)/2,
                                                                         (PointsArray[i][j].y+PointsArray[i][j+deltaSideSquares].y)/2, 
                                                                         (PointsArray[i][j].z+PointsArray[i][j+deltaSideSquares].z+PointsArray[i+deltaSideSquares][j].z+PointsArray[i+deltaSideSquares][j+deltaSideSquares].z)/4+
                                                                         random.gauss(mu,scaleFactorK*2**(-(level+1)*H)))
@@ -310,37 +310,37 @@ def Rough(FractalLevels,RMSin,H,boxLenghtX,boxLenghtY,boxLenghtZ,aFe,Separation)
         for j in range(0,NSideSquares,deltaSideSquares):
           #point 0
           if i==0:
-            PointsArray[i][j+deltaSideSquares/2]=Point((i)*boxLenghtXAngs/NSideSquares, (j+deltaSideSquares/2)*boxLenghtYAngs/NSideSquares, 
-                                                      (PointsArray[i-deltaSideSquares/2-1][j+deltaSideSquares/2].z+PointsArray[i][j].z+PointsArray[i+deltaSideSquares/2][j+deltaSideSquares/2].z+PointsArray[i][j+deltaSideSquares].z)/4+
+            PointsArray[i][j+int(deltaSideSquares/2)]=Point((i)*boxLenghtXAngs/NSideSquares, (j+int(deltaSideSquares/2))*boxLenghtYAngs/NSideSquares, 
+                                                      (PointsArray[i-int(deltaSideSquares/2)-1][j+int(deltaSideSquares/2)].z+PointsArray[i][j].z+PointsArray[i+int(deltaSideSquares/2)][j+int(deltaSideSquares/2)].z+PointsArray[i][j+deltaSideSquares].z)/4+
                                                         random.gauss(mu,scaleFactorK*2**(-(level+1)*H)))
           else:
-            PointsArray[i][j+deltaSideSquares/2]=Point((i)*boxLenghtXAngs/NSideSquares, (j+deltaSideSquares/2)*boxLenghtYAngs/NSideSquares, 
-                                                      (PointsArray[i-deltaSideSquares/2][j+deltaSideSquares/2].z+PointsArray[i][j].z+PointsArray[i+deltaSideSquares/2][j+deltaSideSquares/2].z+PointsArray[i][j+deltaSideSquares].z)/4+
+            PointsArray[i][j+int(deltaSideSquares/2)]=Point((i)*boxLenghtXAngs/NSideSquares, (j+int(deltaSideSquares/2))*boxLenghtYAngs/NSideSquares, 
+                                                      (PointsArray[i-int(deltaSideSquares/2)][j+int(deltaSideSquares/2)].z+PointsArray[i][j].z+PointsArray[i+int(deltaSideSquares/2)][j+int(deltaSideSquares/2)].z+PointsArray[i][j+deltaSideSquares].z)/4+
                                                       random.gauss(mu,scaleFactorK*2**(-(level+1)*H)))
           #point 1
           if j==0:
-            PointsArray[i+deltaSideSquares/2][j]=Point((i+deltaSideSquares/2)*boxLenghtXAngs/NSideSquares, (j)*boxLenghtYAngs/NSideSquares, 
-                                                      (PointsArray[i][j].z+PointsArray[i+deltaSideSquares/2][j-deltaSideSquares/2-1].z+PointsArray[i+deltaSideSquares][j].z+PointsArray[i+deltaSideSquares/2][j+deltaSideSquares/2].z)/4+
+            PointsArray[i+int(deltaSideSquares/2)][j]=Point((i+int(deltaSideSquares/2))*boxLenghtXAngs/NSideSquares, (j)*boxLenghtYAngs/NSideSquares, 
+                                                      (PointsArray[i][j].z+PointsArray[i+int(deltaSideSquares/2)][j-int(deltaSideSquares/2)-1].z+PointsArray[i+deltaSideSquares][j].z+PointsArray[i+int(deltaSideSquares/2)][j+int(deltaSideSquares/2)].z)/4+
                                                       random.gauss(mu,scaleFactorK*2**(-(level+1)*H)))
           else:
-            PointsArray[i+deltaSideSquares/2][j]=Point((i+deltaSideSquares/2)*boxLenghtXAngs/NSideSquares, (j)*boxLenghtYAngs/NSideSquares, 
-                                                      (PointsArray[i][j].z+PointsArray[i+deltaSideSquares/2][j-deltaSideSquares/2].z+PointsArray[i+deltaSideSquares][j].z+PointsArray[i+deltaSideSquares/2][j+deltaSideSquares/2].z)/4+
+            PointsArray[i+int(deltaSideSquares/2)][j]=Point((i+int(deltaSideSquares/2))*boxLenghtXAngs/NSideSquares, (j)*boxLenghtYAngs/NSideSquares, 
+                                                      (PointsArray[i][j].z+PointsArray[i+int(deltaSideSquares/2)][j-int(deltaSideSquares/2)].z+PointsArray[i+deltaSideSquares][j].z+PointsArray[i+int(deltaSideSquares/2)][j+int(deltaSideSquares/2)].z)/4+
                                                       random.gauss(mu,scaleFactorK*2**(-(level+1)*H)))
           #point 2
           if i+deltaSideSquares== xSize-1:
-            PointsArray[i+deltaSideSquares][j+deltaSideSquares/2]=Point((i+deltaSideSquares)*boxLenghtXAngs/NSideSquares, (j+deltaSideSquares/2)*boxLenghtYAngs/NSideSquares, 
-                                                                        PointsArray[0][j+deltaSideSquares/2].z)
+            PointsArray[i+deltaSideSquares][j+int(deltaSideSquares/2)]=Point((i+deltaSideSquares)*boxLenghtXAngs/NSideSquares, (j+int(deltaSideSquares/2))*boxLenghtYAngs/NSideSquares, 
+                                                                        PointsArray[0][j+int(deltaSideSquares/2)].z)
           else:
-            PointsArray[i+deltaSideSquares][j+deltaSideSquares/2]=Point((i+deltaSideSquares)*boxLenghtXAngs/NSideSquares, (j+deltaSideSquares/2)*boxLenghtYAngs/NSideSquares, 
-                                                                        (PointsArray[i+deltaSideSquares/2][j+deltaSideSquares/2].z+PointsArray[i+deltaSideSquares][j].z+PointsArray[i+3*deltaSideSquares/2][j+deltaSideSquares/2].z+PointsArray[i+deltaSideSquares][j+deltaSideSquares].z)/4+
+            PointsArray[i+deltaSideSquares][j+int(deltaSideSquares/2)]=Point((i+deltaSideSquares)*boxLenghtXAngs/NSideSquares, (j+int(deltaSideSquares/2))*boxLenghtYAngs/NSideSquares, 
+                                                                        (PointsArray[i+int(deltaSideSquares/2)][j+int(deltaSideSquares/2)].z+PointsArray[i+deltaSideSquares][j].z+PointsArray[i+3*int(deltaSideSquares/2)][j+int(deltaSideSquares/2)].z+PointsArray[i+deltaSideSquares][j+deltaSideSquares].z)/4+
                                                                         random.gauss(mu,scaleFactorK*2**(-(level+1)*H)))
           #point 3
           if j+deltaSideSquares==ySize-1:
-            PointsArray[i+deltaSideSquares/2][j+deltaSideSquares]=Point((i+deltaSideSquares/2)*boxLenghtXAngs/NSideSquares, (j+deltaSideSquares)*boxLenghtYAngs/NSideSquares,
-                                                                      PointsArray[i+deltaSideSquares/2][0].z)#copy.deepcopy(PointsArray[i+deltaSideSquares/2][j].z))
+            PointsArray[i+int(deltaSideSquares/2)][j+deltaSideSquares]=Point((i+int(deltaSideSquares/2))*boxLenghtXAngs/NSideSquares, (j+deltaSideSquares)*boxLenghtYAngs/NSideSquares,
+                                                                      PointsArray[i+int(deltaSideSquares/2)][0].z)#copy.deepcopy(PointsArray[i+int(deltaSideSquares/2)][j].z))
           else:
-            PointsArray[i+deltaSideSquares/2][j+deltaSideSquares]=Point((i+deltaSideSquares/2)*boxLenghtXAngs/NSideSquares, (j+deltaSideSquares)*boxLenghtYAngs/NSideSquares,
-                                                                      (PointsArray[i][j+deltaSideSquares].z+PointsArray[i+deltaSideSquares/2][j+deltaSideSquares/2].z+PointsArray[i+deltaSideSquares][j+deltaSideSquares].z+PointsArray[i+deltaSideSquares/2][j+3*deltaSideSquares/2].z)/4+
+            PointsArray[i+int(deltaSideSquares/2)][j+deltaSideSquares]=Point((i+int(deltaSideSquares/2))*boxLenghtXAngs/NSideSquares, (j+deltaSideSquares)*boxLenghtYAngs/NSideSquares,
+                                                                      (PointsArray[i][j+deltaSideSquares].z+PointsArray[i+int(deltaSideSquares/2)][j+int(deltaSideSquares/2)].z+PointsArray[i+deltaSideSquares][j+deltaSideSquares].z+PointsArray[i+int(deltaSideSquares/2)][j+3*int(deltaSideSquares/2)].z)/4+
                                                                       random.gauss(mu,scaleFactorK*2**(-(level+1)*H)))
 
 
