@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 
-#20-11-2017
+#07-11-2019
 
 #Authors:Sebastian ECHEVERRI RESTREPO,
 #	 	sebastian.echeverri.restrepo@skf.com, sebastianecheverrir@gmail.com
@@ -37,7 +37,7 @@ def AddFe2O3(name):
 
 #modifying (rewriting) the file in.lopls
 
-  f = open('in.'+name,'wr+')
+  f = open('in.'+name,'w+')
 
   f.write("#-------------- Initialization Section --------------------	\n")
   f.write("include       "+name+".in.CreateBonds             		\n")
@@ -58,7 +58,7 @@ def AddFe2O3(name):
 
 #generating a file to make the dummy start that lammps requires to generate bonds
 #	see http://lammps.sandia.gov/threads/msg54748.html
-  f = open(name+'.in.CreateBonds','wr+')
+  f = open(name+'.in.CreateBonds','w+')
 
   f.write("#dummy start needed to create bonds in lammps		\n")
   f.write("units          metal 					\n")
@@ -74,19 +74,19 @@ def AddFe2O3(name):
   f.write("group          ox               type      31			\n\n")
 
   f.write("#Ceating bonds\n")
-  f.write("create_bonds   fe ox "+str(nBondTypes+1)+" 1.900 2.000				\n")
-  f.write("create_bonds   fe ox "+str(nBondTypes+2)+" 2.000 2.500				\n")
-  f.write("create_bonds   ox ox "+str(nBondTypes+3)+" 2.800 2.900				\n")
-  f.write("create_bonds   ox ox "+str(nBondTypes+4)+" 2.700 2.799				\n")
-  f.write("create_bonds   ox ox "+str(nBondTypes+5)+" 2.600 2.699				\n")
-  f.write("create_bonds   fe fe "+str(nBondTypes+6)+" 2.900 3.000				\n")
+  f.write("create_bonds many  fe ox "+str(nBondTypes+1)+" 1.900 2.000				\n")
+  f.write("create_bonds many  fe ox "+str(nBondTypes+2)+" 2.000 2.500				\n")
+  f.write("create_bonds many  ox ox "+str(nBondTypes+3)+" 2.800 2.900				\n")
+  f.write("create_bonds many  ox ox "+str(nBondTypes+4)+" 2.700 2.799				\n")
+  f.write("create_bonds many  ox ox "+str(nBondTypes+5)+" 2.600 2.699				\n")
+  f.write("create_bonds many  fe fe "+str(nBondTypes+6)+" 2.900 3.000				\n")
 
   f.close()
 
 
 #modifying (rewriting) the file lopls.in.init
 
-  f = open(name+".in.init",'wr+')
+  f = open(name+".in.init",'w+')
 
   f.write("bond_style      hybrid harmonic				\n")
   f.write("angle_style     hybrid harmonic				\n")
@@ -103,22 +103,22 @@ def AddFe2O3(name):
   replaced = False
   for line in fileinput.input(name+".in.settings", inplace=1):
     if line.startswith('    angle_coeff') and replaced  is False:
-      print "    bond_coeff "+str(nBondTypes+1)+" harmonic 5.63738 1.945000"
-      print "    bond_coeff "+str(nBondTypes+2)+" harmonic 5.63738 2.116000"
-      print "    bond_coeff "+str(nBondTypes+3)+" harmonic 5.63738 2.888000"
-      print "    bond_coeff "+str(nBondTypes+4)+" harmonic 5.63738 2.775000"
-      print "    bond_coeff "+str(nBondTypes+5)+" harmonic 5.63738 2.669000"
-      print "    bond_coeff "+str(nBondTypes+6)+" harmonic 5.63738 2.971000"
+      print("    bond_coeff "+str(nBondTypes+1)+" harmonic 5.63738 1.945000")
+      print("    bond_coeff "+str(nBondTypes+2)+" harmonic 5.63738 2.116000")
+      print("    bond_coeff "+str(nBondTypes+3)+" harmonic 5.63738 2.888000")
+      print("    bond_coeff "+str(nBondTypes+4)+" harmonic 5.63738 2.775000")
+      print("    bond_coeff "+str(nBondTypes+5)+" harmonic 5.63738 2.669000")
+      print("    bond_coeff "+str(nBondTypes+6)+" harmonic 5.63738 2.971000")
       replaced = True
-    print line,
+    print(line,  end=' ')
 
 
 #modifying (rewriting) the file lopls.data
 #	Adding the line "15  extra bond per atom" to allow more bonds per atom
 
   for line in fileinput.input(name+".data", inplace=1):
-    print line,
+    print(line,   end=' ')
     if line.endswith('improper types\n'):
-      print "\t15  extra bond per atom"
+      print("\t15  extra bond per atom")
 
 

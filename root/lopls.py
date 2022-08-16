@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 
-#20-11-2017
+#07-11-2019
 
 #Authors:Sebastian ECHEVERRI RESTREPO,
 #	 	sebastian.echeverri.restrepo@skf.com, sebastianecheverrir@gmail.com
@@ -31,7 +31,7 @@ def lopls(xlo,xhi,ylo,yhi,zlo,zhi,OFMn_x,OFMn_y,nAlkane, Alkanen_x,\
 		Squalane, Squalanen_x, Squalanen_y, Squalanen_z, OFM ,OFMtype, Surfaces,\
 		FractalLevels,RMSin,H,boxLenghtX,boxLenghtY,boxLenghtZ,aFe,Separation):
 
-  f = open('lopls.lt','wr+')
+  f = open('lopls.lt','w+')
 
   #############################################################
   f.write('import "root/loplsaaMETAL.lt"')
@@ -1306,7 +1306,7 @@ def lopls(xlo,xhi,ylo,yhi,zlo,zhi,OFMn_x,OFMn_y,nAlkane, Alkanen_x,\
 
   # Builds the .in file
   ########################################################################
-  f = open('in.'+name,'wr+')
+  f = open('in.'+name,'w+')
   f.write("# ------------------------------- Initialization Section --------------------")
   f.write("\n")
   f.write("include         	"+name+".in.init")

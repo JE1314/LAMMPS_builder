@@ -190,7 +190,7 @@ lopls(xlo,xhi,ylo,yhi,zlo,zhi,OFMn_x,OFMn_y,nAlkane, Alkanen_x,\
 
 #execfile('root/lopls.py')
 
-print '#######################################'
-print 'The folder ' + str(potential) + ' has been created'
-print '#######################################'
+print('#######################################')
+print('The folder ' + str(potential) + ' has been created')
+print('#######################################')
 

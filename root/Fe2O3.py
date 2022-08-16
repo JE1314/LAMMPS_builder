@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 
-#29-11-2016
+#07-11-2019
 
 #Authors:Sebastian ECHEVERRI RESTREPO,
 #	 	sebastian.echeverri.restrepo@skf.com, sebastianecheverrir@gmail.com
@@ -45,8 +45,8 @@ def Fe2O3(FractalLevels,RMSin,H,boxLenghtX,boxLenghtY,boxLenghtZ,aFe,Separation)
 
   #####################################################################
   #generating a bulk Fe crystal
-  print '#######################################'
-  print 'Generating the bulk Fe2O3 regions'
+  print('#######################################')
+  print('Generating the bulk Fe2O3 regions')
 
   atomsBulk = HEX_Fe2O3(symbol = ('Fe', 'O'),
                   latticeconstant={'a':5.029,'b':5.029, 'c':13.730,
@@ -61,8 +61,8 @@ def Fe2O3(FractalLevels,RMSin,H,boxLenghtX,boxLenghtY,boxLenghtZ,aFe,Separation)
 
 
   #Assembling the system
-  print '#######################################'
-  print 'Assembling the Bulk1 and the Bulk2 Fe2O3 regions'
+  print('#######################################')
+  print('Assembling the Bulk1 and the Bulk2 Fe2O3 regions')
 
   atomsBulk2Rough.center(vacuum=0, axis=2)
   atomsBulkRough.center(vacuum=0, axis=2)
@@ -76,8 +76,8 @@ def Fe2O3(FractalLevels,RMSin,H,boxLenghtX,boxLenghtY,boxLenghtZ,aFe,Separation)
   #############################################################
   #############################################################
 
-  print '#######################################'
-  print 'Writing file Fe2O3.lt for moltemplate'
+  print('#######################################')
+  print('Writing file Fe2O3.lt for moltemplate')
 
   #Printing the .lt file for moltemplate
   f = open('Fe2O3.lt', 'w')

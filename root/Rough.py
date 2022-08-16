@@ -1,11 +1,11 @@
 #!/usr/bin/env python
 
-#20-11-2017
+#07-11-2019
 
 #Authors:Sebastian ECHEVERRI RESTREPO,   
-#	 	sebastian.echeverri.restrepo@skf.com, sebastianecheverrir@gmail.com
-#	 James EWEN
-#		j.ewen14@imperial.ac.uk, jimmyewen@gmail.com
+#               sebastian.echeverri.restrepo@skf.com, sebastianecheverrir@gmail.com
+#        James EWEN
+#               j.ewen14@imperial.ac.uk, jimmyewen@gmail.com
 
 #################################################################################3
 
@@ -47,8 +47,8 @@ def Rough(FractalLevels,RMSin,H,boxLenghtX,boxLenghtY,boxLenghtZ,aFe,Separation)
   #####################################################################
   #Fractal Section For Bulk Fe
   #####################################################################
-  print '#######################################'
-  print 'Generating the Fractal surface for bulk Fe'
+  print('#######################################')
+  print('Generating the Fractal surface for bulk Fe')
 
   class Point:
     def __init__(self,x,y,z):
@@ -59,16 +59,16 @@ def Rough(FractalLevels,RMSin,H,boxLenghtX,boxLenghtY,boxLenghtZ,aFe,Separation)
 
   # Create an array
   PointsArray = [[0.0 for x in range(0,int(math.sqrt(4**FractalLevels)+1))] 
-		    for y in range(0,int(math.sqrt(4**FractalLevels)+1))]
+                    for y in range(0,int(math.sqrt(4**FractalLevels)+1))]
   xSize=len(PointsArray)
   ySize=len(PointsArray[0])
 
   #generatig the corner points
   zCorner=0.0 #random.gauss(mu,scaleFactorK*2**(-(1)*H))
-  PointsArray[0][0]     		=Point(0.0,0.0,zCorner)
-  PointsArray[xSize-1][0]		=Point(boxLenghtXAngs,0.0,zCorner)
-  PointsArray[0][ySize-1]		=Point(0.0,boxLenghtYAngs,zCorner)
-  PointsArray[xSize-1][ySize-1]	=Point(boxLenghtXAngs,boxLenghtYAngs,zCorner)
+  PointsArray[0][0]                     =Point(0.0,0.0,zCorner)
+  PointsArray[xSize-1][0]               =Point(boxLenghtXAngs,0.0,zCorner)
+  PointsArray[0][ySize-1]               =Point(0.0,boxLenghtYAngs,zCorner)
+  PointsArray[xSize-1][ySize-1] =Point(boxLenghtXAngs,boxLenghtYAngs,zCorner)
 
 
   #Number of squares per side
@@ -83,49 +83,49 @@ def Rough(FractalLevels,RMSin,H,boxLenghtX,boxLenghtY,boxLenghtZ,aFe,Separation)
       
       #calculate the central point
       for i in range(0,NSideSquares,deltaSideSquares):
-	for j in range(0,NSideSquares,deltaSideSquares):
-	  
-	  PointsArray[i+deltaSideSquares/2][j+deltaSideSquares/2]=Point((PointsArray[i][j].x+PointsArray[i+deltaSideSquares][j].x)/2,
-									(PointsArray[i][j].y+PointsArray[i][j+deltaSideSquares].y)/2, 
-									(PointsArray[i][j].z+PointsArray[i][j+deltaSideSquares].z+PointsArray[i+deltaSideSquares][j].z+PointsArray[i+deltaSideSquares][j+deltaSideSquares].z)/4+
-									random.gauss(mu,scaleFactorK*2**(-(level+1)*H)))
+        for j in range(0,NSideSquares,deltaSideSquares):
+          
+          PointsArray[i+deltaSideSquares/2][j+deltaSideSquares/2]=Point((PointsArray[i][j].x+PointsArray[i+deltaSideSquares][j].x)/2,
+                                                                        (PointsArray[i][j].y+PointsArray[i][j+deltaSideSquares].y)/2, 
+                                                                        (PointsArray[i][j].z+PointsArray[i][j+deltaSideSquares].z+PointsArray[i+deltaSideSquares][j].z+PointsArray[i+deltaSideSquares][j+deltaSideSquares].z)/4+
+                                                                        random.gauss(mu,scaleFactorK*2**(-(level+1)*H)))
       #calculate the sides
       for i in range(0,NSideSquares,deltaSideSquares):
-	for j in range(0,NSideSquares,deltaSideSquares):
-	  #point 0
-	  if i==0:
-	    PointsArray[i][j+deltaSideSquares/2]=Point((i)*boxLenghtXAngs/NSideSquares, (j+deltaSideSquares/2)*boxLenghtYAngs/NSideSquares, 
-						      (PointsArray[i-deltaSideSquares/2-1][j+deltaSideSquares/2].z+PointsArray[i][j].z+PointsArray[i+deltaSideSquares/2][j+deltaSideSquares/2].z+PointsArray[i][j+deltaSideSquares].z)/4+
-							random.gauss(mu,scaleFactorK*2**(-(level+1)*H)))
-	  else:
-	    PointsArray[i][j+deltaSideSquares/2]=Point((i)*boxLenghtXAngs/NSideSquares, (j+deltaSideSquares/2)*boxLenghtYAngs/NSideSquares, 
-						      (PointsArray[i-deltaSideSquares/2][j+deltaSideSquares/2].z+PointsArray[i][j].z+PointsArray[i+deltaSideSquares/2][j+deltaSideSquares/2].z+PointsArray[i][j+deltaSideSquares].z)/4+
-						      random.gauss(mu,scaleFactorK*2**(-(level+1)*H)))
-	  #point 1
-	  if j==0:
-	    PointsArray[i+deltaSideSquares/2][j]=Point((i+deltaSideSquares/2)*boxLenghtXAngs/NSideSquares, (j)*boxLenghtYAngs/NSideSquares, 
-						      (PointsArray[i][j].z+PointsArray[i+deltaSideSquares/2][j-deltaSideSquares/2-1].z+PointsArray[i+deltaSideSquares][j].z+PointsArray[i+deltaSideSquares/2][j+deltaSideSquares/2].z)/4+
-						      random.gauss(mu,scaleFactorK*2**(-(level+1)*H)))
-	  else:
-	    PointsArray[i+deltaSideSquares/2][j]=Point((i+deltaSideSquares/2)*boxLenghtXAngs/NSideSquares, (j)*boxLenghtYAngs/NSideSquares, 
-						      (PointsArray[i][j].z+PointsArray[i+deltaSideSquares/2][j-deltaSideSquares/2].z+PointsArray[i+deltaSideSquares][j].z+PointsArray[i+deltaSideSquares/2][j+deltaSideSquares/2].z)/4+
-						      random.gauss(mu,scaleFactorK*2**(-(level+1)*H)))
-	  #point 2
-	  if i+deltaSideSquares== xSize-1:
-	    PointsArray[i+deltaSideSquares][j+deltaSideSquares/2]=Point((i+deltaSideSquares)*boxLenghtXAngs/NSideSquares, (j+deltaSideSquares/2)*boxLenghtYAngs/NSideSquares, 
-									PointsArray[0][j+deltaSideSquares/2].z)
-	  else:
-	    PointsArray[i+deltaSideSquares][j+deltaSideSquares/2]=Point((i+deltaSideSquares)*boxLenghtXAngs/NSideSquares, (j+deltaSideSquares/2)*boxLenghtYAngs/NSideSquares, 
-									(PointsArray[i+deltaSideSquares/2][j+deltaSideSquares/2].z+PointsArray[i+deltaSideSquares][j].z+PointsArray[i+3*deltaSideSquares/2][j+deltaSideSquares/2].z+PointsArray[i+deltaSideSquares][j+deltaSideSquares].z)/4+
-									random.gauss(mu,scaleFactorK*2**(-(level+1)*H)))
-	  #point 3
-	  if j+deltaSideSquares==ySize-1:
-	    PointsArray[i+deltaSideSquares/2][j+deltaSideSquares]=Point((i+deltaSideSquares/2)*boxLenghtXAngs/NSideSquares, (j+deltaSideSquares)*boxLenghtYAngs/NSideSquares,
-								      PointsArray[i+deltaSideSquares/2][0].z)#copy.deepcopy(PointsArray[i+deltaSideSquares/2][j].z))
-	  else:
-	    PointsArray[i+deltaSideSquares/2][j+deltaSideSquares]=Point((i+deltaSideSquares/2)*boxLenghtXAngs/NSideSquares, (j+deltaSideSquares)*boxLenghtYAngs/NSideSquares,
-								      (PointsArray[i][j+deltaSideSquares].z+PointsArray[i+deltaSideSquares/2][j+deltaSideSquares/2].z+PointsArray[i+deltaSideSquares][j+deltaSideSquares].z+PointsArray[i+deltaSideSquares/2][j+3*deltaSideSquares/2].z)/4+
-								      random.gauss(mu,scaleFactorK*2**(-(level+1)*H)))
+        for j in range(0,NSideSquares,deltaSideSquares):
+          #point 0
+          if i==0:
+            PointsArray[i][j+deltaSideSquares/2]=Point((i)*boxLenghtXAngs/NSideSquares, (j+deltaSideSquares/2)*boxLenghtYAngs/NSideSquares, 
+                                                      (PointsArray[i-deltaSideSquares/2-1][j+deltaSideSquares/2].z+PointsArray[i][j].z+PointsArray[i+deltaSideSquares/2][j+deltaSideSquares/2].z+PointsArray[i][j+deltaSideSquares].z)/4+
+                                                        random.gauss(mu,scaleFactorK*2**(-(level+1)*H)))
+          else:
+            PointsArray[i][j+deltaSideSquares/2]=Point((i)*boxLenghtXAngs/NSideSquares, (j+deltaSideSquares/2)*boxLenghtYAngs/NSideSquares, 
+                                                      (PointsArray[i-deltaSideSquares/2][j+deltaSideSquares/2].z+PointsArray[i][j].z+PointsArray[i+deltaSideSquares/2][j+deltaSideSquares/2].z+PointsArray[i][j+deltaSideSquares].z)/4+
+                                                      random.gauss(mu,scaleFactorK*2**(-(level+1)*H)))
+          #point 1
+          if j==0:
+            PointsArray[i+deltaSideSquares/2][j]=Point((i+deltaSideSquares/2)*boxLenghtXAngs/NSideSquares, (j)*boxLenghtYAngs/NSideSquares, 
+                                                      (PointsArray[i][j].z+PointsArray[i+deltaSideSquares/2][j-deltaSideSquares/2-1].z+PointsArray[i+deltaSideSquares][j].z+PointsArray[i+deltaSideSquares/2][j+deltaSideSquares/2].z)/4+
+                                                      random.gauss(mu,scaleFactorK*2**(-(level+1)*H)))
+          else:
+            PointsArray[i+deltaSideSquares/2][j]=Point((i+deltaSideSquares/2)*boxLenghtXAngs/NSideSquares, (j)*boxLenghtYAngs/NSideSquares, 
+                                                      (PointsArray[i][j].z+PointsArray[i+deltaSideSquares/2][j-deltaSideSquares/2].z+PointsArray[i+deltaSideSquares][j].z+PointsArray[i+deltaSideSquares/2][j+deltaSideSquares/2].z)/4+
+                                                      random.gauss(mu,scaleFactorK*2**(-(level+1)*H)))
+          #point 2
+          if i+deltaSideSquares== xSize-1:
+            PointsArray[i+deltaSideSquares][j+deltaSideSquares/2]=Point((i+deltaSideSquares)*boxLenghtXAngs/NSideSquares, (j+deltaSideSquares/2)*boxLenghtYAngs/NSideSquares, 
+                                                                        PointsArray[0][j+deltaSideSquares/2].z)
+          else:
+            PointsArray[i+deltaSideSquares][j+deltaSideSquares/2]=Point((i+deltaSideSquares)*boxLenghtXAngs/NSideSquares, (j+deltaSideSquares/2)*boxLenghtYAngs/NSideSquares, 
+                                                                        (PointsArray[i+deltaSideSquares/2][j+deltaSideSquares/2].z+PointsArray[i+deltaSideSquares][j].z+PointsArray[i+3*deltaSideSquares/2][j+deltaSideSquares/2].z+PointsArray[i+deltaSideSquares][j+deltaSideSquares].z)/4+
+                                                                        random.gauss(mu,scaleFactorK*2**(-(level+1)*H)))
+          #point 3
+          if j+deltaSideSquares==ySize-1:
+            PointsArray[i+deltaSideSquares/2][j+deltaSideSquares]=Point((i+deltaSideSquares/2)*boxLenghtXAngs/NSideSquares, (j+deltaSideSquares)*boxLenghtYAngs/NSideSquares,
+                                                                      PointsArray[i+deltaSideSquares/2][0].z)#copy.deepcopy(PointsArray[i+deltaSideSquares/2][j].z))
+          else:
+            PointsArray[i+deltaSideSquares/2][j+deltaSideSquares]=Point((i+deltaSideSquares/2)*boxLenghtXAngs/NSideSquares, (j+deltaSideSquares)*boxLenghtYAngs/NSideSquares,
+                                                                      (PointsArray[i][j+deltaSideSquares].z+PointsArray[i+deltaSideSquares/2][j+deltaSideSquares/2].z+PointsArray[i+deltaSideSquares][j+deltaSideSquares].z+PointsArray[i+deltaSideSquares/2][j+3*deltaSideSquares/2].z)/4+
+                                                                      random.gauss(mu,scaleFactorK*2**(-(level+1)*H)))
 
 
     #forcing the min value to be at z=0
@@ -137,13 +137,13 @@ def Rough(FractalLevels,RMSin,H,boxLenghtX,boxLenghtY,boxLenghtZ,aFe,Separation)
 
     for i in range(0,xSize):
       for j in range(0,ySize):
-	sumsq=(PointsArray[i][j].z-mu)**2+sumsq
-	if minZ>PointsArray[i][j].z:
-	  minZ=PointsArray[i][j].z
+        sumsq=(PointsArray[i][j].z-mu)**2+sumsq
+        if minZ>PointsArray[i][j].z:
+          minZ=PointsArray[i][j].z
 
     RMS=math.sqrt(sumsq/(xSize*ySize))
 
-  print "RMS = ", RMS, "Angstrom"
+  print("RMS = ", RMS, "Angstrom")
 
 
 
@@ -166,15 +166,15 @@ def Rough(FractalLevels,RMSin,H,boxLenghtX,boxLenghtY,boxLenghtZ,aFe,Separation)
       self.z  = z
 
   SquaresArray = [[0.0 for x in range(0,xSize-1)] 
-		    for y in range(0,ySize-1)]
+                    for y in range(0,ySize-1)]
 
   for i in range(0,xSize-1):
     for j in range(0,ySize-1):
       SquaresArray[i][j]=Square(PointsArray[i][j].x, PointsArray[i][j].y,
-				PointsArray[i+1][j].x, PointsArray[i+1][j].y,
-				PointsArray[i+1][j+1].x, PointsArray[i+1][j+1].y,
-				PointsArray[i][j+1].x, PointsArray[i][j+1].y,
-				(PointsArray[i][j].z+PointsArray[i+1][j].z+PointsArray[i+1][j+1].z+PointsArray[i][j+1].z)/4)
+                                PointsArray[i+1][j].x, PointsArray[i+1][j].y,
+                                PointsArray[i+1][j+1].x, PointsArray[i+1][j+1].y,
+                                PointsArray[i][j+1].x, PointsArray[i][j+1].y,
+                                (PointsArray[i][j].z+PointsArray[i+1][j].z+PointsArray[i+1][j+1].z+PointsArray[i][j+1].z)/4)
       
 
 
@@ -211,7 +211,7 @@ def Rough(FractalLevels,RMSin,H,boxLenghtX,boxLenghtY,boxLenghtZ,aFe,Separation)
   #ax.scatter(x,y,z,c=z)
   #ax.plot([1,1], [2,2], 0)
   #ax.plot([SquaresArray[0][0].x0,SquaresArray[0][0].x1,SquaresArray[0][0].x2,SquaresArray[0][0].x3, SquaresArray[0][0].x0 ],
-	  #[SquaresArray[0][0].y0,SquaresArray[0][0].y1,SquaresArray[0][0].y2,SquaresArray[0][0].y3,SquaresArray[0][0].y0], 0)
+          #[SquaresArray[0][0].y0,SquaresArray[0][0].y1,SquaresArray[0][0].y2,SquaresArray[0][0].y3,SquaresArray[0][0].y0], 0)
   #ax.plot_trisurf(x, y, z, cmap=plt.cm.Spectral)
   #ax.set_xlabel('X axis')
   #ax.set_ylabel('Y axis')
@@ -221,14 +221,14 @@ def Rough(FractalLevels,RMSin,H,boxLenghtX,boxLenghtY,boxLenghtZ,aFe,Separation)
 
   #####################################################################
   #generating a bulk Fe crystal 
-  print '#######################################'
-  print 'Generating the bulk Fe region'
+  print('#######################################')
+  print('Generating the bulk Fe region')
 
   atomsBulk = crystal(spacegroup=229,
-		  symbols='Fe',
-		  basis=[0,0,0],
-		  cellpar=[aFe,aFe,aFe,90.0,90.0,90.0],
-		  size=(boxLenghtX,boxLenghtY,boxLenghtZ))
+                  symbols='Fe',
+                  basis=[0,0,0],
+                  cellpar=[aFe,aFe,aFe,90.0,90.0,90.0],
+                  size=(boxLenghtX,boxLenghtY,boxLenghtZ))
 
   #ase.io.write("FeBulk.cfg", atomsBulk, "cfg")
   #os.system("atomsk FeBulk.cfg lmp >& /dev/null")
@@ -239,8 +239,8 @@ def Rough(FractalLevels,RMSin,H,boxLenghtX,boxLenghtY,boxLenghtZ,aFe,Separation)
   #####################################################################
   #Making the crystal surface rough
 
-  print '#######################################'
-  print 'Applying the roughness to the bulk Fe region'
+  print('#######################################')
+  print('Applying the roughness to the bulk Fe region')
 
   atomsBulkRough = copy.deepcopy(atomsBulk)
 
@@ -248,12 +248,12 @@ def Rough(FractalLevels,RMSin,H,boxLenghtX,boxLenghtY,boxLenghtZ,aFe,Separation)
     deleted=False
     for i in range(0,xSize-1):
       for j in range(0,ySize-1):
-	if atomsBulkRough[k].x>=SquaresArray[i][j].x0 and atomsBulkRough[k].x<SquaresArray[i][j].x1 and atomsBulkRough[k].y>=SquaresArray[i][j].y0 and atomsBulkRough[k].y<SquaresArray[i][j].y2 and atomsBulkRough[k].z<SquaresArray[i][j].z:
-	  del atomsBulkRough[k]
-	  deleted=True
-	  break
+        if atomsBulkRough[k].x>=SquaresArray[i][j].x0 and atomsBulkRough[k].x<SquaresArray[i][j].x1 and atomsBulkRough[k].y>=SquaresArray[i][j].y0 and atomsBulkRough[k].y<SquaresArray[i][j].y2 and atomsBulkRough[k].z<SquaresArray[i][j].z:
+          del atomsBulkRough[k]
+          deleted=True
+          break
       if deleted==True:
-	break
+        break
 
 
   #ase.io.write("RoughFeBulk.cfg", atomsBulkRough, "cfg")
@@ -267,23 +267,23 @@ def Rough(FractalLevels,RMSin,H,boxLenghtX,boxLenghtY,boxLenghtZ,aFe,Separation)
   #####################################################################
   #Fractal Section For Bulk2 Fe
   #####################################################################
-  print '#######################################'
-  print 'Generating the Fractal surface for Bulk2 Fe'
+  print('#######################################')
+  print('Generating the Fractal surface for Bulk2 Fe')
 
 
 
   # Create an array
   PointsArray = [[0.0 for x in range(0,int(math.sqrt(4**FractalLevels)+1))] 
-		    for y in range(0,int(math.sqrt(4**FractalLevels)+1))]
+                    for y in range(0,int(math.sqrt(4**FractalLevels)+1))]
   xSize=len(PointsArray)
   ySize=len(PointsArray[0])
 
   #generatig the corner points
   zCorner=0.0#random.gauss(mu,scaleFactorK*2**(-(1)*H))
-  PointsArray[0][0]     		=Point(0.0,0.0,zCorner)
-  PointsArray[xSize-1][0]		=Point(boxLenghtXAngs,0.0,zCorner)
-  PointsArray[0][ySize-1]		=Point(0.0,boxLenghtYAngs,zCorner)
-  PointsArray[xSize-1][ySize-1]	=Point(boxLenghtXAngs,boxLenghtYAngs,zCorner)
+  PointsArray[0][0]                     =Point(0.0,0.0,zCorner)
+  PointsArray[xSize-1][0]               =Point(boxLenghtXAngs,0.0,zCorner)
+  PointsArray[0][ySize-1]               =Point(0.0,boxLenghtYAngs,zCorner)
+  PointsArray[xSize-1][ySize-1] =Point(boxLenghtXAngs,boxLenghtYAngs,zCorner)
 
 
   #Number of squares per side
@@ -299,49 +299,49 @@ def Rough(FractalLevels,RMSin,H,boxLenghtX,boxLenghtY,boxLenghtZ,aFe,Separation)
       
       #calculate the central point
       for i in range(0,NSideSquares,deltaSideSquares):
-	for j in range(0,NSideSquares,deltaSideSquares):
-	  
-	  PointsArray[i+deltaSideSquares/2][j+deltaSideSquares/2]=Point((PointsArray[i][j].x+PointsArray[i+deltaSideSquares][j].x)/2,
-									(PointsArray[i][j].y+PointsArray[i][j+deltaSideSquares].y)/2, 
-									(PointsArray[i][j].z+PointsArray[i][j+deltaSideSquares].z+PointsArray[i+deltaSideSquares][j].z+PointsArray[i+deltaSideSquares][j+deltaSideSquares].z)/4+
-									random.gauss(mu,scaleFactorK*2**(-(level+1)*H)))
+        for j in range(0,NSideSquares,deltaSideSquares):
+          
+          PointsArray[i+deltaSideSquares/2][j+deltaSideSquares/2]=Point((PointsArray[i][j].x+PointsArray[i+deltaSideSquares][j].x)/2,
+                                                                        (PointsArray[i][j].y+PointsArray[i][j+deltaSideSquares].y)/2, 
+                                                                        (PointsArray[i][j].z+PointsArray[i][j+deltaSideSquares].z+PointsArray[i+deltaSideSquares][j].z+PointsArray[i+deltaSideSquares][j+deltaSideSquares].z)/4+
+                                                                        random.gauss(mu,scaleFactorK*2**(-(level+1)*H)))
       #calculate the sides
       for i in range(0,NSideSquares,deltaSideSquares):
-	for j in range(0,NSideSquares,deltaSideSquares):
-	  #point 0
-	  if i==0:
-	    PointsArray[i][j+deltaSideSquares/2]=Point((i)*boxLenghtXAngs/NSideSquares, (j+deltaSideSquares/2)*boxLenghtYAngs/NSideSquares, 
-						      (PointsArray[i-deltaSideSquares/2-1][j+deltaSideSquares/2].z+PointsArray[i][j].z+PointsArray[i+deltaSideSquares/2][j+deltaSideSquares/2].z+PointsArray[i][j+deltaSideSquares].z)/4+
-							random.gauss(mu,scaleFactorK*2**(-(level+1)*H)))
-	  else:
-	    PointsArray[i][j+deltaSideSquares/2]=Point((i)*boxLenghtXAngs/NSideSquares, (j+deltaSideSquares/2)*boxLenghtYAngs/NSideSquares, 
-						      (PointsArray[i-deltaSideSquares/2][j+deltaSideSquares/2].z+PointsArray[i][j].z+PointsArray[i+deltaSideSquares/2][j+deltaSideSquares/2].z+PointsArray[i][j+deltaSideSquares].z)/4+
-						      random.gauss(mu,scaleFactorK*2**(-(level+1)*H)))
-	  #point 1
-	  if j==0:
-	    PointsArray[i+deltaSideSquares/2][j]=Point((i+deltaSideSquares/2)*boxLenghtXAngs/NSideSquares, (j)*boxLenghtYAngs/NSideSquares, 
-						      (PointsArray[i][j].z+PointsArray[i+deltaSideSquares/2][j-deltaSideSquares/2-1].z+PointsArray[i+deltaSideSquares][j].z+PointsArray[i+deltaSideSquares/2][j+deltaSideSquares/2].z)/4+
-						      random.gauss(mu,scaleFactorK*2**(-(level+1)*H)))
-	  else:
-	    PointsArray[i+deltaSideSquares/2][j]=Point((i+deltaSideSquares/2)*boxLenghtXAngs/NSideSquares, (j)*boxLenghtYAngs/NSideSquares, 
-						      (PointsArray[i][j].z+PointsArray[i+deltaSideSquares/2][j-deltaSideSquares/2].z+PointsArray[i+deltaSideSquares][j].z+PointsArray[i+deltaSideSquares/2][j+deltaSideSquares/2].z)/4+
-						      random.gauss(mu,scaleFactorK*2**(-(level+1)*H)))
-	  #point 2
-	  if i+deltaSideSquares== xSize-1:
-	    PointsArray[i+deltaSideSquares][j+deltaSideSquares/2]=Point((i+deltaSideSquares)*boxLenghtXAngs/NSideSquares, (j+deltaSideSquares/2)*boxLenghtYAngs/NSideSquares, 
-									PointsArray[0][j+deltaSideSquares/2].z)
-	  else:
-	    PointsArray[i+deltaSideSquares][j+deltaSideSquares/2]=Point((i+deltaSideSquares)*boxLenghtXAngs/NSideSquares, (j+deltaSideSquares/2)*boxLenghtYAngs/NSideSquares, 
-									(PointsArray[i+deltaSideSquares/2][j+deltaSideSquares/2].z+PointsArray[i+deltaSideSquares][j].z+PointsArray[i+3*deltaSideSquares/2][j+deltaSideSquares/2].z+PointsArray[i+deltaSideSquares][j+deltaSideSquares].z)/4+
-									random.gauss(mu,scaleFactorK*2**(-(level+1)*H)))
-	  #point 3
-	  if j+deltaSideSquares==ySize-1:
-	    PointsArray[i+deltaSideSquares/2][j+deltaSideSquares]=Point((i+deltaSideSquares/2)*boxLenghtXAngs/NSideSquares, (j+deltaSideSquares)*boxLenghtYAngs/NSideSquares,
-								      PointsArray[i+deltaSideSquares/2][0].z)#copy.deepcopy(PointsArray[i+deltaSideSquares/2][j].z))
-	  else:
-	    PointsArray[i+deltaSideSquares/2][j+deltaSideSquares]=Point((i+deltaSideSquares/2)*boxLenghtXAngs/NSideSquares, (j+deltaSideSquares)*boxLenghtYAngs/NSideSquares,
-								      (PointsArray[i][j+deltaSideSquares].z+PointsArray[i+deltaSideSquares/2][j+deltaSideSquares/2].z+PointsArray[i+deltaSideSquares][j+deltaSideSquares].z+PointsArray[i+deltaSideSquares/2][j+3*deltaSideSquares/2].z)/4+
-								      random.gauss(mu,scaleFactorK*2**(-(level+1)*H)))
+        for j in range(0,NSideSquares,deltaSideSquares):
+          #point 0
+          if i==0:
+            PointsArray[i][j+deltaSideSquares/2]=Point((i)*boxLenghtXAngs/NSideSquares, (j+deltaSideSquares/2)*boxLenghtYAngs/NSideSquares, 
+                                                      (PointsArray[i-deltaSideSquares/2-1][j+deltaSideSquares/2].z+PointsArray[i][j].z+PointsArray[i+deltaSideSquares/2][j+deltaSideSquares/2].z+PointsArray[i][j+deltaSideSquares].z)/4+
+                                                        random.gauss(mu,scaleFactorK*2**(-(level+1)*H)))
+          else:
+            PointsArray[i][j+deltaSideSquares/2]=Point((i)*boxLenghtXAngs/NSideSquares, (j+deltaSideSquares/2)*boxLenghtYAngs/NSideSquares, 
+                                                      (PointsArray[i-deltaSideSquares/2][j+deltaSideSquares/2].z+PointsArray[i][j].z+PointsArray[i+deltaSideSquares/2][j+deltaSideSquares/2].z+PointsArray[i][j+deltaSideSquares].z)/4+
+                                                      random.gauss(mu,scaleFactorK*2**(-(level+1)*H)))
+          #point 1
+          if j==0:
+            PointsArray[i+deltaSideSquares/2][j]=Point((i+deltaSideSquares/2)*boxLenghtXAngs/NSideSquares, (j)*boxLenghtYAngs/NSideSquares, 
+                                                      (PointsArray[i][j].z+PointsArray[i+deltaSideSquares/2][j-deltaSideSquares/2-1].z+PointsArray[i+deltaSideSquares][j].z+PointsArray[i+deltaSideSquares/2][j+deltaSideSquares/2].z)/4+
+                                                      random.gauss(mu,scaleFactorK*2**(-(level+1)*H)))
+          else:
+            PointsArray[i+deltaSideSquares/2][j]=Point((i+deltaSideSquares/2)*boxLenghtXAngs/NSideSquares, (j)*boxLenghtYAngs/NSideSquares, 
+                                                      (PointsArray[i][j].z+PointsArray[i+deltaSideSquares/2][j-deltaSideSquares/2].z+PointsArray[i+deltaSideSquares][j].z+PointsArray[i+deltaSideSquares/2][j+deltaSideSquares/2].z)/4+
+                                                      random.gauss(mu,scaleFactorK*2**(-(level+1)*H)))
+          #point 2
+          if i+deltaSideSquares== xSize-1:
+            PointsArray[i+deltaSideSquares][j+deltaSideSquares/2]=Point((i+deltaSideSquares)*boxLenghtXAngs/NSideSquares, (j+deltaSideSquares/2)*boxLenghtYAngs/NSideSquares, 
+                                                                        PointsArray[0][j+deltaSideSquares/2].z)
+          else:
+            PointsArray[i+deltaSideSquares][j+deltaSideSquares/2]=Point((i+deltaSideSquares)*boxLenghtXAngs/NSideSquares, (j+deltaSideSquares/2)*boxLenghtYAngs/NSideSquares, 
+                                                                        (PointsArray[i+deltaSideSquares/2][j+deltaSideSquares/2].z+PointsArray[i+deltaSideSquares][j].z+PointsArray[i+3*deltaSideSquares/2][j+deltaSideSquares/2].z+PointsArray[i+deltaSideSquares][j+deltaSideSquares].z)/4+
+                                                                        random.gauss(mu,scaleFactorK*2**(-(level+1)*H)))
+          #point 3
+          if j+deltaSideSquares==ySize-1:
+            PointsArray[i+deltaSideSquares/2][j+deltaSideSquares]=Point((i+deltaSideSquares/2)*boxLenghtXAngs/NSideSquares, (j+deltaSideSquares)*boxLenghtYAngs/NSideSquares,
+                                                                      PointsArray[i+deltaSideSquares/2][0].z)#copy.deepcopy(PointsArray[i+deltaSideSquares/2][j].z))
+          else:
+            PointsArray[i+deltaSideSquares/2][j+deltaSideSquares]=Point((i+deltaSideSquares/2)*boxLenghtXAngs/NSideSquares, (j+deltaSideSquares)*boxLenghtYAngs/NSideSquares,
+                                                                      (PointsArray[i][j+deltaSideSquares].z+PointsArray[i+deltaSideSquares/2][j+deltaSideSquares/2].z+PointsArray[i+deltaSideSquares][j+deltaSideSquares].z+PointsArray[i+deltaSideSquares/2][j+3*deltaSideSquares/2].z)/4+
+                                                                      random.gauss(mu,scaleFactorK*2**(-(level+1)*H)))
 
 
     #forcing the max value to be at z=boxLenghtZAngs
@@ -352,16 +352,16 @@ def Rough(FractalLevels,RMSin,H,boxLenghtX,boxLenghtY,boxLenghtZ,aFe,Separation)
 
     for i in range(0,xSize):
       for j in range(0,ySize):
-	sumsq=(PointsArray[i][j].z-mu)**2+sumsq
+        sumsq=(PointsArray[i][j].z-mu)**2+sumsq
 
-	if maxZ<PointsArray[i][j].z:
-	  maxZ=PointsArray[i][j].z
-	
+        if maxZ<PointsArray[i][j].z:
+          maxZ=PointsArray[i][j].z
+        
       RMS=math.sqrt(sumsq/(xSize*ySize))
     
     
-  print "RMS = ", RMS, "Angstrom"
-	
+  print("RMS = ", RMS, "Angstrom")
+        
   for i in range(0,xSize):
     for j in range(0,ySize):
       PointsArray[i][j].z=PointsArray[i][j].z+boxLenghtZAngs-maxZ
@@ -375,15 +375,15 @@ def Rough(FractalLevels,RMSin,H,boxLenghtX,boxLenghtY,boxLenghtZ,aFe,Separation)
   #Making squares from the points
 
   SquaresArray = [[0.0 for x in range(0,xSize-1)] 
-		    for y in range(0,ySize-1)]
+                    for y in range(0,ySize-1)]
 
   for i in range(0,xSize-1):
     for j in range(0,ySize-1):
       SquaresArray[i][j]=Square(PointsArray[i][j].x, PointsArray[i][j].y,
-				PointsArray[i+1][j].x, PointsArray[i+1][j].y,
-				PointsArray[i+1][j+1].x, PointsArray[i+1][j+1].y,
-				PointsArray[i][j+1].x, PointsArray[i][j+1].y,
-				(PointsArray[i][j].z+PointsArray[i+1][j].z+PointsArray[i+1][j+1].z+PointsArray[i][j+1].z)/4)
+                                PointsArray[i+1][j].x, PointsArray[i+1][j].y,
+                                PointsArray[i+1][j+1].x, PointsArray[i+1][j+1].y,
+                                PointsArray[i][j+1].x, PointsArray[i][j+1].y,
+                                (PointsArray[i][j].z+PointsArray[i+1][j].z+PointsArray[i+1][j+1].z+PointsArray[i][j+1].z)/4)
 
 
   #Plotting the squares and the points  
@@ -418,7 +418,7 @@ def Rough(FractalLevels,RMSin,H,boxLenghtX,boxLenghtY,boxLenghtZ,aFe,Separation)
   #ax.scatter(x,y,z,c=z)
   #ax.plot([1,1], [2,2], 0)
   #ax.plot([SquaresArray[0][0].x0,SquaresArray[0][0].x1,SquaresArray[0][0].x2,SquaresArray[0][0].x3, SquaresArray[0][0].x0 ],
-	  #[SquaresArray[0][0].y0,SquaresArray[0][0].y1,SquaresArray[0][0].y2,SquaresArray[0][0].y3,SquaresArray[0][0].y0], 0)
+          #[SquaresArray[0][0].y0,SquaresArray[0][0].y1,SquaresArray[0][0].y2,SquaresArray[0][0].y3,SquaresArray[0][0].y0], 0)
   #ax.plot_trisurf(x, y, z, cmap=plt.cm.Spectral)
   #ax.set_xlabel('X axis')
   #ax.set_ylabel('Y axis')
@@ -436,8 +436,8 @@ def Rough(FractalLevels,RMSin,H,boxLenghtX,boxLenghtY,boxLenghtZ,aFe,Separation)
   #####################################################################
   #Making the crystal surface rough
 
-  print '#######################################'
-  print 'Applying the roughness to the Bulk2 Fe region'
+  print('#######################################')
+  print('Applying the roughness to the Bulk2 Fe region')
 
   atomsBulk2Rough = copy.deepcopy(atomsBulk)
 
@@ -445,12 +445,12 @@ def Rough(FractalLevels,RMSin,H,boxLenghtX,boxLenghtY,boxLenghtZ,aFe,Separation)
     deleted=False
     for i in range(0,xSize-1):
       for j in range(0,ySize-1):
-	if atomsBulk2Rough[k].x>=SquaresArray[i][j].x0 and atomsBulk2Rough[k].x<SquaresArray[i][j].x1 and atomsBulk2Rough[k].y>=SquaresArray[i][j].y0 and atomsBulk2Rough[k].y<SquaresArray[i][j].y2 and atomsBulk2Rough[k].z>SquaresArray[i][j].z:
-	  del atomsBulk2Rough[k]
-	  deleted=True
-	  break
+        if atomsBulk2Rough[k].x>=SquaresArray[i][j].x0 and atomsBulk2Rough[k].x<SquaresArray[i][j].x1 and atomsBulk2Rough[k].y>=SquaresArray[i][j].y0 and atomsBulk2Rough[k].y<SquaresArray[i][j].y2 and atomsBulk2Rough[k].z>SquaresArray[i][j].z:
+          del atomsBulk2Rough[k]
+          deleted=True
+          break
       if deleted==True:
-	break
+        break
 
 
   #ase.io.write("RoughFeBulk2.cfg", atomsBulk2Rough, "cfg")
@@ -460,8 +460,8 @@ def Rough(FractalLevels,RMSin,H,boxLenghtX,boxLenghtY,boxLenghtZ,aFe,Separation)
 
 
   #Assembling the interface
-  print '#######################################'
-  print 'Assembling the Bulk1 and the Bulk2 Fe regions'
+  print('#######################################')
+  print('Assembling the Bulk1 and the Bulk2 Fe regions')
 
   atomsBulk2Rough.center(vacuum=0, axis=2)
   atomsBulkRough.center(vacuum=0, axis=2)
@@ -486,8 +486,8 @@ def Rough(FractalLevels,RMSin,H,boxLenghtX,boxLenghtY,boxLenghtZ,aFe,Separation)
   #############################################################
   #############################################################
 
-  print '#######################################'
-  print 'Writing file WEA.lt for moltemplate'
+  print('#######################################')
+  print('Writing file WEA.lt for moltemplate')
 
   #Printing the .lt file for moltemplate
   f = open('WEA.lt', 'w')

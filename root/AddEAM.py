@@ -1,11 +1,11 @@
 #!/usr/bin/env python
 
-#29-11-2016
+#07-11-2019
 
 #Authors:Sebastian ECHEVERRI RESTREPO,
-#	 	sebastian.echeverri.restrepo@skf.com, sebastianecheverrir@gmail.com
-#	 James EWEN
-#		j.ewen14@imperial.ac.uk, jimmyewen@gmail.com
+#               sebastian.echeverri.restrepo@skf.com, sebastianecheverrir@gmail.com
+#        James EWEN
+#               j.ewen14@imperial.ac.uk, jimmyewen@gmail.com
 
 #################################################################################3
 
@@ -50,11 +50,11 @@ def AddEAM():
   for i in range(0, Ntypes):
     for j in range(i, Ntypes):
       if i != j:
-	type1 = i + 1
-	type2 = j + 1
-	Epsilon = math.sqrt(PairCoeffs[i].Epsilon*PairCoeffs[j].Epsilon)
-	Sigma = math.sqrt(PairCoeffs[i].Sigma*PairCoeffs[j].Sigma)
-	PairCoeffs.append(PairCoeff(type1,type2,Epsilon,Sigma))
+        type1 = i + 1
+        type2 = j + 1
+        Epsilon = math.sqrt(PairCoeffs[i].Epsilon*PairCoeffs[j].Epsilon)
+        Sigma = math.sqrt(PairCoeffs[i].Sigma*PairCoeffs[j].Sigma)
+        PairCoeffs.append(PairCoeff(type1,type2,Epsilon,Sigma))
 
 
   #Printing new coefficients
