@@ -24,7 +24,7 @@ from Rough import Rough
 from AddEAM import AddEAM
 from Fe2O3 import Fe2O3
 from AddFe2O3 import AddFe2O3
-
+from RoughFe2O3 import RoughFe2O3
 
 def lopls(xlo,xhi,ylo,yhi,zlo,zhi,OFMn_x,OFMn_y,nAlkane, Alkanen_x,\
 		Alkanen_y, Alkanen_z, Alkane, BZBZ, BZBZn_x, BZBZn_y, BZBZn_z,\
@@ -45,6 +45,9 @@ def lopls(xlo,xhi,ylo,yhi,zlo,zhi,OFMn_x,OFMn_y,nAlkane, Alkanen_x,\
 
     f.write('import "Fe2O3.lt"')
 
+  if Surfaces == 3:
+
+    f.write('import "WEA.lt"')
 
   ## This part builds the basic CH, CH2, CH3, COOH, CONH2, RCOOR
 
@@ -1024,6 +1027,9 @@ def lopls(xlo,xhi,ylo,yhi,zlo,zhi,OFMn_x,OFMn_y,nAlkane, Alkanen_x,\
     Fe2O3(FractalLevels,RMSin,H,boxLenghtX,boxLenghtY,boxLenghtZ,aFe,Separation)
 
 
+  if Surfaces == 3:
+
+    RoughFe2O3(FractalLevels,RMSin,H,boxLenghtX,boxLenghtY,boxLenghtZ,aFe,Separation)
 
   ######################################################################
 
@@ -1108,14 +1114,19 @@ def lopls(xlo,xhi,ylo,yhi,zlo,zhi,OFMn_x,OFMn_y,nAlkane, Alkanen_x,\
     f.write("  zlo zhi")
     f.write("\n")
     f.write("}")
-
+  if Surfaces == 3 :
+    f.write(str(zlo-boxLenghtZ*13.730-20)+"  "+str(zhi+boxLenghtZ*13.730+20))
+#    f.write(str(zlo-boxLenghtZ*aFe-20)+"  "+str(zhi+boxLenghtZ*aFe+20))
+    f.write("  zlo zhi")
+    f.write("\n")
+    f.write("}")
 
 
 
   #####
   #The OFMs
 
-  if OFM == 1:
+  if OFM == 1 and Surfaces!=3:
 
     # Here the OFMpolymers are placed, using the number of OFMpolymers in each direction and the set distance
     f.write("\n")
@@ -1190,7 +1201,7 @@ def lopls(xlo,xhi,ylo,yhi,zlo,zhi,OFMn_x,OFMn_y,nAlkane, Alkanen_x,\
   #####
   #The Alkanes
 
-  if Alkane == 1:
+  if Alkane == 1 and Surfaces!=3:
     f.write("\n")
     f.write("\n")
     f.write("molecules3 = new Hexadecane.rot(90, 0, 1, 0) [")
@@ -1217,7 +1228,7 @@ def lopls(xlo,xhi,ylo,yhi,zlo,zhi,OFMn_x,OFMn_y,nAlkane, Alkanen_x,\
 
   ######
   #BZBZ
-  if BZBZ == 1:
+  if BZBZ == 1 and Surfaces!=3:
     f.write("\n")
     f.write("\n")
     f.write("molecules4 = new BZBZ.rot(90, 0, 1, 0) [")
@@ -1244,7 +1255,7 @@ def lopls(xlo,xhi,ylo,yhi,zlo,zhi,OFMn_x,OFMn_y,nAlkane, Alkanen_x,\
   #####
   #Squalane
 
-  if Squalane == 1:
+  if Squalane == 1 and Surfaces!=3:
     f.write("\n")
     f.write("\n")
     f.write("molecules6 = new squalane.move(15, 0, 0) [")
@@ -1288,7 +1299,14 @@ def lopls(xlo,xhi,ylo,yhi,zlo,zhi,OFMn_x,OFMn_y,nAlkane, Alkanen_x,\
     f.write("\n")
     f.write("\n")
 
+  if Surfaces == 3:
 
+    f.write("\n")
+    f.write("\n")
+    f.write("molecules5 = new FESurface.move("+str(xlo)+","+str(ylo)+","+str(zlo-boxLenghtZ*13.730-1)+")")
+#    f.write("molecules5 = new FESurface.move("+str(xlo)+","+str(ylo)+","+str(zlo-boxLenghtZ*aFe-1)+")")
+    f.write("\n")
+    f.write("\n")
 
   #f.write("molecules4 = new FESurface.move("+str(xlo)+","+str(ylo)+","+str(zlo-boxLenghtZ*aFe-1)+")")
 
@@ -1348,6 +1366,10 @@ def lopls(xlo,xhi,ylo,yhi,zlo,zhi,OFMn_x,OFMn_y,nAlkane, Alkanen_x,\
     AddFe2O3(name)
     os.system('rm Fe2O3.lt')
 
+  if Surfaces == 3:
+    AddEAM()
+    os.system('rm WEA.lt')
+
   # Moves all files to a seperate folder 
   os.system('rm -r lopls')
   os.system('mkdir lopls')
@@ -1362,4 +1384,9 @@ def lopls(xlo,xhi,ylo,yhi,zlo,zhi,OFMn_x,OFMn_y,nAlkane, Alkanen_x,\
 
   # moves all new input files to the folder
   os.system("mv in."+name+" lopls")
+  
+  #Surface=3 make a rough surface of Fe2O3, ONLY the surface. The rest is trash
+  if Surfaces == 3:
+    os.system('rm lopls/in.lopls lopls/lopls.in.charges lopls/lopls.in.init lopls/lopls.in.settings')
+
 

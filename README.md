@@ -64,9 +64,9 @@ If you use this software, please cite the following references:
 ## SOFTWARE REQUIREMENTS
 Required (all GNU):
  - Bash shell 4.4.19(1)
- - Python v3.6.8 
- - moltemplate version  v2.12.8 2019-11-06 : http://www.moltemplate.org/
- - ASE v3.18.1 : https://wiki.fysik.dtu.dk/ase/
+ - Python v3.8.10 
+ - moltemplate version  v2.20.20 2023-4-20 : http://www.moltemplate.org/
+ - ASE v3.22.1 : https://wiki.fysik.dtu.dk/ase/
  
 Optional (all GNU):
  - LAMMPS 8 Feb 2019 : http://lammps.sandia.gov/ (to run MD simulation of resultant system)

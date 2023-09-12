@@ -29,14 +29,24 @@ import numpy as np
 import copy
 import random 
 import math
+#from ase.lattice.hexagonal import *
+from ase.lattice.compounds import *
 
-
-def Rough(FractalLevels,RMSin,H,boxLenghtX,boxLenghtY,boxLenghtZ,aFe,Separation):
+def RoughFe2O3(FractalLevels,RMSin,H,boxLenghtX,boxLenghtY,boxLenghtZ,aFe,Separation):
 
   #converting the box lenght to angstroms
-  boxLenghtXAngs=boxLenghtX*aFe
-  boxLenghtYAngs=boxLenghtY*aFe
-  boxLenghtZAngs=boxLenghtZ*aFe
+  #boxLenghtXAngs=boxLenghtX*aFe
+  #boxLenghtYAngs=boxLenghtY*aFe
+  #boxLenghtZAngs=boxLenghtZ*aFe
+
+  aFe2O3 = 5.029
+  bFe2O3 = 5.029
+  cFe2O3 = 13.730
+
+  boxLenghtXAngs=boxLenghtX*aFe2O3
+  boxLenghtYAngs=boxLenghtY*bFe2O3*math.cos(30*math.pi/180)
+  boxLenghtZAngs=boxLenghtZ*cFe2O3
+
 
   #mean for the random number generator
   mu=0.0
@@ -224,11 +234,21 @@ def Rough(FractalLevels,RMSin,H,boxLenghtX,boxLenghtY,boxLenghtZ,aFe,Separation)
   print('#######################################')
   print('Generating the bulk Fe region')
 
-  atomsBulk = crystal(spacegroup=229,
-                  symbols='Fe',
-                  basis=[0,0,0],
-                  cellpar=[aFe,aFe,aFe,90.0,90.0,90.0],
+#  atomsBulk = crystal(spacegroup=229,
+#                  symbols='Fe',
+#                  basis=[0,0,0],
+#                  cellpar=[aFe,aFe,aFe,90.0,90.0,90.0],
+#                  size=(boxLenghtX,boxLenghtY,boxLenghtZ))
+  atomsBulk = HEX_Fe2O3(symbol = ('Fe', 'O'),
+                  latticeconstant={'a':5.029,'b':5.029, 'c':13.730,
+                                   'alpha':90,
+                                    'beta':90,
+                                    'gamma':120},
                   size=(boxLenghtX,boxLenghtY,boxLenghtZ))
+
+  for atom in atomsBulk:
+      if atom.x<0:
+          atom.x=boxLenghtX*aFe2O3+atom.x
 
   #ase.io.write("FeBulk.cfg", atomsBulk, "cfg")
   #os.system("atomsk FeBulk.cfg lmp >& /dev/null")
@@ -495,9 +515,17 @@ def Rough(FractalLevels,RMSin,H,boxLenghtX,boxLenghtY,boxLenghtZ,aFe,Separation)
   f.write("FESurface inherits LOPLSAA {\n")
   f.write("write(\"Data Atoms\") {\n")
 
-  for k in range(0, Atoms.get_global_number_of_atoms(atomsWEA)):
-    f.write("$atom:FE"+str(k)+" $mol:... @atom:100000 0.00 "+str(atomsWEA[k].x)+" "+str(atomsWEA[k].y)+" "+str(atomsWEA[k].z)+"\n")
 
+
+
+
+#  for k in range(0, Atoms.get_number_of_atoms(atomsWEA)):
+#    f.write("$atom:FE"+str(k)+" $mol:... @atom:100000 0.00 "+str(atomsWEA[k].x)+" "+str(atomsWEA[k].y)+" "+str(atomsWEA[k].z)+"\n")
+  for k in range(0, Atoms.get_global_number_of_atoms(atomsWEA)):
+    if atomsWEA[k].symbol == 'Fe':
+      f.write("$atom:FEX"+str(k)+" $mol:... @atom:10001 0.00 "+str(atomsWEA[k].x)+" "+str(atomsWEA[k].y)+" "+str(atomsWEA[k].z)+"\n")
+    elif atomsWEA[k].symbol == 'O':
+      f.write("$atom:OX"+str(k)+" $mol:... @atom:10002 0.00 "+str(atomsWEA[k].x)+" "+str(atomsWEA[k].y)+" "+str(atomsWEA[k].z)+"\n")
 
   f.write("} } \n")
   f.close()

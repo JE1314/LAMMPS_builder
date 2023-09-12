@@ -31,13 +31,13 @@ import math
 #Size of the simulation box in the x and y direction. These
 #	values have to be given in terms of the lattice parameter
 
-boxLenghtX = 15
-boxLenghtY = 15
+boxLenghtX = 10
+boxLenghtY = 10
 
 #This value determines the Z size of the section of the
 #	box that  will contain the alkane chains and OFMs.
 #	The units are Angstrom
-zhi = 100	#  Also, take into account the space for the alkane chains!
+zhi = 50	#  Also, take into account the space for the alkane chains!
 
 
 #####Inputs related to the Surfaces
@@ -46,8 +46,9 @@ zhi = 100	#  Also, take into account the space for the alkane chains!
 #       if Surfaces = 0, do not generate surfaces
 #	if Surfaces = 1, generate a rough Fe surface
 #       if Surfaces = 2, generate a flat Fe2O3 surface
+#       if Surfaces = 3, generate a rough Fe2O3 surface (only the surface is generated)
 #
-Surfaces = 2 
+Surfaces = 3 
 
 #Number of fractal levels used for the generation of the surfaces
 #	The inputs are integers
@@ -68,7 +69,7 @@ RMSin = 8.0
 #	This value does not have units. It corresponds to the number
 #	of Fe (or Fe2O3) lattice constants
 #	Exm: boxLenghtZ = 20 -> 20*aFe = 57.27320 Angstrom
-boxLenghtZ = 1
+boxLenghtZ = 2
 
 #####Inputs related to the OFM's
 
@@ -132,7 +133,7 @@ BZBZn_z = 3
 #This flag determines if the the system will contain Squalane.
 #       if Squalane = 1, the generation of Squalane is activated
 
-Squalane = 1
+Squalane = 0
 
 #Number of Squalane chains to be placed along each
 #       direction of the simulation box
@@ -175,7 +176,15 @@ if Surfaces == 2 :
   yhi = boxLenghtY*bFe2O3*math.cos(30*math.pi/180)  + ylo
   #zhi = boxLenghtZ*cFe2O3 + zlo
 
+if Surfaces == 3 :
+  xhi = boxLenghtX*aFe2O3  + xlo
+  yhi = boxLenghtY*bFe2O3*math.cos(30*math.pi/180)  + ylo
 
+#    xhi = boxLenghtX*aFe + xlo
+#  yhi = boxLenghtY*aFe + ylo
+
+#    xhi = boxLenghtX*aFe2O3  + xlo
+#  yhi = boxLenghtY*bFe2O3*math.cos(30*math.pi/180)  + ylo
 
 Separation = zhi-zlo+4
 potential = 'lopls'

@@ -85,7 +85,7 @@ def Fe2O3(FractalLevels,RMSin,H,boxLenghtX,boxLenghtY,boxLenghtZ,aFe,Separation)
   f.write("FESurface inherits LOPLSAA {\n")
   f.write("write(\"Data Atoms\") {\n")
 
-  for k in range(0, Atoms.get_number_of_atoms(atomsWEA)):
+  for k in range(0, Atoms.get_global_number_of_atoms(atomsWEA)):
     if atomsWEA[k].symbol == 'Fe':
       f.write("$atom:FEX"+str(k)+" $mol:... @atom:10001 0.00 "+str(atomsWEA[k].x)+" "+str(atomsWEA[k].y)+" "+str(atomsWEA[k].z)+"\n")
     elif atomsWEA[k].symbol == 'O':
