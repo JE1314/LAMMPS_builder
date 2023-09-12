@@ -58,7 +58,7 @@ def RoughFe2O3(FractalLevels,RMSin,H,boxLenghtX,boxLenghtY,boxLenghtZ,aFe,Separa
   #Fractal Section For Bulk Fe
   #####################################################################
   print('#######################################')
-  print('Generating the Fractal surface for bulk Fe')
+  print('Generating the Fractal surface for Fe2O3')
 
   class Point:
     def __init__(self,x,y,z):
@@ -232,7 +232,7 @@ def RoughFe2O3(FractalLevels,RMSin,H,boxLenghtX,boxLenghtY,boxLenghtZ,aFe,Separa
   #####################################################################
   #generating a bulk Fe crystal 
   print('#######################################')
-  print('Generating the bulk Fe region')
+  print('Generating the bulk Fe2O3 region')
 
 #  atomsBulk = crystal(spacegroup=229,
 #                  symbols='Fe',
@@ -260,7 +260,7 @@ def RoughFe2O3(FractalLevels,RMSin,H,boxLenghtX,boxLenghtY,boxLenghtZ,aFe,Separa
   #Making the crystal surface rough
 
   print('#######################################')
-  print('Applying the roughness to the bulk Fe region')
+  print('Applying the roughness to the Fe2O3 1 region')
 
   atomsBulkRough = copy.deepcopy(atomsBulk)
 
@@ -288,7 +288,7 @@ def RoughFe2O3(FractalLevels,RMSin,H,boxLenghtX,boxLenghtY,boxLenghtZ,aFe,Separa
   #Fractal Section For Bulk2 Fe
   #####################################################################
   print('#######################################')
-  print('Generating the Fractal surface for Bulk2 Fe')
+  print('Generating the Fractal surface for Bulk 2 Fe2O3')
 
 
 
@@ -457,7 +457,7 @@ def RoughFe2O3(FractalLevels,RMSin,H,boxLenghtX,boxLenghtY,boxLenghtZ,aFe,Separa
   #Making the crystal surface rough
 
   print('#######################################')
-  print('Applying the roughness to the Bulk2 Fe region')
+  print('Applying the roughness to the Bulk2 Fe2O3 region')
 
   atomsBulk2Rough = copy.deepcopy(atomsBulk)
 
@@ -481,7 +481,7 @@ def RoughFe2O3(FractalLevels,RMSin,H,boxLenghtX,boxLenghtY,boxLenghtZ,aFe,Separa
 
   #Assembling the interface
   print('#######################################')
-  print('Assembling the Bulk1 and the Bulk2 Fe regions')
+  print('Assembling the Bulk1 and the Bulk2 Fe2O3 regions')
 
   atomsBulk2Rough.center(vacuum=0, axis=2)
   atomsBulkRough.center(vacuum=0, axis=2)
