@@ -1,11 +1,9 @@
 #!/usr/bin/env python
 
-#16-08-2022
+#15-09-2023
 
 #Authors:Sebastian ECHEVERRI RESTREPO,   
 #               sebastian.echeverri.restrepo@skf.com, sebastianecheverrir@gmail.com
-#        James EWEN
-#               j.ewen14@imperial.ac.uk, jimmyewen@gmail.com
 
 #################################################################################3
 
@@ -29,24 +27,15 @@ import numpy as np
 import copy
 import random 
 import math
-#from ase.lattice.hexagonal import *
-from ase.lattice.compounds import *
+from ase.lattice.cubic import BodyCenteredCubic
 
-def RoughFe2O3(FractalLevels,RMSin,H,boxLenghtX,boxLenghtY,boxLenghtZ,aFe,Separation):
+
+def RoughCrack(FractalLevels,RMSin,H,boxLenghtX,boxLenghtY,boxLenghtZ,aFe,Separation,Orientation):
 
   #converting the box lenght to angstroms
-  #boxLenghtXAngs=boxLenghtX*aFe
-  #boxLenghtYAngs=boxLenghtY*aFe
-  #boxLenghtZAngs=boxLenghtZ*aFe
-
-  aFe2O3 = 5.029
-  bFe2O3 = 5.029
-  cFe2O3 = 13.730
-
-  boxLenghtXAngs=boxLenghtX*aFe2O3
-  boxLenghtYAngs=boxLenghtY*bFe2O3*math.cos(30*math.pi/180)
-  boxLenghtZAngs=boxLenghtZ*cFe2O3
-
+  boxLenghtXAngs=boxLenghtX*aFe
+  boxLenghtYAngs=boxLenghtY*aFe
+  boxLenghtZAngs=boxLenghtZ*aFe
 
   #mean for the random number generator
   mu=0.0
@@ -58,7 +47,7 @@ def RoughFe2O3(FractalLevels,RMSin,H,boxLenghtX,boxLenghtY,boxLenghtZ,aFe,Separa
   #Fractal Section For Bulk Fe
   #####################################################################
   print('#######################################')
-  print('Generating the Fractal surface for Fe2O3')
+  print('Generating the Fractal surface for bulk Fe')
 
   class Point:
     def __init__(self,x,y,z):
@@ -232,23 +221,17 @@ def RoughFe2O3(FractalLevels,RMSin,H,boxLenghtX,boxLenghtY,boxLenghtZ,aFe,Separa
   #####################################################################
   #generating a bulk Fe crystal 
   print('#######################################')
-  print('Generating the bulk Fe2O3 region')
+  print('Generating the bulk Fe region')
 
 #  atomsBulk = crystal(spacegroup=229,
 #                  symbols='Fe',
 #                  basis=[0,0,0],
 #                  cellpar=[aFe,aFe,aFe,90.0,90.0,90.0],
 #                  size=(boxLenghtX,boxLenghtY,boxLenghtZ))
-  atomsBulk = HEX_Fe2O3(symbol = ('Fe', 'O'),
-                  latticeconstant={'a':5.029,'b':5.029, 'c':13.730,
-                                   'alpha':90,
-                                    'beta':90,
-                                    'gamma':120},
-                  size=(boxLenghtX,boxLenghtY,boxLenghtZ))
-
-  for atom in atomsBulk:
-      if atom.x<0:
-          atom.x=boxLenghtX*aFe2O3+atom.x
+  atomsBulk = BodyCenteredCubic(directions=Orientation,
+                                size=(boxLenghtX,boxLenghtY,boxLenghtZ),
+                                symbol='Fe',
+                                latticeconstant=aFe)
 
   #ase.io.write("FeBulk.cfg", atomsBulk, "cfg")
   #os.system("atomsk FeBulk.cfg lmp >& /dev/null")
@@ -260,7 +243,7 @@ def RoughFe2O3(FractalLevels,RMSin,H,boxLenghtX,boxLenghtY,boxLenghtZ,aFe,Separa
   #Making the crystal surface rough
 
   print('#######################################')
-  print('Applying the roughness to the Fe2O3 1 region')
+  print('Applying the roughness to the bulk Fe region')
 
   atomsBulkRough = copy.deepcopy(atomsBulk)
 
@@ -288,7 +271,7 @@ def RoughFe2O3(FractalLevels,RMSin,H,boxLenghtX,boxLenghtY,boxLenghtZ,aFe,Separa
   #Fractal Section For Bulk2 Fe
   #####################################################################
   print('#######################################')
-  print('Generating the Fractal surface for Bulk 2 Fe2O3')
+  print('Generating the Fractal surface for Bulk2 Fe')
 
 
 
@@ -418,46 +401,13 @@ def RoughFe2O3(FractalLevels,RMSin,H,boxLenghtX,boxLenghtY,boxLenghtZ,aFe,Separa
       x.append(PointsArray[i][j].x)
       y.append(PointsArray[i][j].y)
       z.append(PointsArray[i][j].z)
-      #x.append(PointsArray[i][j].x+boxLenghtXAngs)
-      #y.append(PointsArray[i][j].y)
-      #z.append(PointsArray[i][j].z)
-      #x.append(PointsArray[i][j].x)
-      #y.append(PointsArray[i][j].y+boxLenghtYAngs)
-      #z.append(PointsArray[i][j].z)
-      #x.append(PointsArray[i][j].x+boxLenghtXAngs)
-      #y.append(PointsArray[i][j].y+boxLenghtYAngs)
-      #z.append(PointsArray[i][j].z)
-      #print '%5.3f,%5.3f,%5.3f \t\t'%(PointsArray[i][j].x,PointsArray[i][j].y,PointsArray[i][j].z ),
-    #print ""
-
-  #for i in range(0,xSize-1):
-  # for j in range(0,ySize-1):   
-  #   ax.plot([SquaresArray[i][j].x0,SquaresArray[i][j].x1,SquaresArray[i][j].x2,SquaresArray[i][j].x3, SquaresArray[i][j].x0 ],
-  #    [SquaresArray[i][j].y0,SquaresArray[i][j].y1,SquaresArray[i][j].y2,SquaresArray[i][j].y3, SquaresArray[i][j].y0], 0)
-
-  #ax.scatter(x,y,z,c=z)
-  #ax.plot([1,1], [2,2], 0)
-  #ax.plot([SquaresArray[0][0].x0,SquaresArray[0][0].x1,SquaresArray[0][0].x2,SquaresArray[0][0].x3, SquaresArray[0][0].x0 ],
-          #[SquaresArray[0][0].y0,SquaresArray[0][0].y1,SquaresArray[0][0].y2,SquaresArray[0][0].y3,SquaresArray[0][0].y0], 0)
-  #ax.plot_trisurf(x, y, z, cmap=plt.cm.Spectral)
-  #ax.set_xlabel('X axis')
-  #ax.set_ylabel('Y axis')
-
-  #plt.show()
-
-  #####################################################################
-  #using atomeye to generate the second bulk region
-  #print '#######################################'
-  #print 'Generating the Bulk2 Fe region'
-
-
 
 
   #####################################################################
   #Making the crystal surface rough
 
   print('#######################################')
-  print('Applying the roughness to the Bulk2 Fe2O3 region')
+  print('Applying the roughness to the Bulk2 Fe region')
 
   atomsBulk2Rough = copy.deepcopy(atomsBulk)
 
@@ -473,60 +423,64 @@ def RoughFe2O3(FractalLevels,RMSin,H,boxLenghtX,boxLenghtY,boxLenghtZ,aFe,Separa
         break
 
 
-  #ase.io.write("RoughFeBulk2.cfg", atomsBulk2Rough, "cfg")
-  #os.system("atomsk RoughFeBulk2.cfg lmp >& /dev/null")
-  #os.system("mv RoughFeBulk2.lmp data.RoughFeBulk2")
-
 
 
   #Assembling the interface
   print('#######################################')
-  print('Assembling the Bulk1 and the Bulk2 Fe2O3 regions')
+  print('Assembling the Bulk1 and the Bulk2 Fe regions')
 
-  atomsBulk2Rough.center(vacuum=0, axis=2)
-  atomsBulkRough.center(vacuum=0, axis=2)
+#  atomsBulk2Rough.center(vacuum=0, axis=2)
+#  atomsBulkRough.center(vacuum=0, axis=2)
 
   atomsBulk2Rough.translate([0,0,0])
-  atomsBulkRough.translate([0,0,boxLenghtZAngs+Separation])
+  atomsBulkRough.translate([0,0,boxLenghtZAngs+aFe*Separation])
 
-  atomsWEA=atomsBulk2Rough+atomsBulkRough
+#  atomsWEA=atomsBulk2Rough+atomsBulkRough
 
-  #atomsWEA.center(vacuum=50, axis=2)
-
-
-  #ase.io.write("WEA.cfg", atomsWEA, "cfg")
-
-  #print '#######################################'
-  #print 'Writing data file WEA.cfg'
-
-  #os.system("atomsk WEA.cfg lmp >& /dev/null")
-  #os.system("mv WEA.lmp data.WEA")
 
   #############################################################
   #############################################################
   #############################################################
 
+
+  #Creating a bulk slab to close the crack
   print('#######################################')
-  print('Writing file WEA.lt for moltemplate')
+  print('Generating the bulk Fe region')
 
-  #Printing the .lt file for moltemplate
-  f = open('WEA.lt', 'w')
+#  atomsBulkClose = crystal(spacegroup=229,
+#                      symbols='Fe',
+#                      basis=[0,0,0],
+#                      cellpar=[aFe,aFe,aFe,90.0,90.0,90.0],
+#                      size=(boxLenghtX,boxLenghtY,2*boxLenghtZ+Separation))
 
-  f.write("FESurface inherits LOPLSAA {\n")
-  f.write("write(\"Data Atoms\") {\n")
+  atomsBulkClose = BodyCenteredCubic(directions=Orientation,
+                                    size=(boxLenghtX,boxLenghtY,2*boxLenghtZ+Separation), 
+                                    symbol='Fe', 
+                                    latticeconstant=aFe)
 
 
+  atomsBulkClose.translate([boxLenghtXAngs,0,0])
+
+  atomsWEA=atomsBulk2Rough+atomsBulkRough+atomsBulkClose
 
 
+  atomsWEA.center(vacuum=15, axis=0)
+  atomsWEA.center(vacuum=15, axis=2)
 
-#  for k in range(0, Atoms.get_number_of_atoms(atomsWEA)):
-#    f.write("$atom:FE"+str(k)+" $mol:... @atom:100000 0.00 "+str(atomsWEA[k].x)+" "+str(atomsWEA[k].y)+" "+str(atomsWEA[k].z)+"\n")
-  for k in range(0, Atoms.get_global_number_of_atoms(atomsWEA)):
-    if atomsWEA[k].symbol == 'Fe':
-      f.write("$atom:FEX"+str(k)+" $mol:... @atom:10001 0.00 "+str(atomsWEA[k].x)+" "+str(atomsWEA[k].y)+" "+str(atomsWEA[k].z)+"\n")
-    elif atomsWEA[k].symbol == 'O':
-      f.write("$atom:OX"+str(k)+" $mol:... @atom:10002 0.00 "+str(atomsWEA[k].x)+" "+str(atomsWEA[k].y)+" "+str(atomsWEA[k].z)+"\n")
+  atomsWEA.write("data.RoughCrack", format="lammps-data")
 
-  f.write("} } \n")
-  f.close()
-  #    $atom:FE1 $mol:... @atom:10000  0.00   0.000  0.000             0.000
+
+if __name__ == "__main__":
+        
+    FractalLevels = 4
+    RMSin         = 8.10
+    H             = 0.8
+    boxLenghtX    = 20
+    boxLenghtY    = 10
+    boxLenghtZ    = 20
+    aFe           = 2.86366
+    Separation    = 2
+    Orientation   = [[1,0,0], [0,1,0], [0,0,1]] 
+
+    RoughCrack(FractalLevels,RMSin,H,boxLenghtX,boxLenghtY,boxLenghtZ,aFe,Separation,Orientation)
+
