@@ -491,23 +491,27 @@ if __name__ == "__main__":
     ####################################################
     #Parameters related to the roughness
     FractalLevels = 4
-    RMSin         = 8.10
+    RMSin         = 2.0 #[Angstrom]
     H             = 0.8
 
     #size of each slab
+    #  [units of rotated unit cell]
     boxLenghtX    = 21
     boxLenghtY    = 11
     boxLenghtZ    = 11
 
-    #lattice constant of the bcc material
+    #lattice constant of the bcc material 
+    #  [Angstrom]
     aFe           = 2.86366
     
-    #Separation between the crack faces
-    Separation    = 2
+    #Separation between the crack faces 
+    #  [units of rotated unit cell Z]
+    #  Min value 0
+    Separation    = 0
 
     #Orientaation of the crystal
     Orientation   = [[1,-1,0],[1,1,1],[-1,-1,2]]
-
+    #Orientation   = [[1,0,0],[0,1,0],[0,0,1]]
 
     ####################################################
     #Generating the Rough Crack 
