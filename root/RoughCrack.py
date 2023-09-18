@@ -32,10 +32,22 @@ from ase.lattice.cubic import BodyCenteredCubic
 
 def RoughCrack(FractalLevels,RMSin,H,boxLenghtX,boxLenghtY,boxLenghtZ,aFe,Separation,Orientation):
 
+  UnitCellBulk = BodyCenteredCubic(directions=Orientation,
+                                   size=(1,1,1),
+                                   symbol='Fe',
+                                   latticeconstant=aFe)
+#  print(UnitCellBulk.get_cell()[0][0])
+#  print(UnitCellBulk.get_cell()[1][1])  
+#  print(UnitCellBulk.get_cell()[2][2])
+
+  aFe_x = UnitCellBulk.get_cell()[0][0]
+  aFe_y = UnitCellBulk.get_cell()[1][1]
+  aFe_z = UnitCellBulk.get_cell()[2][2]
+
   #converting the box lenght to angstroms
-  boxLenghtXAngs=boxLenghtX*aFe
-  boxLenghtYAngs=boxLenghtY*aFe
-  boxLenghtZAngs=boxLenghtZ*aFe
+  boxLenghtXAngs=boxLenghtX*aFe_x
+  boxLenghtYAngs=boxLenghtY*aFe_y
+  boxLenghtZAngs=boxLenghtZ*aFe_z
 
   #mean for the random number generator
   mu=0.0
@@ -237,6 +249,8 @@ def RoughCrack(FractalLevels,RMSin,H,boxLenghtX,boxLenghtY,boxLenghtZ,aFe,Separa
   #os.system("atomsk FeBulk.cfg lmp >& /dev/null")
   #os.system("mv FeBulk.lmp data.FeBulk")
 
+  #Ensuring that there areno negaive x and y coordinates
+  atomsBulk.translate([0.01,0.01,0])
 
 
   #####################################################################
@@ -433,7 +447,7 @@ def RoughCrack(FractalLevels,RMSin,H,boxLenghtX,boxLenghtY,boxLenghtZ,aFe,Separa
 #  atomsBulkRough.center(vacuum=0, axis=2)
 
   atomsBulk2Rough.translate([0,0,0])
-  atomsBulkRough.translate([0,0,boxLenghtZAngs+aFe*Separation])
+  atomsBulkRough.translate([0,0,boxLenghtZAngs+aFe_z*Separation])
 
 #  atomsWEA=atomsBulk2Rough+atomsBulkRough
 
@@ -471,16 +485,33 @@ def RoughCrack(FractalLevels,RMSin,H,boxLenghtX,boxLenghtY,boxLenghtZ,aFe,Separa
 
 
 if __name__ == "__main__":
-        
+
+    ####################################################
+    #Input Parameters
+    ####################################################
+    #Parameters related to the roughness
     FractalLevels = 4
     RMSin         = 8.10
     H             = 0.8
-    boxLenghtX    = 20
-    boxLenghtY    = 10
-    boxLenghtZ    = 20
+
+    #size of each slab
+    boxLenghtX    = 21
+    boxLenghtY    = 11
+    boxLenghtZ    = 11
+
+    #lattice constant of the bcc material
     aFe           = 2.86366
+    
+    #Separation between the crack faces
     Separation    = 2
-    Orientation   = [[1,0,0], [0,1,0], [0,0,1]] 
+
+    #Orientaation of the crystal
+    Orientation   = [[1,-1,0],[1,1,1],[-1,-1,2]]
+
+
+    ####################################################
+    #Generating the Rough Crack 
+    ####################################################
 
     RoughCrack(FractalLevels,RMSin,H,boxLenghtX,boxLenghtY,boxLenghtZ,aFe,Separation,Orientation)
 
