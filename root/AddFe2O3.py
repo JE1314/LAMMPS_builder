@@ -102,13 +102,13 @@ def AddFe2O3(name):
 #modifying (rewriting) the file lopls.in.settings
   replaced = False
   for line in fileinput.input(name+".in.settings", inplace=1):
-    if line.startswith('    angle_coeff') and replaced  is False:
-      print("    bond_coeff "+str(nBondTypes+1)+" harmonic 5.63738 1.945000")
-      print("    bond_coeff "+str(nBondTypes+2)+" harmonic 5.63738 2.116000")
-      print("    bond_coeff "+str(nBondTypes+3)+" harmonic 5.63738 2.888000")
-      print("    bond_coeff "+str(nBondTypes+4)+" harmonic 5.63738 2.775000")
-      print("    bond_coeff "+str(nBondTypes+5)+" harmonic 5.63738 2.669000")
-      print("    bond_coeff "+str(nBondTypes+6)+" harmonic 5.63738 2.971000")
+    if line.startswith('angle_coeff') and replaced  is False:
+      print("bond_coeff "+str(nBondTypes+1)+" harmonic 5.63738 1.945000")
+      print("bond_coeff "+str(nBondTypes+2)+" harmonic 5.63738 2.116000")
+      print("bond_coeff "+str(nBondTypes+3)+" harmonic 5.63738 2.888000")
+      print("bond_coeff "+str(nBondTypes+4)+" harmonic 5.63738 2.775000")
+      print("bond_coeff "+str(nBondTypes+5)+" harmonic 5.63738 2.669000")
+      print("bond_coeff "+str(nBondTypes+6)+" harmonic 5.63738 2.971000")
       replaced = True
     print(line,  end=' ')
 

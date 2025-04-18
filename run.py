@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 
-#20-11-2017
+#18-04-2025
 
 #Authors:Sebastian ECHEVERRI RESTREPO
 #	 	sebastian.echeverri.restrepo@skf.com, sebastianecheverrir@gmail.com
@@ -44,11 +44,11 @@ zhi = 50	#  Also, take into account the space for the alkane chains!
 
 #This flag determines if the the system will contain Surfaces.
 #       if Surfaces = 0, do not generate surfaces
-#	if Surfaces = 1, generate a rough Fe surface
+#	      if Surfaces = 1, generate a rough Fe surface
 #       if Surfaces = 2, generate a flat Fe2O3 surface
 #       if Surfaces = 3, generate a rough Fe2O3 surface (only the surface is generated)
 #
-Surfaces = 3 
+Surfaces = 2 
 
 #Number of fractal levels used for the generation of the surfaces
 #	The inputs are integers
@@ -69,7 +69,7 @@ RMSin = 8.0
 #	This value does not have units. It corresponds to the number
 #	of Fe (or Fe2O3) lattice constants
 #	Exm: boxLenghtZ = 20 -> 20*aFe = 57.27320 Angstrom
-boxLenghtZ = 2
+boxLenghtZ = 1
 
 #####Inputs related to the OFM's
 
@@ -93,7 +93,7 @@ OFMn_y = 2
 
 #This flag determines if the the system will contain Alkanes.
 #	if Alkane = 1, the generation of Alkanes is activated
-Alkane = 0
+Alkane = 1
 
 #Defines the number of monomers on each alkane chain.
 #	The inputs are integers
