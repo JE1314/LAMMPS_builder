@@ -37,7 +37,7 @@ boxLenghtY = 10
 #This value determines the Z size of the section of the
 #	box that  will contain the alkane chains and OFMs.
 #	The units are Angstrom
-zhi = 50	#  Also, take into account the space for the alkane chains!
+zhi = 60	#  Also, take into account the space for the alkane chains!
 
 
 #####Inputs related to the Surfaces
@@ -69,13 +69,13 @@ RMSin = 8.0
 #	This value does not have units. It corresponds to the number
 #	of Fe (or Fe2O3) lattice constants
 #	Exm: boxLenghtZ = 20 -> 20*aFe = 57.27320 Angstrom
-boxLenghtZ = 1
+boxLenghtZ = 2
 
 #####Inputs related to the OFM's
 
 #This flag determines if the the system will contain OFMs.
 #	if OFM = 1, the generation of OFMs is activated
-OFM = 0
+OFM = 1
 
 #Defines the type of OFM that will be used in the simulation
 #	the available options are: SA, SAm, GMS, OA, OAm, GMO
