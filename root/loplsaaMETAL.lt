@@ -48660,7 +48660,7 @@ LOPLSAA {
     dihedral_coeff @dihedral:87-8100-8100-8100 multi/harmonic 0.0392392 -0.00110679 -0.00582657 0.015415 0.0
   } #(end of dihedral_coeffs)
 
-  write_once("Data Impropers By Type (opls_imp.py)") {
+  write_once("Data Impropers By Type (cenKswapIL.py)") {
     @improper:0-0-177-178 @atom:* @atom:* @atom:177 @atom:178
     @improper:0-0-177-210 @atom:* @atom:* @atom:177 @atom:210
     @improper:0-0-177-407 @atom:* @atom:* @atom:177 @atom:407

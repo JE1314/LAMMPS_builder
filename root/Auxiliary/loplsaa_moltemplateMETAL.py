@@ -458,7 +458,7 @@ for x in improper:
 
 if might_have_impropers:
   h=open("temp.txt","w+")
-  g.write("  write_once(\"Data Impropers By Type (opls_imp.py)\") {\n")
+  g.write("  write_once(\"Data Impropers By Type (cenKswapIL.py)\") {\n")
   for x in improper:
     for y in atom_lookup.get(x[0],[]):
       for z in atom_lookup.get(x[1],[]):

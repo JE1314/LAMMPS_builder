@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 
-#07-11-2019
+#22-04-2025
 
 #Authors:Sebastian ECHEVERRI RESTREPO,
 #	 	sebastian.echeverri.restrepo@skf.com, sebastianecheverrir@gmail.com
@@ -1385,8 +1385,11 @@ def lopls(xlo,xhi,ylo,yhi,zlo,zhi,OFMn_x,OFMn_y,nAlkane, Alkanen_x,\
   # moves all new input files to the folder
   os.system("mv in."+name+" lopls")
   
-  #Surface=3 make a rough surface of Fe2O3, ONLY the surface. The rest is trash
+  #if Surfaces=3 make a rough surface of Fe2O3, ONLY the surface. The rest is trash
   if Surfaces == 3:
     os.system('rm lopls/in.lopls lopls/lopls.in.charges lopls/lopls.in.init lopls/lopls.in.settings')
 
+  #copy the eam potential file in case that Surfaces == 1
+  if Surfaces == 1:
+    os.system('cp root/Fe_mm.eam.fs lopls')
 

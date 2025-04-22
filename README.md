@@ -1,4 +1,4 @@
-##Version: 07-11-2019
+##Version: 22-04-2025
 
 ##Authors - Sebastián ECHEVERRI RESTREPO: sebastian.echeverri.restrepo@skf.com, sebastianecheverrir@gmail.com; James EWEN: j.ewen14@imperial.ac.uk, jimmyewen@gmail.com
 
@@ -63,13 +63,13 @@ If you use this software, please cite the following references:
 
 ## SOFTWARE REQUIREMENTS
 Required (all GNU):
- - Bash shell 4.4.19(1)
- - Python v3.8.10 
- - moltemplate version  v2.20.20 2023-4-20 : http://www.moltemplate.org/
- - ASE v3.22.1 : https://wiki.fysik.dtu.dk/ase/
+ - Bash shell 4.4.20(1)
+ - Python v3.13.3 
+ - moltemplate version v2.22.3 2025-3-19 : http://www.moltemplate.org/
+ - ASE v3.25.0 : https://wiki.fysik.dtu.dk/ase/
  
 Optional (all GNU):
- - LAMMPS 8 Feb 2019 : http://lammps.sandia.gov/ (to run MD simulation of resultant system)
+ - LAMMPS (2 Apr 2025 - Development - patch_2Apr2025-24-g6372178caa) : http://lammps.sandia.gov/ (to run MD simulation of resultant system)
  - VMD v1.9.1 : http://www.ks.uiuc.edu/Research/vmd/ (to visualise resultant datafile)
  
 Note that versions given are those for which software has been tested, the code should still work with most older/newer versions.

@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 
-#20-11-2017
+#18-04-2025
 
 #Authors:Sebastian ECHEVERRI RESTREPO
 #	 	sebastian.echeverri.restrepo@skf.com, sebastianecheverrir@gmail.com
@@ -37,18 +37,18 @@ boxLenghtY = 10
 #This value determines the Z size of the section of the
 #	box that  will contain the alkane chains and OFMs.
 #	The units are Angstrom
-zhi = 50	#  Also, take into account the space for the alkane chains!
+zhi = 60	#  Also, take into account the space for the alkane chains!
 
 
 #####Inputs related to the Surfaces
 
 #This flag determines if the the system will contain Surfaces.
 #       if Surfaces = 0, do not generate surfaces
-#	if Surfaces = 1, generate a rough Fe surface
+#	      if Surfaces = 1, generate a rough Fe surface
 #       if Surfaces = 2, generate a flat Fe2O3 surface
 #       if Surfaces = 3, generate a rough Fe2O3 surface (only the surface is generated)
 #
-Surfaces = 3 
+Surfaces = 2 
 
 #Number of fractal levels used for the generation of the surfaces
 #	The inputs are integers
@@ -75,7 +75,7 @@ boxLenghtZ = 2
 
 #This flag determines if the the system will contain OFMs.
 #	if OFM = 1, the generation of OFMs is activated
-OFM = 0
+OFM = 1
 
 #Defines the type of OFM that will be used in the simulation
 #	the available options are: SA, SAm, GMS, OA, OAm, GMO
@@ -93,7 +93,7 @@ OFMn_y = 2
 
 #This flag determines if the the system will contain Alkanes.
 #	if Alkane = 1, the generation of Alkanes is activated
-Alkane = 0
+Alkane = 1
 
 #Defines the number of monomers on each alkane chain.
 #	The inputs are integers
