@@ -1,16 +1,16 @@
-##Version: 22-04-2025
+##Version: 25-12-2025
 
 ##Authors - Sebastián ECHEVERRI RESTREPO: sebastian.echeverri.restrepo@skf.com, sebastianecheverrir@gmail.com; James EWEN: j.ewen14@imperial.ac.uk, jimmyewen@gmail.com
 
 ## GENERAL INFO
 
-This software is suitable as a starting point for performing confined nonequilibrium molecular dynamics (NEMD) simulations of organic friction modifier (OFM) films adsorbed to Fe or Fe2O3 surfaces, separated by a layer of n-alkane or benzyl benzoate molecules.
+This software is suitable as a starting point for performing confined nonequilibrium molecular dynamics (NEMD) simulations of organic friction modifier (OFM) films adsorbed to Fe or Fe2O3 surfaces, separated by a layer of n-alkane, squalane, benzyl benzoate or R123 molecules.
 
 This software generates a LAMMPS datafile and basic input file for systems containing*:
  
  - Two bcc Fe or Fe2O3 slabs (in the case of pure Fe, the surface can be given random nanoscale roughness)
  - Two OFM monolayers above/below bottom/top solid slabs
- - A central region of linear n-alkane, squalane, or benzyl benzoate molecules
+ - A central region of linear n-alkane, squalane, benzyl benzoate molecules, or R123 molecules
  
 *Note that any of these components can be excluded by using the appropriate flags
 
@@ -30,13 +30,13 @@ The generated system has the following schematic structure:
        | c-c-c-c-c-c-c    c-c-c-c-c-c-c        |  /\
        |                                       |  |
        | c-c-c-c-c-c-c    c-c-c-c-c-c-c        |  |
-       |                                       |  |
-       | c-c-c-c-c-c-c    c-c-c-c-c-c-c        |  |
+       |                                 R123  |  |
+       | c-c-c-c-c-c-c    c-c-c-c-c-c-c   OR   |  |
        |                                ALKANE |  |  Z SEPARATION
        | c-c-c-c-c-c-c    c-c-c-c-c-c-c   OR   |  |
        |                                 BZBZ  |  |
-       | c-c-c-c-c-c-c    c-c-c-c-c-c-c        |  |
-       |                                       |  |
+       | c-c-c-c-c-c-c    c-c-c-c-c-c-c   or   |  |
+       |                              SQUALANE |  |
        | c-c-c-c-c-c-c    c-c-c-c-c-c-c        |  |
         _______________________________________  \/ _________
       |     |     |     |     |     |     |    |
@@ -197,6 +197,31 @@ Number of benzyl benzoate molecules to be placed along each direction of the sim
 
 ## Inputs related to squalane
 
+ - Squalane 		
+ 
+This flag determines if the the system will contain Squalane. If Squalane = 1, the generation of Squalane is activated. 
+
+ - Squalanen_x
+ - Squalanen_y
+ - Squalanen_z
+
+Number of Squalane chains to be placed along each direction of the simulation box. The inputs are integers
+
+For example: 	Squalanen_x = 5, Squalanen_y = 7, Squalanen_z = 3
+
+## Inputs related to R123
+
+ - R123 		
+ 
+This flag determines if the the system will contain R123. If R123 = 1, the generation of R123 is activated. 
+
+ - R123n_x
+ - R123n_y
+ - R123n_z
+
+Number of R123 molecules to be placed along each direction of the simulation box. The inputs are integers
+
+For example: 	R123n_x = 5, R123n_y = 7, R123n_z = 3
 
 
 ## Inputs related to the Surfaces

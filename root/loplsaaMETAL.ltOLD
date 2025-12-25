@@ -37,14 +37,6 @@ LOPLSAA {
     @atom:10001 55.845 #FEX "For Fe2O3 surfaces"                         36-1
     @atom:10002 15.999 #OX "For Fe2O3 surfaces"                          36-2
     @atom:100000 55.845 #FE "For EAM potential"
-    @atom:80000 12.011 #CT    "C00"  "For R123 from LigParGen"
-    @atom:80100 12.011 #CF    "C01"  "For R123 from LigParGen"
-    @atom:80200 18.998 #F     "F02"  "For R123 from LigParGen"
-    @atom:80300 18.998 #F     "F03"  "For R123 from LigParGen"
-    @atom:80400 18.998 #F     "F04"  "For R123 from LigParGen"
-    @atom:80500 35.450 #Cl    "Cl0"  "For R123 from LigParGen"
-    @atom:80600 35.450 #Cl    "Cl1"  "For R123 from LigParGen"
-    @atom:80700 1.008  #HC    "H07"  "For R123 from LigParGen"
   } #(end of atom masses)
 
   write_once("In Settings"){
@@ -80,14 +72,6 @@ LOPLSAA {
     pair_coeff @atom:10001 @atom:10001 lj/cut/coul/long 0.01474392192659695104 2.320
     pair_coeff @atom:10002 @atom:10002 lj/cut/coul/long 0.00737196096329847552 2.960
     pair_coeff @atom:100000 @atom:100000 lj/cut/coul/long 0.0409791 2.321
-    pair_coeff @atom:80000 @atom:80000 lj/cut/coul/long 0.0028619844 3.5000
-    pair_coeff @atom:80100 @atom:80100 lj/cut/coul/long 0.0028619844 3.5000
-    pair_coeff @atom:80200 @atom:80200 lj/cut/coul/long 0.002601804 2.9000
-    pair_coeff @atom:80300 @atom:80300 lj/cut/coul/long 0.002601804 2.9000
-    pair_coeff @atom:80400 @atom:80400 lj/cut/coul/long 0.002601804 2.9000
-    pair_coeff @atom:80500 @atom:80500 lj/cut/coul/long 0.01300902 3.4000 
-    pair_coeff @atom:80600 @atom:80600 lj/cut/coul/long 0.01300902 3.4000
-    pair_coeff @atom:80700 @atom:80700 lj/cut/coul/long 0.001300902 2.5000
   } #(end of pair coeffs)
 
   write_once("In Charges"){
@@ -122,15 +106,7 @@ LOPLSAA {
     set type @atom:40800 charge -0.2
     set type @atom:10001 charge 0.771
     set type @atom:10002 charge -0.514
-    set type @atom:80000 charge 0.1328
-    set type @atom:80100 charge 0.4423
-    set type @atom:80200 charge -0.1427
-    set type @atom:80300 charge -0.1427
-    set type @atom:80400 charge -0.1427
-    set type @atom:80500 charge -0.1676
-    set type @atom:80600 charge -0.1676
-    set type @atom:80700 charge 0.1882 # it was 1881. modified to 1882 to make R123 charge neutral
-} #(end of atom charges)
+  } #(end of atom charges)
 
   write_once("In Settings") {
     bond_coeff @bond:177-177 harmonic 15.1772 1.51
@@ -382,13 +358,6 @@ LOPLSAA {
     bond_coeff @bond:842-842 harmonic 20.3374 1.4
     bond_coeff @bond:90-91 harmonic 15.9144 1.08
     bond_coeff @bond:842-91 harmonic 15.9144 1.08
-    bond_coeff @bond:80100-80000 harmonic 11.6213912 1.5290
-    bond_coeff @bond:80200-80100 harmonic 15.9143678 1.3600
-    bond_coeff @bond:80300-80100 harmonic 15.9143678 1.3600
-    bond_coeff @bond:80400-80100 harmonic 15.9143678 1.3600
-    bond_coeff @bond:80500-80000 harmonic 10.624033 1.7810
-    bond_coeff @bond:80600-80000 harmonic 10.624033 1.7810
-    bond_coeff @bond:80700-80000 harmonic 14.743556 1.0900
   } #(end of bond_coeffs)
 
   write_once("Data Bonds By Type") {
@@ -641,14 +610,7 @@ LOPLSAA {
     @bond:842-842 @atom:842 @atom:842
     @bond:90-91 @atom:90 @atom:91
     @bond:842-91 @atom:842 @atom:91
-    @bond:80100-80000 @atom:80100 @atom:80000
-    @bond:80200-80100 @atom:80200 @atom:80100
-    @bond:80300-80100 @atom:80300 @atom:80100
-    @bond:80400-80100 @atom:80400 @atom:80100
-    @bond:80500-80000 @atom:80500 @atom:80000
-    @bond:80600-80000 @atom:80600 @atom:80000
-    @bond:80700-80000 @atom:80700 @atom:80000
-} #(end of bonds by type)
+  } #(end of bonds by type)
 
   write_once("Data Angles By Type"){
     @angle:177-177-178 @atom:177 @atom:177 @atom:178
@@ -3730,18 +3692,6 @@ LOPLSAA {
     @angle:90-842-91 @atom:90 @atom:842 @atom:91
     @angle:842-90-91 @atom:842 @atom:90 @atom:91
     @angle:842-842-91 @atom:842 @atom:842 @atom:91
-    @angle:80000-80100-80200 @atom:80000 @atom:80100 @atom:80200
-    @angle:80000-80100-80300 @atom:80000 @atom:80100 @atom:80300
-    @angle:80000-80100-80400 @atom:80000 @atom:80100 @atom:80400
-    @angle:80100-80000-80500 @atom:80100 @atom:80000 @atom:80500
-    @angle:80100-80000-80600 @atom:80100 @atom:80000 @atom:80600
-    @angle:80100-80000-80700 @atom:80100 @atom:80000 @atom:80700
-    @angle:80600-80000-80700 @atom:80600 @atom:80000 @atom:80700
-    @angle:80500-80000-80600 @atom:80500 @atom:80000 @atom:80600
-    @angle:80200-80100-80300 @atom:80200 @atom:80100 @atom:80300
-    @angle:80200-80100-80400 @atom:80200 @atom:80100 @atom:80400
-    @angle:80300-80100-80400 @atom:80300 @atom:80100 @atom:80400
-    @angle:80500-80000-80700 @atom:80500 @atom:80000 @atom:80700
   } #(end of angles by type)
 
   write_once("In Settings" ){
@@ -6824,19 +6774,7 @@ LOPLSAA {
     angle_coeff @angle:90-842-91 harmonic 1.51772 120.0
     angle_coeff @angle:842-90-91 harmonic 1.51772 120.0
     angle_coeff @angle:842-842-91 harmonic 1.51772 120.0
-    angle_coeff @angle:80000-80100-80200 harmonic 2.16817   109.50
-    angle_coeff @angle:80000-80100-80300 harmonic 2.16817   109.50
-    angle_coeff @angle:80000-80100-80400 harmonic 2.16817   109.50
-    angle_coeff @angle:80100-80000-80500 harmonic 2.9920746 109.80
-    angle_coeff @angle:80100-80000-80600 harmonic 2.9920746 109.80
-    angle_coeff @angle:80100-80000-80700 harmonic 1.6261275 110.70
-    angle_coeff @angle:80600-80000-80700 harmonic 2.2115334 107.60
-    angle_coeff @angle:80500-80000-80600 harmonic 3.3823452 111.70
-    angle_coeff @angle:80200-80100-80300 harmonic 3.3389818 109.10
-    angle_coeff @angle:80200-80100-80400 harmonic 3.3389818 109.10
-    angle_coeff @angle:80300-80100-80400 harmonic 3.3389818 109.10
-    angle_coeff @angle:80500-80000-80700 harmonic 1.6261275 107.60
-} #(end of angle_coeffs)
+  } #(end of angle_coeffs)
 
   write_once("Data Dihedrals By Type") {
     @dihedral:178-177-177-178 @atom:178 @atom:177 @atom:177 @atom:178
@@ -27778,16 +27716,7 @@ LOPLSAA {
     @dihedral:87-8100-8100-100 @atom:87 @atom:8100 @atom:8100 @atom:100
     @dihedral:87-8100-8100-409 @atom:87 @atom:8100 @atom:8100 @atom:409
     @dihedral:87-8100-8100-8100 @atom:87 @atom:8100 @atom:8100 @atom:8100
-    @dihedral:80500-80000-80100-80200 @atom:80500 @atom:80000 @atom:80100 @atom:80200
-    @dihedral:80600-80000-80100-80400 @atom:80600 @atom:80000 @atom:80100 @atom:80400
-    @dihedral:80500-80000-80100-80400 @atom:80500 @atom:80000 @atom:80100 @atom:80400
-    @dihedral:80700-80000-80100-80300 @atom:80700 @atom:80000 @atom:80100 @atom:80300
-    @dihedral:80700-80000-80100-80200 @atom:80700 @atom:80000 @atom:80100 @atom:80200
-    @dihedral:80700-80000-80100-80400 @atom:80700 @atom:80000 @atom:80100 @atom:80400
-    @dihedral:80600-80000-80100-80200 @atom:80600 @atom:80000 @atom:80100 @atom:80200
-    @dihedral:80500-80000-80100-80300 @atom:80500 @atom:80000 @atom:80100 @atom:80300
-    @dihedral:80600-80000-80100-80300 @atom:80600 @atom:80000 @atom:80100 @atom:80300
-} #(end of Dihedrals by type)
+  } #(end of Dihedrals by type)
 
   write_once("In Settings") {
     dihedral_coeff @dihedral:178-177-177-178 opls 0.0693814 0.138763 0.0 0.0
@@ -48729,15 +48658,6 @@ LOPLSAA {
     dihedral_coeff @dihedral:87-8100-8100-100 multi/harmonic 0.0392392 -0.00110679 -0.00582657 0.015415 0.0
     dihedral_coeff @dihedral:87-8100-8100-409 multi/harmonic 0.0392392 -0.00110679 -0.00582657 0.015415 0.0
     dihedral_coeff @dihedral:87-8100-8100-8100 multi/harmonic 0.0392392 -0.00110679 -0.00582657 0.015415 0.0
-    dihedral_coeff @dihedral:80500-80000-80100-80200 multi/harmonic 0.000 0.000 0.000 0.000 0.0
-    dihedral_coeff @dihedral:80600-80000-80100-80400 multi/harmonic 0.000 0.000 0.000 0.000 0.0
-    dihedral_coeff @dihedral:80500-80000-80100-80400 multi/harmonic 0.000 0.000 0.000 0.000 0.0
-    dihedral_coeff @dihedral:80700-80000-80100-80300 multi/harmonic 0.000 0.000 0.000 0.360 0.0
-    dihedral_coeff @dihedral:80700-80000-80100-80200 multi/harmonic 0.000 0.000 0.000 0.360 0.0
-    dihedral_coeff @dihedral:80700-80000-80100-80400 multi/harmonic 0.000 0.000 0.000 0.360 0.0
-    dihedral_coeff @dihedral:80600-80000-80100-80200 multi/harmonic 0.000 0.000 0.000 0.000 0.0
-    dihedral_coeff @dihedral:80500-80000-80100-80300 multi/harmonic 0.000 0.000 0.000 0.000 0.0
-    dihedral_coeff @dihedral:80600-80000-80100-80300 multi/harmonic 0.000 0.000 0.000 0.000 0.0
   } #(end of dihedral_coeffs)
 
   write_once("Data Impropers By Type (cenKswapIL.py)") {

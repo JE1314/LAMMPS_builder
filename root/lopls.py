@@ -28,7 +28,8 @@ from RoughFe2O3 import RoughFe2O3
 
 def lopls(xlo,xhi,ylo,yhi,zlo,zhi,OFMn_x,OFMn_y,nAlkane, Alkanen_x,\
 		Alkanen_y, Alkanen_z, Alkane, BZBZ, BZBZn_x, BZBZn_y, BZBZn_z,\
-		Squalane, Squalanen_x, Squalanen_y, Squalanen_z, OFM ,OFMtype, Surfaces,\
+		Squalane, Squalanen_x, Squalanen_y, Squalanen_z, R123, R123n_x, R123n_y, R123n_z,\
+    OFM ,OFMtype, Surfaces,\
 		FractalLevels,RMSin,H,boxLenghtX,boxLenghtY,boxLenghtZ,aFe,Separation):
 
   f = open('lopls.lt','w+')
@@ -1009,6 +1010,35 @@ def lopls(xlo,xhi,ylo,yhi,zlo,zhi,OFMn_x,OFMn_y,nAlkane, Alkanen_x,\
   f.write("     }\n")
   f.write("}\n")
 
+  ###############################################################
+  ####
+  #R123
+  f.write("R123 inherits LOPLSAA {\n")
+  
+  f.write("  # atomID      molID   atomType     charge   X       Y        Z\n")
+  f.write("  write('Data Atoms') {\n")
+  f.write("        $atom:C00        $mol:...        @atom:80000        0.00    1.000000    1.000000    0.000000  \n")
+  f.write("        $atom:C01        $mol:...        @atom:80100        0.00   -0.536000    1.000000    0.000000  \n")
+  f.write("        $atom:F02        $mol:...        @atom:80200        0.00   -1.065000    1.000000    1.247000  \n")
+  f.write("        $atom:F03        $mol:...        @atom:80300        0.00   -1.003000    2.123000   -0.608000  \n")
+  f.write("        $atom:F04        $mol:...        @atom:80400        0.00   -1.077000   -0.051000   -0.652000  \n")
+  f.write("        $atom:Cl0        $mol:...        @atom:80500        0.00    1.711000    0.698000    1.615000  \n")
+  f.write("        $atom:Cl1        $mol:...        @atom:80600        0.00    1.701000   -0.178000   -1.155000  \n")
+  f.write("        $atom:H07        $mol:...        @atom:80700        0.00    1.361000    1.984000   -0.311000  \n")
+  f.write("        }\n")
+
+  f.write(" write('Data Bond List') {\n")
+  f.write("        $bond:C01-C00       $atom:C01        $atom:C00\n")
+  f.write("        $bond:F02-C01       $atom:F02        $atom:C01\n")
+  f.write("        $bond:F03-C01       $atom:F03        $atom:C01\n")
+  f.write("        $bond:F04-C01       $atom:F04        $atom:C01\n")
+  f.write("        $bond:Cl0-C00       $atom:Cl0        $atom:C00\n")
+  f.write("        $bond:Cl1-C00       $atom:Cl1        $atom:C00\n")
+  f.write("        $bond:H07-C00       $atom:H07        $atom:C00\n")
+  f.write("        }\n")
+  
+  f.write("}\n")
+
 
   ######################################################################
   #rough Iron surfaces
@@ -1084,6 +1114,23 @@ def lopls(xlo,xhi,ylo,yhi,zlo,zhi,OFMn_x,OFMn_y,nAlkane, Alkanen_x,\
     Squalane_z = ((zhi-23.3065-5)-(zlo+23.3065+5))/(Squalanen_z-1)
 
 
+  ####
+  #R123
+  # This determines how far apart all R123 molecules will be placed
+  R123_x = (xhi-xlo)/R123n_x #(1.2533223*(nAlkane-1))+5
+  R123_y = (yhi-ylo)/R123n_y
+  if Surfaces == 0:
+    if R123n_z == 1:
+      R123_z = 0.0
+    else:
+      R123_z = (zhi)/(R123n_z)
+  else:
+
+    if R123n_z == 1:
+      R123_z = 0.0
+    else:
+      R123_z = ((zhi-23.3065-5)-(zlo+23.3065+5))/(R123n_z-1)
+
 
   ######################################################################
   #Placing the polymers in the box
@@ -1102,8 +1149,16 @@ def lopls(xlo,xhi,ylo,yhi,zlo,zhi,OFMn_x,OFMn_y,nAlkane, Alkanen_x,\
   f.write("  ylo yhi")
   f.write("\n")
 
+  #no surfaces (making a triclinic box)
+  if Surfaces == 0 :
+    f.write(str(zlo)+"  "+str(zhi))
+    f.write("  zlo zhi")
+    f.write("\n")
+    f.write("0.0 0.0 0.0 xy xz yz")
+    f.write("\n")
+    f.write("}")
   #rough Iron surfaces
-  if Surfaces == 1 or Surfaces == 0 :
+  if Surfaces == 1 :
     f.write(str(zlo-boxLenghtZ*aFe-20)+"  "+str(zhi+boxLenghtZ*aFe+20))
     f.write("  zlo zhi")
     f.write("\n")
@@ -1278,6 +1333,35 @@ def lopls(xlo,xhi,ylo,yhi,zlo,zhi,OFMn_x,OFMn_y,nAlkane, Alkanen_x,\
     f.write("\n")
 
     f.write("molecules6[*][*][*].move("+str(xlo)+","+str(ylo)+","+str(zlo+23.3065+4)+")")
+
+  ######
+  #R123
+  if R123 == 1 and Surfaces!=3:
+    f.write("\n")
+    f.write("\n")
+    f.write("molecules7 = new R123.rot(0, 0, 1, 0) [")
+    f.write(str(R123n_z))
+    f.write("].move(0, 0,")
+    f.write(str(R123_z))
+    f.write(")")
+    f.write("\n")
+    f.write("                           [")
+    f.write(str(R123n_y))
+    f.write("].move(0, ")
+    f.write(str(R123_y))
+    f.write(", 0)")
+    f.write("\n")
+    f.write("                           [")
+    f.write(str(R123n_x))
+    f.write("].move(")
+    f.write(str(R123_x))
+    f.write(", 0, 0)")
+    f.write("\n")
+
+    if Surfaces == 0:
+      f.write("molecules7[*][*][*].move("+str(xlo)+","+str(ylo)+","+str(zlo)+")")
+    else:
+      f.write("molecules7[*][*][*].move("+str(xlo)+","+str(ylo)+","+str(zlo+23.3065+8)+")")
 
 
 
