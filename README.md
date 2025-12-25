@@ -1,10 +1,10 @@
-##Version: 22-04-2025
+##Version: 25-12-2025
 
 ##Authors - Sebastián ECHEVERRI RESTREPO: sebastian.echeverri.restrepo@skf.com, sebastianecheverrir@gmail.com; James EWEN: j.ewen14@imperial.ac.uk, jimmyewen@gmail.com
 
 ## GENERAL INFO
 
-This software is suitable as a starting point for performing confined nonequilibrium molecular dynamics (NEMD) simulations of organic friction modifier (OFM) films adsorbed to Fe or Fe2O3 surfaces, separated by a layer of n-alkane or benzyl benzoate molecules.
+This software is suitable as a starting point for performing confined nonequilibrium molecular dynamics (NEMD) simulations of organic friction modifier (OFM) films adsorbed to Fe or Fe2O3 surfaces, separated by a layer of n-alkane, squalane, benzyl benzoate or R123 molecules.
 
 This software generates a LAMMPS datafile and basic input file for systems containing*:
  
@@ -30,13 +30,13 @@ The generated system has the following schematic structure:
        | c-c-c-c-c-c-c    c-c-c-c-c-c-c        |  /\
        |                                       |  |
        | c-c-c-c-c-c-c    c-c-c-c-c-c-c        |  |
-       |                                       |  |
-       | c-c-c-c-c-c-c    c-c-c-c-c-c-c        |  |
+       |                                 R123  |  |
+       | c-c-c-c-c-c-c    c-c-c-c-c-c-c   OR   |  |
        |                                ALKANE |  |  Z SEPARATION
        | c-c-c-c-c-c-c    c-c-c-c-c-c-c   OR   |  |
        |                                 BZBZ  |  |
-       | c-c-c-c-c-c-c    c-c-c-c-c-c-c        |  |
-       |                                       |  |
+       | c-c-c-c-c-c-c    c-c-c-c-c-c-c   or   |  |
+       |                              SQUALANE |  |
        | c-c-c-c-c-c-c    c-c-c-c-c-c-c        |  |
         _______________________________________  \/ _________
       |     |     |     |     |     |     |    |
