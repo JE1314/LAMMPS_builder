@@ -164,6 +164,24 @@ R123n_x = 15
 R123n_y = 15
 R123n_z = 15
 
+#####Inputs related to R134A
+
+#This flag determines if the the system will contain R134A.
+#       if R134A = 1, the generation of R134A is activated
+
+R134A = 0
+
+#Number of benzylbenzoate chains to be placed along each
+#       direction of the simulation box
+#       The inputs are integers
+#       Exm:    R134An_x = 5
+#               R134An_y = 7
+#               R134An_z = 3
+
+R134An_x = 5
+R134An_y = 5
+R134An_z = 5
+
 
 #################################################################################3
 #################################################################################3
@@ -211,6 +229,7 @@ potential = 'lopls'
 lopls(xlo,xhi,ylo,yhi,zlo,zhi,OFMn_x,OFMn_y,nAlkane, Alkanen_x,\
                 Alkanen_y, Alkanen_z, Alkane, BZBZ, BZBZn_x, BZBZn_y, BZBZn_z,\
                 Squalane, Squalanen_x, Squalanen_y, Squalanen_z, R123, R123n_x, R123n_y, R123n_z, \
+                R134A, R134An_x, R134An_y, R134An_z, \
                 OFM ,OFMtype, Surfaces,\
                 FractalLevels,RMSin,H,boxLenghtX,boxLenghtY,boxLenghtZ,aFe,Separation)
 

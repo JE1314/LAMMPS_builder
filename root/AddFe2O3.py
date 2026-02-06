@@ -54,6 +54,8 @@ def AddFe2O3(name):
   f.write("min_style       cg						\n")
   f.write("minimize        0.0 0.0 100000 100000			\n\n")
 
+
+
   f.close()
 
 #generating a file to make the dummy start that lammps requires to generate bonds

@@ -1,0 +1,69 @@
+Inserting a new molecule
+
+File lopls.py
+-Insert the atom positions and bond info in on lopls.py
+-calculates the amount of molecules in each direction
+-  #Placing the polymers in the box
+-change the definition of the function def lopls to include new molecule
+
+run.py
+-change how the function lopls is called
+-modify the section called:
+#####Inputs related to Squalane containing the flag and the number of molecules on each direction
+
+
+
+  f.write("R123 inherits LOPLSAA {\n")
+  
+  f.write("  # atomID      molID   atomType     charge   X       Y        Z\n")
+  f.write("  write('Data Atoms') {\n")
+  f.write("        $atom:C00        $mol:...        @atom:80000        0.00    1.000000    1.000000    0.000000  \n")
+  f.write("        $atom:C01        $mol:...        @atom:80100        0.00    -0.536000    1.000000    0.000000   801  \n")
+  f.write("        $atom:F02        $mol:...        @atom:80200        0.00    -1.065000    1.000000    1.247000  \n")
+  f.write("        $atom:F03        $mol:...        @atom:80300        0.00    -1.003000    2.123000   -0.608000  \n")
+  f.write("        $atom:F04        $mol:...        @atom:80400        0.00    -1.077000   -0.051000   -0.652000  \n")
+  f.write("        $atom:Cl0        $mol:...        @atom:80500        0.00    1.711000    0.698000    1.615000  \n")
+  f.write("        $atom:Cl1        $mol:...        @atom:80600        0.00    1.701000   -0.178000   -1.155000  \n")
+  f.write("        $atom:H07        $mol:...        @atom:80700        0.00    1.361000    1.984000   -0.311000  \n")
+  f.write("        }\n")
+
+  f.write(" write('Data Bond List') {\n")
+  f.write("        $bond:C01-C00       $atom:C01        $atom:C00\n")
+  f.write("        $bond:F02-C01       $atom:F02        $atom:C01\n")
+  f.write("        $bond:F03-C01       $atom:F03        $atom:C01\n")
+  f.write("        $bond:F04-C01       $atom:F04        $atom:C01\n")
+  f.write("        $bond:Cl0-C00       $atom:Cl0        $atom:C00\n")
+  f.write("        $bond:Cl1-C00       $atom:Cl1        $atom:C00\n")
+  f.write("        $bond:H07-C00       $atom:H07        $atom:C00\n")
+  f.write("        }\n")
+  
+  f.write("}\n")
+
+####################################
+
+  f.write("R134A inherits LOPLSAA {\n")
+  
+  f.write("  # atomID      molID   atomType     charge   X       Y        Z\n")
+  f.write("  write('Data Atoms') {\n")
+  f.write("        $atom:C00        $mol:...        @atom:70000        0.00    1.000  1.00000  0.00000 \n")
+  f.write("        $atom:C01        $mol:...        @atom:70100        0.00   -0.512  1.00000  0.00000 \n")
+  f.write("        $atom:F02        $mol:...        @atom:70200        0.00   -1.037  1.00000  1.24109 \n")
+  f.write("        $atom:F03        $mol:...        @atom:70300        0.00   -0.982  2.11853 -0.62246 \n")
+  f.write("        $atom:F04        $mol:...        @atom:70400        0.00   -1.014 -0.06434 -0.67095 \n")
+  f.write("        $atom:F05        $mol:...        @atom:70500        0.00    1.483  0.25578  1.03593 \n")
+  f.write("        $atom:H06        $mol:...        @atom:70600        0.00    1.402  2.00832  0.08251 \n")
+  f.write("        $atom:H07        $mol:...        @atom:70700        0.00    1.379  0.54492 -0.91738 \n")
+  f.write("        }\n")
+
+  f.write(" write('Data Bond List') {\n")
+  f.write("        $bond:C01-C00       $atom:C01        $atom:C00\n")
+  f.write("        $bond:F02-C01       $atom:F02        $atom:C01\n")
+  f.write("        $bond:F03-C01       $atom:F03        $atom:C01\n")
+  f.write("        $bond:F04-C01       $atom:F04        $atom:C01\n")
+  f.write("        $bond:F05-C00       $atom:F05        $atom:C00\n")
+  f.write("        $bond:H06-C00       $atom:H06        $atom:C00\n")
+  f.write("        $bond:H07-C00       $atom:H07        $atom:C00\n")
+  f.write("        }\n")
+  
+  f.write("}\n")
+

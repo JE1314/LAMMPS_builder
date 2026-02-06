@@ -1,0 +1,28 @@
+LigParGen can generate the molecule and give the parameters to be used for the simulation. 
+The input is the SMILES code of the molecule.
+
+For R123, we have 
+https://pubchem.ncbi.nlm.nih.gov/compound/9385#section=SMILES
+C(C(F)(F)F)(Cl)Cl
+
+For R-134A
+https://pubchem.ncbi.nlm.nih.gov/compound/1_1_1_2-Tetrafluoroethane
+C(C(F)(F)F)F
+
+for R-1234yf
+https://pubchem.ncbi.nlm.nih.gov/compound/2_3_3_3-Tetrafluoropropene#section=3D-Conformer
+C=C(C(F)(F)F)F
+
+
+
+If we input this SMILES code into the website 
+https://traken.chem.yale.edu/ligpargen/
+
+charge model                         1.14*CM1A-LBCC (Neutral molecules)
+Molecule Optimization Iterations     3
+
+
+we get the files .lmp, .key and .xyz
+
+note that from LigParGen we get some impropers, but the value of K=0. So I ignore them
+
