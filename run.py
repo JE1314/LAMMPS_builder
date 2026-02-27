@@ -31,13 +31,13 @@ import math
 #Size of the simulation box in the x and y direction. These
 #	values have to be given in terms of the lattice parameter
 
-boxLenghtX = 29
-boxLenghtY = 29
+boxLenghtX = 35
+boxLenghtY = 35
 
 #This value determines the Z size of the section of the
 #	box that  will contain the alkane chains and OFMs.
 #	The units are Angstrom
-zhi = 29*2.86366	#  Also, take into account the space for the alkane chains!
+zhi = 35*2.86366	#  Also, take into account the space for the alkane chains!
 
 
 #####Inputs related to the Surfaces
@@ -169,7 +169,7 @@ R123n_z = 15
 #This flag determines if the the system will contain R134A.
 #       if R134A = 1, the generation of R134A is activated
 
-R134A = 0
+R134A = 1
 
 #Number of R134A chains to be placed along each
 #       direction of the simulation box
@@ -178,16 +178,16 @@ R134A = 0
 #               R134An_y = 7
 #               R134An_z = 3
 
-R134An_x = 5
-R134An_y = 5
-R134An_z = 5
+R134An_x = 16
+R134An_y = 15
+R134An_z = 10
 
 #####Inputs related to R1234yf
 
 #This flag determines if the the system will contain R1234yf.
 #       if R1234yf = 1, the generation of R1234yf is activated
 
-R1234yf = 1
+R1234yf = 0
 
 #Number of R1234yf chains to be placed along each
 #       direction of the simulation box
@@ -196,9 +196,9 @@ R1234yf = 1
 #               R134An_y = 7
 #               R134An_z = 3
 
-R1234yfn_x = 1
-R1234yfn_y = 1
-R1234yfn_z = 1
+R1234yfn_x = 12
+R1234yfn_y = 19
+R1234yfn_z = 12
 
 #################################################################################3
 #################################################################################3

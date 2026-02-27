@@ -1486,7 +1486,8 @@ def lopls(xlo,xhi,ylo,yhi,zlo,zhi,OFMn_x,OFMn_y,nAlkane, Alkanen_x,\
 
 
     if Surfaces == 0:
-      f.write("molecules8[*][*][*].move("+str(xlo)+","+str(ylo)+","+str(zlo)+")")
+      #Added 4 to avoid superposition when using blend of R134A and R1234yf
+      f.write("molecules8[*][*][*].move("+str(xlo+4)+","+str(ylo)+","+str(zlo)+")")
     else:
       f.write("molecules8[*][*][*].move("+str(xlo)+","+str(ylo)+","+str(zlo+23.3065+8)+")")
 
