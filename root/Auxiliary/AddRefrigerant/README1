@@ -512,3 +512,279 @@ becomes
     set type @atom:70600 charge  0.1347
     set type @atom:70700 charge  0.1347
 
+
+
+
+###############################
+###############################
+###############################
+R1234yf
+###############################
+###############################
+###############################
+
+
+###############################
+Section Atom Type Definitions
+-the mass units are the same as the ones used by metal units (grams/mole)
+
+This
+
+atom        800  800    CM    "C00"          6     12.011     3 
+atom        801  801    CM    "C01"          6     12.011     3 
+atom        802  802    CF    "C02"          6     12.011     4 
+atom        803  803     F    "F03"          9     18.998     1 
+atom        804  804     F    "F04"          9     18.998     1 
+atom        805  805     F    "F05"          9     18.998     1 
+atom        806  806     F    "F06"          9     18.998     1 
+atom        807  807    HC    "H07"          1      1.008     1 
+atom        808  808    HC    "H08"          1      1.008     1 
+
+Becomes 
+
+@atom:50000 12.011 #CM    "C00"  "For R1234yf from LigParGen"
+@atom:50100 12.011 #CM    "C01"  "For R1234yf from LigParGen"
+@atom:50200 12.011 #CF    "C02"  "For R1234yf from LigParGen"
+@atom:50300 18.998 #F     "F03"  "For R1234yf from LigParGen"
+@atom:50400 18.998 #F     "F04"  "For R1234yf from LigParGen"
+@atom:50500 18.998 #F     "F05"  "For R1234yf from LigParGen"
+@atom:50600 18.998 #F     "F06"  "For R1234yf from LigParGen"
+@atom:50700 1.008  #HC    "H07"  "For R1234yf from LigParGen"
+@atom:50800 1.008  #HC    "H08"  "For R1234yf from LigParGen"
+
+#################################
+Section Van der Waals Parameters
+-column 3 is sigma, column 4 epsilon
+  for sigma, no changes are needed (they are both in Angstrom)
+  for epsilon, the units have to be changed from kcal/mol to eV (1kcal/mol = 0.0433634eV)
+
+This
+
+vdw         800           3.5500   0.0760 
+vdw         801           3.5500   0.0760 
+vdw         802           3.5000   0.0660 
+vdw         803           2.9000   0.0600 
+vdw         804           2.9000   0.0600 
+vdw         805           2.9000   0.0600 
+vdw         806           2.9000   0.0600 
+vdw         807           2.5000   0.0300 
+vdw         808           2.5000   0.0300 
+
+Becomes
+    pair_coeff @atom:50000 @atom:50000 lj/cut/coul/long 0.0032964552 3.5500
+    pair_coeff @atom:50100 @atom:50100 lj/cut/coul/long 0.0032964552 3.5500
+    pair_coeff @atom:50200 @atom:50200 lj/cut/coul/long 0.0028619844 3.5000
+    pair_coeff @atom:50300 @atom:50300 lj/cut/coul/long 0.002601804 2.9000
+    pair_coeff @atom:50400 @atom:50400 lj/cut/coul/long 0.002601804 2.9000
+    pair_coeff @atom:50500 @atom:50500 lj/cut/coul/long 0.002601804 2.9000
+    pair_coeff @atom:50600 @atom:50600 lj/cut/coul/long 0.002601804 2.9000
+    pair_coeff @atom:50700 @atom:50700 lj/cut/coul/long 0.001300902 2.5000
+    pair_coeff @atom:50800 @atom:50800 lj/cut/coul/long 0.001300902 2.5000
+
+
+#################################
+Section Bond Stretching Parameters
+-column 4 is Kr, column 5 is req
+  for Kr, the units have to be changed from (kcal/mol)/A^2 to eV/A^2 (1kcal/mol = 0.0433634eV)
+  for req, no changes are needed (they are both in Angstrom)
+
+This
+
+bond        801  800           549.00   1.3400 
+bond        802  801           317.00   1.5100 
+bond        803  802           367.00   1.3600 
+bond        804  802           367.00   1.3600 
+bond        805  802           367.00   1.3600 
+bond        806  801           420.00   1.3400 
+bond        807  800           340.00   1.0800 
+bond        808  800           340.00   1.0800 
+
+Becomes
+
+    bond_coeff @bond:50100-50000 harmonic 23.8065066 1.3400
+    bond_coeff @bond:50200-50100 harmonic 13.7461978 1.5100
+    bond_coeff @bond:50300-50200 harmonic 15.9143678 1.3600
+    bond_coeff @bond:50400-50200 harmonic 15.9143678 1.3600
+    bond_coeff @bond:50500-50200 harmonic 15.9143678 1.3600
+    bond_coeff @bond:50600-50100 harmonic 18.2126280 1.3400
+    bond_coeff @bond:50700-50000 harmonic 14.7435560 1.0800
+    bond_coeff @bond:50800-50000 harmonic 14.7435560 1.0800
+
+    @bond:50100-50000 @atom:50100 @atom:50000
+    @bond:50200-50100 @atom:50200 @atom:50100
+    @bond:50300-50200 @atom:50300 @atom:50200
+    @bond:50400-50200 @atom:50400 @atom:50200
+    @bond:50500-50200 @atom:50500 @atom:50200
+    @bond:50600-50100 @atom:50600 @atom:50100
+    @bond:50700-50000 @atom:50700 @atom:50000
+    @bond:50800-50000 @atom:50800 @atom:50000
+
+#################################
+Section Angle Bending Parameters
+-column 5 is Ktheta, column 6 is thetaeq
+  for Ktheta, the units have to be changed from    kcal/mol to eV (1kcal/mol = 0.0433634eV)
+  for req, no changes are needed (they are both in degrees)
+
+
+This
+
+angle       800  801  802    70.00   124.00 
+angle       801  802  803    50.00   109.50 
+angle       801  802  804    50.00   109.50 
+angle       801  802  805    50.00   109.50 
+angle       800  801  806    80.00   121.50 
+angle       801  800  807    35.00   120.00 
+angle       801  800  808    35.00   120.00 
+angle       803  802  805    77.00   109.10 
+angle       802  801  806    60.43   118.76 
+angle       807  800  808    35.00   117.00 
+angle       803  802  804    77.00   109.10 
+angle       804  802  805    77.00   109.10 
+
+Becomes
+    @angle:50000-50100-50200 @atom:50000 @atom:50100 @atom:50200
+    @angle:50100-50200-50300 @atom:50100 @atom:50200 @atom:50300
+    @angle:50100-50200-50400 @atom:50100 @atom:50200 @atom:50400
+    @angle:50100-50200-50500 @atom:50100 @atom:50200 @atom:50500
+    @angle:50000-50100-50600 @atom:50000 @atom:50100 @atom:50600
+    @angle:50100-50000-50700 @atom:50100 @atom:50000 @atom:50700
+    @angle:50100-50000-50800 @atom:50100 @atom:50000 @atom:50800
+    @angle:50300-50200-50500 @atom:50300 @atom:50200 @atom:50500
+    @angle:50200-50100-50600 @atom:50200 @atom:50100 @atom:50600
+    @angle:50700-50000-50800 @atom:50700 @atom:50000 @atom:50800
+    @angle:50300-50200-50400 @atom:50300 @atom:50200 @atom:50400
+    @angle:50400-50200-50500 @atom:50400 @atom:50200 @atom:50500
+
+    angle_coeff @angle:50000-50100-50200 harmonic 3.035438   124.00
+    angle_coeff @angle:50100-50200-50300 harmonic 2.168170   109.50
+    angle_coeff @angle:50100-50200-50400 harmonic 2.168170   109.50
+    angle_coeff @angle:50100-50200-50500 harmonic 2.168170   109.50
+    angle_coeff @angle:50000-50100-50600 harmonic 3.469072   121.50
+    angle_coeff @angle:50100-50000-50700 harmonic 1.517719   120.00
+    angle_coeff @angle:50100-50000-50800 harmonic 1.517719   120.00
+    angle_coeff @angle:50300-50200-50500 harmonic 3.3389818  109.10
+    angle_coeff @angle:50200-50100-50600 harmonic 2.620450262 118.76
+    angle_coeff @angle:50700-50000-50800 harmonic 1.517719   117.00
+    angle_coeff @angle:50300-50200-50400 harmonic 3.3389818  109.10
+    angle_coeff @angle:50400-50200-50500 harmonic 3.3389818  109.10
+
+#################################
+Section Urey-Bradley Parameters
+-column 5 is Kub, column 6 is ueq(distance between the 1,3 atoms in the harmonic potential)
+  for Kub, the units have to be changed from (kcal/mol)/A^2 to eV/A^2 (1kcal/mol = 0.0433634eV)
+  for ueq, no changes are needed (they are both in Angstrom)
+
+
+ureybrad     35   34   35      38.25     1.5537
+
+There seems to be an error in the .key file, the atom number 34, 35 do not exist
+
+#################################
+Section Improper Torsional Parameters  
+-column 6 is K, column 7 is delta, column 8 is n (periodicity)
+  for K, the units have to be changed from    kcal/mol to eV (1kcal/mol = 0.0433634eV)
+  for delta, 180 in tinker corresponds to -1 in lammps
+  n stays the same
+  in thinker, center atoms are the third ones
+This 
+#center atoms are the third ones
+imptors     801  803  802  804        0.000 180.0  2 
+imptors     801  803  802  805        0.000 180.0  2 
+imptors     800  802  801  806        2.500 180.0  2
+imptors     808  807  800  801        2.500 180.0  2 
+
+Becomes
+    @improper:50000-50200-50100-50600 @atom:50000 @atom:50200 @atom:50100 @atom:50600
+    @improper:50800-50700-50000-50100 @atom:50800 @atom:50700 @atom:50000 @atom:50100
+
+    improper_coeff @improper:50000-50200-50100-50600 cvff 0.1084085 -1 2
+    improper_coeff @improper:50800-50700-50000-50100 cvff 0.1084085 -1 2 
+
+note that from LigParGen we get some impropers, but the value of K=0. So I ignore them
+
+
+#################################
+Section Torsional Parameters 
+-column 6 is V1, column 9 is V2, column 12 is V3, column 15 is V4
+  In all cases, the units have to be changed from    kcal/mol to eV (1kcal/mol = 0.0433634eV)
+  Then, they need to be multiplied by 2, due to different conventions of the softwares
+
+-For the blends, we move to the opls style, where we have V1, V2, V3, and V4. 
+  This should have been done before
+  In all cases, the units have to be changed from    kcal/mol to eV (1kcal/mol = 0.0433634eV)
+  No need to multiply or divide by 2. 
+   Libpargen multiplies them by 2, but I think that is wrong. 
+   Note that the parameters in the lmp file are twice the value than those in the .key file. That seems to be wrong
+
+This
+
+torsion     803  802  801  800        0.250  0.0  1  0.000 180.0  2  0.000  0.0  3 
+torsion     807  800  801  802        0.000  0.0  1  7.000 180.0  2  0.000  0.0  3 
+torsion     806  801  802  804       -1.250  0.0  1  0.000 180.0  2  0.125  0.0  3 
+torsion     807  800  801  806        0.000  0.0  1  7.000 180.0  2  0.000  0.0  3 
+torsion     806  801  802  805       -1.250  0.0  1  0.000 180.0  2  0.125  0.0  3 
+torsion     806  801  802  803       -1.250  0.0  1  0.000 180.0  2  0.125  0.0  3 
+torsion     804  802  801  800        0.250  0.0  1  0.000 180.0  2  0.000  0.0  3 
+torsion     805  802  801  800        0.250  0.0  1  0.000 180.0  2  0.000  0.0  3 
+torsion     808  800  801  802        0.000  0.0  1  7.000 180.0  2  0.000  0.0  3 
+torsion     808  800  801  806        0.000  0.0  1  7.000 180.0  2  0.000  0.0  3 
+
+torsion       0    0    0    0        0.000  0.0  1  0.000 180.0  2  0.000  0.0  3
+
+Becomes
+    @dihedral:50300-50200-50100-50000 @atom:50300 @atom:50200 @atom:50100 @atom:50000
+    @dihedral:50700-50000-50100-50200 @atom:50700 @atom:50000 @atom:50100 @atom:50200
+    @dihedral:50600-50100-50200-50400 @atom:50600 @atom:50100 @atom:50200 @atom:50400
+    @dihedral:50700-50000-50100-50600 @atom:50700 @atom:50000 @atom:50100 @atom:50600
+    @dihedral:50600-50100-50200-50500 @atom:50600 @atom:50100 @atom:50200 @atom:50500
+    @dihedral:50600-50100-50200-50300 @atom:50600 @atom:50100 @atom:50200 @atom:50300
+    @dihedral:50400-50200-50100-50000 @atom:50400 @atom:50200 @atom:50100 @atom:50000
+    @dihedral:50500-50200-50100-50000 @atom:50500 @atom:50200 @atom:50100 @atom:50000
+    @dihedral:50800-50000-50100-50200 @atom:50800 @atom:50000 @atom:50100 @atom:50200
+    @dihedral:50800-50000-50100-50600 @atom:50800 @atom:50000 @atom:50100 @atom:50600
+
+    dihedral_coeff @dihedral:50300-50200-50100-50000 opls  0.01084085 0.0000000 0.0000000    0.0000000
+    dihedral_coeff @dihedral:50700-50000-50100-50200 opls  0.000      0.3035438 0.0000000    0.0000000
+    dihedral_coeff @dihedral:50600-50100-50200-50400 opls -0.05420425 0.0000000 0.005420425  0.0000000
+    dihedral_coeff @dihedral:50700-50000-50100-50600 opls  0.000      0.3035438 0.0000000    0.0000000
+    dihedral_coeff @dihedral:50600-50100-50200-50500 opls -0.05420425 0.0000000 0.005420425  0.0000000
+    dihedral_coeff @dihedral:50600-50100-50200-50300 opls -0.05420425 0.0000000 0.005420425  0.0000000
+    dihedral_coeff @dihedral:50400-50200-50100-50000 opls  0.01084085 0.0000000 0.0000000    0.0000000
+    dihedral_coeff @dihedral:50500-50200-50100-50000 opls  0.01084085 0.0000000 0.0000000    0.0000000
+    dihedral_coeff @dihedral:50800-50000-50100-50200 opls  0.000      0.3035438 0.0000000    0.0000000
+    dihedral_coeff @dihedral:50800-50000-50100-50600 opls  0.000      0.3035438 0.0000000    0.0000000
+
+
+#################################
+#################################
+#################################
+
+
+
+#################################
+
+Section   Atomic Partial Charge Parameters
+ -No changes needed in terms of units
+
+This
+
+charge         800          -0.2110 
+charge         801          -0.0907 
+charge         802           0.4817 
+charge         803          -0.1513 
+charge         804          -0.1513 
+charge         805          -0.1513 
+charge         806          -0.0628 
+charge         807           0.1684 
+charge         808           0.1684 
+
+Becomes
+    set type @atom:50000 charge -0.2110
+    set type @atom:50100 charge -0.0907
+    set type @atom:50200 charge  0.4817
+    set type @atom:50300 charge -0.1513
+    set type @atom:50400 charge -0.1513
+    set type @atom:50500 charge -0.1513
+    set type @atom:50600 charge -0.0628
+    set type @atom:50700 charge  0.1684
+    set type @atom:50800 charge  0.1684

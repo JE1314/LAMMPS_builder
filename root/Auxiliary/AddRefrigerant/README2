@@ -67,3 +67,35 @@ run.py
   
   f.write("}\n")
 
+####################################
+
+
+
+  f.write("R1234yf inherits LOPLSAA {\n")
+  
+  f.write("  # atomID      molID   atomType     charge   X       Y        Z\n")
+  f.write("  write('Data Atoms') {\n")
+  f.write("        $atom:C00        $mol:...        @atom:50000        0.00     1.000  1.00000  0.00000  \n")
+  f.write("        $atom:C01        $mol:...        @atom:50100        0.00    -0.341  1.00000  0.00000  \n")
+  f.write("        $atom:C02        $mol:...        @atom:50200        0.00    -1.191  1.00000  1.23602  \n")
+  f.write("        $atom:F03        $mol:...        @atom:50300        0.00    -2.517  1.00159  0.94918  \n")
+  f.write("        $atom:F04        $mol:...        @atom:50400        0.00    -0.957 -0.09203  2.01013  \n")
+  f.write("        $atom:F05        $mol:...        @atom:50500        0.00    -0.955  2.09040  2.01167  \n")
+  f.write("        $atom:F06        $mol:...        @atom:50600        0.00    -0.954  1.00153 -1.20856  \n")
+  f.write("        $atom:H07        $mol:...        @atom:50700        0.00     1.566  1.00000  0.92615  \n")
+  f.write("        $atom:H08        $mol:...        @atom:50800        0.00     1.547  0.99882 -0.93676  \n")
+  f.write("        }\n")
+
+
+  f.write(" write('Data Bond List') {\n")
+  f.write("        $bond:C01-C00       $atom:C01        $atom:C00\n")
+  f.write("        $bond:C02-C01       $atom:C02        $atom:C01\n")
+  f.write("        $bond:F03-C02       $atom:F03        $atom:C02\n")
+  f.write("        $bond:F04-C02       $atom:F04        $atom:C02\n")
+  f.write("        $bond:F05-C02       $atom:F05        $atom:C02\n")
+  f.write("        $bond:F06-C01       $atom:F06        $atom:C01\n")
+  f.write("        $bond:H07-C00       $atom:H07        $atom:C00\n")
+  f.write("        $bond:H08-C00       $atom:H08        $atom:C00\n")
+  f.write("        }\n")
+  
+  f.write("}\n")

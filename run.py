@@ -151,9 +151,9 @@ Squalanen_z = 3
 #This flag determines if the the system will contain R123.
 #       if R123 = 1, the generation of R123 is activated
 
-R123 = 1
+R123 = 0
 
-#Number of benzylbenzoate chains to be placed along each
+#Number of R123 chains to be placed along each
 #       direction of the simulation box
 #       The inputs are integers
 #       Exm:    R123n_x = 5
@@ -171,7 +171,7 @@ R123n_z = 15
 
 R134A = 0
 
-#Number of benzylbenzoate chains to be placed along each
+#Number of R134A chains to be placed along each
 #       direction of the simulation box
 #       The inputs are integers
 #       Exm:    R134An_x = 5
@@ -182,6 +182,23 @@ R134An_x = 5
 R134An_y = 5
 R134An_z = 5
 
+#####Inputs related to R1234yf
+
+#This flag determines if the the system will contain R1234yf.
+#       if R1234yf = 1, the generation of R1234yf is activated
+
+R1234yf = 1
+
+#Number of R1234yf chains to be placed along each
+#       direction of the simulation box
+#       The inputs are integers
+#       Exm:    R134An_x = 5
+#               R134An_y = 7
+#               R134An_z = 3
+
+R1234yfn_x = 1
+R1234yfn_y = 1
+R1234yfn_z = 1
 
 #################################################################################3
 #################################################################################3
@@ -230,6 +247,7 @@ lopls(xlo,xhi,ylo,yhi,zlo,zhi,OFMn_x,OFMn_y,nAlkane, Alkanen_x,\
                 Alkanen_y, Alkanen_z, Alkane, BZBZ, BZBZn_x, BZBZn_y, BZBZn_z,\
                 Squalane, Squalanen_x, Squalanen_y, Squalanen_z, R123, R123n_x, R123n_y, R123n_z, \
                 R134A, R134An_x, R134An_y, R134An_z, \
+                R1234yf, R1234yfn_x, R1234yfn_y, R1234yfn_z,\
                 OFM ,OFMtype, Surfaces,\
                 FractalLevels,RMSin,H,boxLenghtX,boxLenghtY,boxLenghtZ,aFe,Separation)
 
